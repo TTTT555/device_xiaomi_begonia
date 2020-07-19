@@ -25,6 +25,8 @@
     <dimen name="rounded_corner_content_padding">16dp</dimen>
     <dimen name="recents_task_view_rounded_corners_radius">9dp</dimen>
     <dimen name="navigation_side_padding">85dp</dimen>
+	<dimen name="status_bar_extra_padding">5dp</dimen>
+	<dimen name="status_bar_horizontal_padding">5dp</dimen>
 
     <!-- Doze: does this device support STATE_DOZE?  -->
     <bool name="doze_display_state_supported">true</bool>
