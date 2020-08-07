@@ -195,6 +195,7 @@ PRODUCT_PACKAGES += \
     multi_init.rc \
     fstab.enableswap \
     fstab.mt6785 \
+    init.xiaomi_parts.rc \
     ueventd.mtk.rc
 
 # RenderScript
@@ -284,5 +285,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/nfc/sn100u_pnx_pcv.pnscr:$(TARGET_COPY_OUT_VENDOR)/etc/sn100u_pnx_pcv.pnscr \
     $(LOCAL_PATH)/nfc/sn100u_pnx_sst.pnscr:$(TARGET_COPY_OUT_VENDOR)/etc/sn100u_pnx_sst.pnscr
 
+# XiaomiParts
+PRODUCT_PACKAGES += \
+     XiaomiParts
+    
 # Inherit vendor
 $(call inherit-product, vendor/redmi/begonia/begonia-vendor.mk)
