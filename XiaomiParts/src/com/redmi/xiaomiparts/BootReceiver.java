@@ -29,13 +29,7 @@ import com.redmi.xiaomiparts.ambient.SensorsDozeService;
 
 
 public class BootReceiver extends BroadcastReceiver implements Utils {
-
-    private final String TORCH_1_BRIGHTNESS_PATH = "/sys/devices/soc/800f000.qcom,spmi/spmi-0/" +
-            "spmi0-03/800f000.qcom,spmi:qcom,pm660l@3:qcom,leds@d300/leds/led:torch_0/" +
-            "max_brightness";
-    private final String TORCH_2_BRIGHTNESS_PATH = "/sys/devices/soc/800f000.qcom,spmi/spmi-0/" +
-            "spmi0-03/800f000.qcom,spmi:qcom,pm660l@3:qcom,leds@d300/leds/led:torch_1/" +
-            "max_brightness";
+	
 
     public void onReceive(Context context, Intent intent) {
     
@@ -63,18 +57,7 @@ public class BootReceiver extends BroadcastReceiver implements Utils {
         FileUtils.setValue(DeviceSettings.VDD_RESTRICTION_PATH, 
         	Settings.Secure.getInt(context.getContentResolver(),
                 	DeviceSettings.PERF_VDD_RESTRICTION, 0));
-        //Torch       
-        FileUtils.setValue(TORCH_1_BRIGHTNESS_PATH,
-                Settings.Secure.getInt(context.getContentResolver(),
-                        DeviceSettings.PREF_TORCH_BRIGHTNESS, 100));
-        FileUtils.setValue(TORCH_2_BRIGHTNESS_PATH,
-                Settings.Secure.getInt(context.getContentResolver(),
-                        DeviceSettings.PREF_TORCH_BRIGHTNESS, 100));
-        //BLD
-        FileUtils.setValue(DeviceSettings.BACKLIGHT_DIMMER_PATH, 
-        	 Settings.Secure.getInt(context.getContentResolver(),
-                	 DeviceSettings.PREF_BACKLIGHT_DIMMER, 0));
-        
+                	
         if (Settings.Secure.getInt(context.getContentResolver(), PREF_ENABLED, 0) == 1) {
             
             FileUtils.setValue(KCAL_ENABLE, Settings.Secure.getInt(context.getContentResolver(),
