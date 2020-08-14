@@ -218,7 +218,8 @@ public class FPSInfoService extends Service {
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE|
             WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
             PixelFormat.TRANSLUCENT);
-        params.gravity = Gravity.LEFT | Gravity.TOP;
+        params.y = 50;
+	params.gravity = Gravity.LEFT | Gravity.TOP;
         params.setTitle("FPS Info");
 
         startThread();
