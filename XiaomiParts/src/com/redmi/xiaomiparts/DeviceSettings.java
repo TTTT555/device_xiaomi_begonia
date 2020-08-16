@@ -50,15 +50,6 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_SPECTRUM = "spectrum";
     public static final String SPECTRUM_SYSTEM_PROPERTY = "persist.spectrum.profile";
     
-    public static final String PERF_MSM_THERMAL = "msmthermal";
-    public static final String MSM_THERMAL_PATH = "/sys/module/msm_thermal/parameters/enabled";
-    public static final String PERF_CORE_CONTROL = "corecontrol";
-    public static final String CORE_CONTROL_PATH = "/sys/module/msm_thermal/core_control/enabled";
-    public static final String PERF_VDD_RESTRICTION = "vddrestrict";
-    public static final String VDD_RESTRICTION_PATH = "/sys/module/msm_thermal/vdd_restriction/enabled";
-    public static final String PREF_CPUCORE = "cpucore";
-    public static final String CPUCORE_SYSTEM_PROPERTY = "persist.cpucore.profile";
-    
     public static final String PREF_KEY_FPS_INFO = "fps_info";
 
     public static final String PREF_TCP = "tcpcongestion";
@@ -72,11 +63,6 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mPreset;
     
     private SecureSettingListPreference mSPECTRUM;
-    
-    private SecureSettingSwitchPreference mMsmThermal;
-    private SecureSettingSwitchPreference mCoreControl;
-    private SecureSettingSwitchPreference mVddRestrict;
-    private SecureSettingListPreference mCPUCORE;
 
     private SecureSettingListPreference mTCP;
     
@@ -141,36 +127,6 @@ public class DeviceSettings extends PreferenceFragment implements
         mSPECTRUM.setValue(FileUtils.getStringProp(SPECTRUM_SYSTEM_PROPERTY, "0"));
         mSPECTRUM.setSummary(mSPECTRUM.getEntry());
         mSPECTRUM.setOnPreferenceChangeListener(this);
-        
-        //MSM Thermal control
-        if (FileUtils.fileWritable(MSM_THERMAL_PATH)) {
-            mMsmThermal = (SecureSettingSwitchPreference) findPreference(PERF_MSM_THERMAL);
-            mMsmThermal.setChecked(FileUtils.getFileValueAsBoolean(MSM_THERMAL_PATH, true));
-            mMsmThermal.setOnPreferenceChangeListener(this);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(PERF_MSM_THERMAL));
-        }
-
-        if (FileUtils.fileWritable(CORE_CONTROL_PATH)) {
-            mCoreControl = (SecureSettingSwitchPreference) findPreference(PERF_CORE_CONTROL);
-            mCoreControl.setChecked(FileUtils.getFileValueAsBoolean(CORE_CONTROL_PATH, true));
-            mCoreControl.setOnPreferenceChangeListener(this);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(PERF_CORE_CONTROL));
-        }
-
-        if (FileUtils.fileWritable(VDD_RESTRICTION_PATH)) {
-            mVddRestrict = (SecureSettingSwitchPreference) findPreference(PERF_VDD_RESTRICTION);
-            mVddRestrict.setChecked(FileUtils.getFileValueAsBoolean(VDD_RESTRICTION_PATH, true));
-            mVddRestrict.setOnPreferenceChangeListener(this);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(PERF_VDD_RESTRICTION));
-        }
-
-        mCPUCORE = (SecureSettingListPreference) findPreference(PREF_CPUCORE);
-        mCPUCORE.setValue(FileUtils.getStringProp(CPUCORE_SYSTEM_PROPERTY, "0"));
-        mCPUCORE.setSummary(mCPUCORE.getEntry());
-        mCPUCORE.setOnPreferenceChangeListener(this);
 
 	// TCP
 	mTCP = (SecureSettingListPreference) findPreference(PREF_TCP);
@@ -227,24 +183,6 @@ public class DeviceSettings extends PreferenceFragment implements
                 mSPECTRUM.setValue((String) value);
                 mSPECTRUM.setSummary(mSPECTRUM.getEntry());
                 FileUtils.setStringProp(SPECTRUM_SYSTEM_PROPERTY, (String) value);
-                break;
-            
-            case PERF_MSM_THERMAL:
-                FileUtils.setValue(MSM_THERMAL_PATH, (boolean) value);
-                break;
-
-            case PERF_CORE_CONTROL:
-                FileUtils.setValue(CORE_CONTROL_PATH, (boolean) value);
-                break;
-
-            case PERF_VDD_RESTRICTION:
-                FileUtils.setValue(VDD_RESTRICTION_PATH, (boolean) value);
-                break;
-
-            case PREF_CPUCORE:
-                mCPUCORE.setValue((String) value);
-                mCPUCORE.setSummary(mCPUCORE.getEntry());
-                FileUtils.setStringProp(CPUCORE_SYSTEM_PROPERTY, (String) value);
                 break;
             
             case PREF_TCP:
