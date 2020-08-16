@@ -46,17 +46,6 @@ public class BootReceiver extends BroadcastReceiver implements Utils {
         if (enabled) {
             context.startService(new Intent(context, FPSInfoService.class));
         }
-        
-	//MSM Thermal control
-	FileUtils.setValue(DeviceSettings.MSM_THERMAL_PATH, 
-		Settings.Secure.getInt(context.getContentResolver(),
-                	DeviceSettings.PERF_MSM_THERMAL, 0));
-        FileUtils.setValue(DeviceSettings.CORE_CONTROL_PATH, 
-        	Settings.Secure.getInt(context.getContentResolver(),
-                	DeviceSettings.PERF_CORE_CONTROL, 0));
-        FileUtils.setValue(DeviceSettings.VDD_RESTRICTION_PATH, 
-        	Settings.Secure.getInt(context.getContentResolver(),
-                	DeviceSettings.PERF_VDD_RESTRICTION, 0));
                 	
         if (Settings.Secure.getInt(context.getContentResolver(), PREF_ENABLED, 0) == 1) {
             
