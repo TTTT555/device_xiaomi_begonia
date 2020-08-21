@@ -39,9 +39,9 @@ import com.redmi.xiaomiparts.preferences.VibratorStrengthPreference;
 public class DeviceSettings extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
             
-    private static final String PREF_ENABLE_DIRAC = "dirac_enabled";
-    private static final String PREF_HEADSET = "dirac_headset_pref";
-    private static final String PREF_PRESET = "dirac_preset_pref";
+    private static final String PREF_ENABLE_MI = "mi_enabled";
+    private static final String PREF_HEADSET = "mi_headset_pref";
+    private static final String PREF_PRESET = "mi_preset_pref";
 
     public static final String KEY_VIBSTRENGTH = "vib_strength";
     private static final String CATEGORY_DISPLAY = "display";
@@ -58,7 +58,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private VibratorStrengthPreference mVibratorStrength;
     private Preference mKcal;
     private Preference mAmbientPref;
-    private SecureSettingSwitchPreference mEnableDirac;
+    private SecureSettingSwitchPreference mEnableMi;
     private SecureSettingListPreference mHeadsetType;
     private SecureSettingListPreference mPreset;
     
@@ -72,24 +72,24 @@ public class DeviceSettings extends PreferenceFragment implements
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences_xiaomi_parts, rootKey);
         
-        // Dirac
+        // Mi
         boolean enhancerEnabled;
         try {
-            enhancerEnabled = DiracService.sDiracUtils.isDiracEnabled();
+            enhancerEnabled = MiService.sMiUtils.isMiEnabled();
         } catch (java.lang.NullPointerException e) {
-            getContext().startService(new Intent(getContext(), DiracService.class));
+            getContext().startService(new Intent(getContext(), MiService.class));
             try {
-                enhancerEnabled = DiracService.sDiracUtils.isDiracEnabled();
+                enhancerEnabled = MiService.sMiUtils.isMiEnabled();
             } catch (NullPointerException ne) {
                 // Avoid crash
                 ne.printStackTrace();
                 enhancerEnabled = false;
             }
         }
-	// Dirac
-        mEnableDirac = (SecureSettingSwitchPreference) findPreference(PREF_ENABLE_DIRAC);
-        mEnableDirac.setOnPreferenceChangeListener(this);
-        mEnableDirac.setChecked(enhancerEnabled);
+	// Mi
+        mEnableMi = (SecureSettingSwitchPreference) findPreference(PREF_ENABLE_MI);
+        mEnableMi.setOnPreferenceChangeListener(this);
+        mEnableMi.setChecked(enhancerEnabled);
 	// HeadSet
         mHeadsetType = (SecureSettingListPreference) findPreference(PREF_HEADSET);
         mHeadsetType.setOnPreferenceChangeListener(this);
@@ -152,30 +152,30 @@ public class DeviceSettings extends PreferenceFragment implements
         final String key = preference.getKey();
         switch (key) {
             
-            case PREF_ENABLE_DIRAC:
+            case PREF_ENABLE_MI:
                 try {
-                    DiracService.sDiracUtils.setEnabled((boolean) value);
+                    MiService.sMiUtils.setEnabled((boolean) value);
                 } catch (java.lang.NullPointerException e) {
-                    getContext().startService(new Intent(getContext(), DiracService.class));
-                    DiracService.sDiracUtils.setEnabled((boolean) value);
+                    getContext().startService(new Intent(getContext(), MiService.class));
+                    MiService.sMiUtils.setEnabled((boolean) value);
                 }
                 break;
 
             case PREF_HEADSET:
                 try {
-                    DiracService.sDiracUtils.setHeadsetType(Integer.parseInt(value.toString()));
+                    MiService.sMiUtils.setHeadsetType(Integer.parseInt(value.toString()));
                 } catch (java.lang.NullPointerException e) {
-                    getContext().startService(new Intent(getContext(), DiracService.class));
-                    DiracService.sDiracUtils.setHeadsetType(Integer.parseInt(value.toString()));
+                    getContext().startService(new Intent(getContext(), MiService.class));
+                    MiService.sMiUtils.setHeadsetType(Integer.parseInt(value.toString()));
                 }
                 break;
 
             case PREF_PRESET:
                 try {
-                    DiracService.sDiracUtils.setLevel(String.valueOf(value));
+                    MiService.sMiUtils.setLevel(String.valueOf(value));
                 } catch (java.lang.NullPointerException e) {
-                    getContext().startService(new Intent(getContext(), DiracService.class));
-                    DiracService.sDiracUtils.setLevel(String.valueOf(value));
+                    getContext().startService(new Intent(getContext(), MiService.class));
+                    MiService.sMiUtils.setLevel(String.valueOf(value));
                 }
                 break;
                 

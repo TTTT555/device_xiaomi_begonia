@@ -133,14 +133,14 @@
         </service>
         
         <service
-            android:name=".DiracService"
+            android:name=".MiService"
             android:enabled="true"
             android:stopWithTask="false" />
         
         <service
-            android:name=".DiracTileService"
-            android:icon="@drawable/dirac_qs_tile_icon"
-            android:label="@string/dirac_qs_tile_title"
+            android:name=".MiTileService"
+            android:icon="@drawable/mi_qs_tile_icon"
+            android:label="@string/mi_qs_tile_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>

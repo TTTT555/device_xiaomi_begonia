@@ -88,33 +88,33 @@
         <item>245 240 256 35 33 127 127 0</item>
     </array>
     
-    <!-- Values for Dirac headset pref -->
-    <string-array name="dirac_headset_pref_entries" translatable="false">
-        <item>@string/dirac_headset_default</item>
-        <item>@string/dirac_headset_earbuds</item>
-        <item>@string/dirac_headset_in_ear_2013</item>
-        <item>@string/dirac_headset_piston_1</item>
-        <item>@string/dirac_headset_general</item>
-        <item>@string/dirac_headset_general_inear</item>
-        <item>@string/dirac_headset_piston_basic</item>
-        <item>@string/dirac_headset_piston_2</item>
-        <item>@string/dirac_headset_piston_standard</item>
-        <item>@string/dirac_headset_headphone</item>
-        <item>@string/dirac_headset_piston_youth</item>
-        <item>@string/dirac_headset_piston_color</item>
-        <item>@string/dirac_headset_in_ear</item>
-        <item>@string/dirac_headset_capsule</item>
-        <item>@string/dirac_headset_in_ear_pro</item>
-        <item>@string/dirac_headset_comfort</item>
-        <item>@string/dirac_headset_reduction_noise</item>
-        <item>@string/dirac_headset_cancelling</item>
-        <item>@string/dirac_headset_half_in_ear</item>
-        <item>@string/dirac_headset_in_ear2</item>
-        <item>@string/dirac_headset_earphone_basic</item>
-        <item>@string/dirac_headset_earphone</item>
+    <!-- Values for Mi headset pref -->
+    <string-array name="mi_headset_pref_entries" translatable="false">
+        <item>@string/mi_headset_default</item>
+        <item>@string/mi_headset_earbuds</item>
+        <item>@string/mi_headset_in_ear_2013</item>
+        <item>@string/mi_headset_piston_1</item>
+        <item>@string/mi_headset_general</item>
+        <item>@string/mi_headset_general_inear</item>
+        <item>@string/mi_headset_piston_basic</item>
+        <item>@string/mi_headset_piston_2</item>
+        <item>@string/mi_headset_piston_standard</item>
+        <item>@string/mi_headset_headphone</item>
+        <item>@string/mi_headset_piston_youth</item>
+        <item>@string/mi_headset_piston_color</item>
+        <item>@string/mi_headset_in_ear</item>
+        <item>@string/mi_headset_capsule</item>
+        <item>@string/mi_headset_in_ear_pro</item>
+        <item>@string/mi_headset_comfort</item>
+        <item>@string/mi_headset_reduction_noise</item>
+        <item>@string/mi_headset_cancelling</item>
+        <item>@string/mi_headset_half_in_ear</item>
+        <item>@string/mi_headset_in_ear2</item>
+        <item>@string/mi_headset_earphone_basic</item>
+        <item>@string/mi_headset_earphone</item>
     </string-array>
 
-    <string-array name="dirac_headset_pref_values" translatable="false">
+    <string-array name="mi_headset_pref_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -140,22 +140,22 @@
         <item>23</item>
     </string-array>
 
-    <!-- Values for Dirac preset pref -->
-    <string-array name="dirac_preset_pref_entries" translatable="false">
-        <item>@string/dirac_preset_default</item>
-        <item>@string/dirac_preset_rock</item>
-        <item>@string/dirac_preset_jazz</item>
-        <item>@string/dirac_preset_pop</item>
-        <item>@string/dirac_preset_classical</item>
-        <item>@string/dirac_preset_hiphop</item>
-        <item>@string/dirac_preset_rb</item>
-        <item>@string/dirac_preset_electronic</item>
-        <item>@string/dirac_preset_acoustic</item>
-        <item>@string/dirac_preset_dance</item>
-        <item>@string/dirac_preset_metal</item>
+    <!-- Values for Mi preset pref -->
+    <string-array name="mi_preset_pref_entries" translatable="false">
+        <item>@string/mi_preset_default</item>
+        <item>@string/mi_preset_rock</item>
+        <item>@string/mi_preset_jazz</item>
+        <item>@string/mi_preset_pop</item>
+        <item>@string/mi_preset_classical</item>
+        <item>@string/mi_preset_hiphop</item>
+        <item>@string/mi_preset_rb</item>
+        <item>@string/mi_preset_electronic</item>
+        <item>@string/mi_preset_acoustic</item>
+        <item>@string/mi_preset_dance</item>
+        <item>@string/mi_preset_metal</item>
     </string-array>
 
-    <string-array name="dirac_preset_pref_values" translatable="false">
+    <string-array name="mi_preset_pref_values" translatable="false">
         <item>"0,0,0,0,0,0,0"</item>
         <item>"-3,0,2,5,6,4,1"</item>
         <item>"1,0,-3,-2,-3,1,2"</item>

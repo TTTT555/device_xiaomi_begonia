@@ -16,33 +16,33 @@
 
 package com.redmi.xiaomiparts;
 
-final class DiracUtils {
+final class MiUtils {
 
-    private final DiracSound mDiracSound;
+    private final MiSound mMiSound;
 
-    DiracUtils() {
-        mDiracSound = new DiracSound(0, 0);
+    MiUtils() {
+        mMiSound = new MiSound(0, 0);
     }
 
     void onBootCompleted() {
-        setEnabled(mDiracSound.getMusic() == 1);
-        mDiracSound.setHeadsetType(mDiracSound.getHeadsetType());
+        setEnabled(mMiSound.getMusic() == 1);
+        mMiSound.setHeadsetType(mMiSound.getHeadsetType());
         setLevel(getLevel());
     }
 
     void setEnabled(boolean enable) {
-        mDiracSound.setEnabled(enable);
-        mDiracSound.setMusic(enable ? 1 : 0);
+        mMiSound.setEnabled(enable);
+        mMiSound.setMusic(enable ? 1 : 0);
     }
 
-    boolean isDiracEnabled() {
-        return mDiracSound.getMusic() == 1;
+    boolean isMiEnabled() {
+        return mMiSound.getMusic() == 1;
     }
 
     private String getLevel() {
         StringBuilder selected = new StringBuilder();
         for (int band = 0; band <= 6; band++) {
-            int temp = (int) mDiracSound.getLevel(band);
+            int temp = (int) mMiSound.getLevel(band);
             selected.append(temp);
             if (band != 6) selected.append(",");
         }
@@ -52,11 +52,11 @@ final class DiracUtils {
     void setLevel(String preset) {
         String[] level = preset.split("\\s*,\\s*");
         for (int band = 0; band <= level.length - 1; band++) {
-            mDiracSound.setLevel(band, Float.valueOf(level[band]));
+            mMiSound.setLevel(band, Float.valueOf(level[band]));
         }
     }
 
     void setHeadsetType(int paramInt) {
-        mDiracSound.setHeadsetType(paramInt);
+        mMiSound.setHeadsetType(paramInt);
     }
 }
