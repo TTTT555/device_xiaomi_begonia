@@ -21,29 +21,29 @@
         
         <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
             android:defaultValue="false"
-            android:key="dirac_enabled"
-            android:summary="@string/dirac_summary"
-            android:title="@string/dirac_title"
-            android:icon="@drawable/ic_dirac" />
+            android:key="mi_enabled"
+            android:summary="@string/mi_summary"
+            android:title="@string/mi_title"
+            android:icon="@drawable/ic_mi" />
 
         <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
             android:defaultValue="0"
-            android:dependency="dirac_enabled"
-            android:entries="@array/dirac_headset_pref_entries"
-            android:entryValues="@array/dirac_headset_pref_values"
-            android:key="dirac_headset_pref"
+            android:dependency="mi_enabled"
+            android:entries="@array/mi_headset_pref_entries"
+            android:entryValues="@array/mi_headset_pref_values"
+            android:key="mi_headset_pref"
             android:summary="%s"
-            android:title="@string/dirac_headset_title"
+            android:title="@string/mi_headset_title"
             android:icon="@drawable/ic_headphones" />
             
         <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
             android:defaultValue="0,0,0,0,0,0,0"
-            android:dependency="dirac_enabled"
-            android:entries="@array/dirac_preset_pref_entries"
-            android:entryValues="@array/dirac_preset_pref_values"
-            android:key="dirac_preset_pref"
+            android:dependency="mi_enabled"
+            android:entries="@array/mi_preset_pref_entries"
+            android:entryValues="@array/mi_preset_pref_values"
+            android:key="mi_preset_pref"
             android:summary="%s"
-            android:title="@string/dirac_preset_title"
+            android:title="@string/mi_preset_title"
             android:icon="@drawable/ic_preset" />
     </PreferenceCategory>
     

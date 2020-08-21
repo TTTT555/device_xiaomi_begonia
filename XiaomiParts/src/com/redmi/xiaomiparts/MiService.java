@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-public class DiracService extends Service {
+public class MiService extends Service {
 
     private final String TAG = this.getClass().getName();
 
-    static DiracUtils sDiracUtils;
+    static MiUtils sMiUtils;
 
     @Override
     public IBinder onBind(Intent arg0) {
@@ -18,8 +18,8 @@ public class DiracService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        sDiracUtils = new DiracUtils();
-        sDiracUtils.onBootCompleted();
+        sMiUtils = new MiUtils();
+        sMiUtils.onBootCompleted();
         Log.d(TAG, "Service started");
         return START_STICKY;
     }

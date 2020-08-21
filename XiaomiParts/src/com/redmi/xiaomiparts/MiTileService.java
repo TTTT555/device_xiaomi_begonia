@@ -10,8 +10,8 @@ import android.service.quicksettings.TileService;
 
 import com.redmi.xiaomiparts.R;
 
-// TODO: Add Dirac drawables
-public class DiracTileService extends TileService {
+// TODO: Add Mi drawables
+public class MiTileService extends TileService {
 
     @Override
     public void onStartListening() {
@@ -19,11 +19,11 @@ public class DiracTileService extends TileService {
 
 	boolean enhancerEnabled;
         try {
-            enhancerEnabled = DiracService.sDiracUtils.isDiracEnabled();
+            enhancerEnabled = MiService.sMiUtils.isMiEnabled();
         } catch (java.lang.NullPointerException e) {
             try {
-		getApplicationContext().startService(new Intent(getApplicationContext(), DiracService.class));
-                enhancerEnabled = DiracService.sDiracUtils.isDiracEnabled();
+		getApplicationContext().startService(new Intent(getApplicationContext(), MiService.class));
+                enhancerEnabled = MiService.sMiUtils.isMiEnabled();
             } catch (NullPointerException ne) {
                 // Avoid crash
                 ne.printStackTrace();
@@ -46,13 +46,13 @@ public class DiracTileService extends TileService {
     @Override
     public void onClick() {
         Tile tile = getQsTile();
-	if (DiracService.sDiracUtils.isDiracEnabled()) {
-	    getApplicationContext().stopService(new Intent(getApplicationContext(), DiracService.class));
-            DiracService.sDiracUtils.setEnabled(false);
+	if (MiService.sMiUtils.isMiEnabled()) {
+	    getApplicationContext().stopService(new Intent(getApplicationContext(), MiService.class));
+            MiService.sMiUtils.setEnabled(false);
             tile.setState(Tile.STATE_INACTIVE);
         } else {
-	    getApplicationContext().startService(new Intent(getApplicationContext(), DiracService.class));
-            DiracService.sDiracUtils.setEnabled(true);
+	    getApplicationContext().startService(new Intent(getApplicationContext(), MiService.class));
+            MiService.sMiUtils.setEnabled(true);
             tile.setState(Tile.STATE_ACTIVE);
         }
         tile.updateTile();
