@@ -101,6 +101,10 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     init.mtk.rc
+	
+# init.d support
+PRODUCT_PACKAGES += \
+    sysinit
 
 # Input
 PRODUCT_COPY_FILES += \
