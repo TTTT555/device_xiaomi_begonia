@@ -131,7 +131,7 @@ PRODUCT_COPY_FILES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-pe
+    $(LOCAL_PATH)/overlay-lineage
 
 # Permissions
 PRODUCT_COPY_FILES += \
