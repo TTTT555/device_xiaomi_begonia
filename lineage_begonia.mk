@@ -39,14 +39,11 @@ PRODUCT_NAME := lineage_begonia
 PRODUCT_BRAND := Redmi
 PRODUCT_MANUFACTURER := Xiaomi
 
-# Fingerprint
-BUILD_FINGERPRINT := google/sunfish/sunfish:11/RP1A.201005.006/6828489:user/release-keys
-BUILD_DESCRIPTION := sunfish-user 11 RP1A.201005.006 6828489 release-keys
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.fingerprint=$(BUILD_FINGERPRINT)
+BUILD_FINGERPRINT := "google/sunfish/sunfish:11/RP1A.201005.006/6828489:user/release-keys"
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="$(BUILD_DESCRIPTION)"
+    PRIVATE_BUILD_DESC="begonia-user 10 QP1A.190711.020 V11.0.2.0.QGGEUXM release-keys" \
+    PRODUCT_NAME="begonia" \
+    TARGET_DEVICE="begonia"
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
