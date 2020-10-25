@@ -27,3 +27,4 @@ vendor.nxp.hardware.nfc::INqNfc                                               u:
 vendor.nxp.nxpese::INxpEse                                                    u:object_r:nxpese_hwservice:s0
 vendor.nxp.nxpnfc::INxpNfc                                                    u:object_r:nxpnfc_hwservice:s0
 vendor.dolby.hardware.dms::IDms                                               u:object_r:dms_hwservice:s0
+vendor.mediatek.hardware.pq::IPictureQuality                                  u:object_r:mtk_hal_pq_hwservice:s0
