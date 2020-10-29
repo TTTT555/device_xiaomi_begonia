@@ -310,6 +310,9 @@ PRODUCT_COPY_FILES += \
 # XiaomiParts
 PRODUCT_PACKAGES += \
      XiaomiParts
+
+# VNDK
+PRODUCT_EXTRA_VNDK_VERSIONS := 29
     
 # Inherit vendor
 $(call inherit-product, vendor/xiaomi/begonia/begonia-vendor.mk)
