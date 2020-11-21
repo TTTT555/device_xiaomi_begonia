@@ -48,6 +48,7 @@ ro.vendor.mtk_slow_motion_support=1
 ro.vendor.mtk_zsdhdr_support=1
 ro.vendor.mtk_camera_app_version=3
 ro.vendor.mtk_hdr_video_support=1
+vendor.camera.aux.packageblacklist=org.telegram.messenger
 
 # CONNSYS (connectivity)
 persist.vendor.connsys.chipid=-1
