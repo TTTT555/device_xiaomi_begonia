@@ -10,6 +10,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # AOT Preload
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI \
+	TrebuchetQuickStep \
     NexusLauncherRelease
 
 # Audio
@@ -78,10 +79,6 @@ PRODUCT_PACKAGES += \
 # TinyXML
 PRODUCT_PACKAGES += \
     libtinyxml
-
-# XiaomiParts
-PRODUCT_PACKAGES += \
-     XiaomiParts
 
 # VNDK
 PRODUCT_EXTRA_VNDK_VERSIONS := 29
