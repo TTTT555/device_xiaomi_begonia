@@ -32280,7 +32280,16 @@
         apn="mtnirancell"
         port="8080"
         proxy="10.131.26.138"
-        type="default,supl"
+        type="default,supl,ims"
+    />
+
+    <apn carrier="Irancell-IMS"
+        mcc="432"
+        mnc="35"
+        apn="ims"
+        type="ims"
+        protocol="IPV4V6"
+        roaming_protocol="IPV4V6"
     />
 
     <apn carrier="Irancell-MMS"
