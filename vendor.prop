@@ -112,6 +112,8 @@ persist.sys.mcd_config_file=/system/etc/mcd_default.conf
 debug.stagefright.ccodec=0
 debug.stagefright.omx_default_rank.sw-audio=1
 debug.stagefright.omx_default_rank=0
+media.stagefright.thumbnail.prefer_hw_codecs=true
+vendor.mtk_thumbnail_optimization=true
 
 # Mediatek (Misc)
 debug.mediatek.disp_decompress=1
