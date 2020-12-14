@@ -135,6 +135,7 @@ ODM_MANIFEST_BEGONIA_FILES := $(DEVICE_PATH)/manifest_begonia.xml
 # Treble
 TARGET_COPY_OUT_VENDOR := vendor
 PRODUCT_VENDOR_MOVE_ENABLED := true
+BOARD_VNDK_RUNTIME_DISABLE := true
 
 # Sepolicy
 include device/mediatek/sepolicy/sepolicy.mk
