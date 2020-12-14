@@ -21,5 +21,6 @@ allow vendor_init media_rw_data_file:file create_file_perms;
 allow vendor_init media_rw_data_file:file relabelfrom;
 allow vendor_init touchfeature_device:chr_file setattr;
 allow vendor_init kernel:system module_request;
+allow vendor_init proc_swappiness:file w_file_perms;
 
 set_prop(vendor_init, exported_fingerprint_prop)
