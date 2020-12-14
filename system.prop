@@ -19,6 +19,9 @@ ro.camera.highres.packagelist=org.lineageos.snap
 persist.vendor.camera.privapp.list=org.codeaurora.snapcam,com.android.camera,com.google.camera
 vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,com.google.camera
 vendor.camera.aux.packageblacklist=org.telegram.messenger,com.microsoft.teams,com.discord
+ro.mediatek.rsc_name=default
+ro.sys.current_rsc_path=/system/etc/rsc/begonia
+ro.product.current_rsc_path=/system/product/etc/rsc/begonia
 
 # Display
 ro.opengles.version=196610
