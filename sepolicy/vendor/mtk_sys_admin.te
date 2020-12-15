@@ -1,0 +1,1 @@
+allow { bip gsm0710muxd fsck vold_prepare_subdirs netd nvram_agent_binder nvram_daemon hal_mtdservice_default hal_wifi_supplicant_default vendor_shell thermal_manager toolbox usbd } self:capability { sys_admin fowner };
