@@ -67,7 +67,7 @@ ro.vendor.mtk_tee_gp_support=1
 drm.service.enabled=true
 
 # Display
-debug.cpurend.vsync=false
+debug.cpurend.vsync=true
 debug.sf.disable_backpressure=1
 debug.sf.latch_unsignaled=1
 debug.sf.early_phase_offset_ns=1500000
@@ -78,7 +78,7 @@ ro.surface_flinger.primary_display_orientation=0
 ro.vendor.jpeg_decode_sw_opt=1
 ro.surface_flinger.has_HDR_display=true
 ro.surface_flinger.has_wide_color_display=true
-ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+ro.surface_flinger.max_frame_buffer_acquired_buffers=9
 ro.surface_flinger.vsync_event_phase_offset_ns=2000000
 ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
 ro.surface_flinger.running_without_sync_framework=true
