@@ -1125,3 +1125,11 @@ on property:persist.sys.begonia.dt2w=1
 # Enable ZRAM on boot_complete
 on property:sys.boot_completed=1
     swapon_all /vendor/etc/fstab.mt6785
+
+#add MIUI camera flag
+on property:sys.camera.miui.apk=*
+    setprop vendor.camera.miui.apk ${sys.camera.miui.apk}
+
+# Disable AOSP RIL if MTK RIL is up
+on property:vendor.ril.mtk=1
+    stop vendor.ril-daemon
