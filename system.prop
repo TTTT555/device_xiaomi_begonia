@@ -1,10 +1,11 @@
 # Audio
-ro.camera.sound.forced=0
+ro.camera.sound.forced=1
 ro.audio.silent=0
 #ro.vendor.audio.soundfx.type=mi
 #ro.vendor.audio.soundfx.usb=true
 vendor.audio.spkcal.copy.inhal=true
 audio.offload.disable=1
+audio.deep_buffer.media=true
 
 # Brand
 Build.BRAND=MTK
