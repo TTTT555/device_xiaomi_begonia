@@ -216,6 +216,10 @@ PRODUCT_PACKAGES += \
     fstab.mt6785 \
     ueventd.mtk.rc
 
+#Recorder
+PRODUCT_PACKAGES += \
+    Recorder
+
 # RenderScript
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
