@@ -7,10 +7,13 @@
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
+# MTK-OSS
+$(call inherit-product, vendor/mediatek/opensource/mtk-oss.mk)
+
 # AOT Preload
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI \
-	TrebuchetQuickStep \
+    TrebuchetQuickStep \
     NexusLauncherRelease
 
 # Audio
@@ -342,11 +345,8 @@ PRODUCT_PACKAGES += \
     libhwbinder \
     libhwbinder.vendor \
     libhidltransport \
-    libhidltransport.vendor
-
-PRODUCT_PACKAGES += \
-    libladder \
-    libudf
+    libhidltransport.vendor \
+    libhidlbase
 
 # Inherit vendor
 $(call inherit-product, vendor/xiaomi/begonia/begonia-vendor.mk)
