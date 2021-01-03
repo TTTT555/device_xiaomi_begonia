@@ -1114,12 +1114,6 @@ service charger /bin/charger
     group system graphics
     seclabel u:r:healthd:s0
 
-on property:persist.sys.begonia.dt2w=0
-    exec /bin/sendevent /dev/input/event2 0 1 4
-
-on property:persist.sys.begonia.dt2w=1
-    exec /system/bin/sendevent /dev/input/event2 0 1 5
-
 # Enable ZRAM on boot_complete
 on property:sys.boot_completed=1
     swapon_all /vendor/etc/fstab.mt6785
