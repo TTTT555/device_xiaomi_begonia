@@ -25,6 +25,7 @@ TARGET_INCLUDE_STOCK_ARCORE := true
 TARGET_SUPPORTS_GOOGLE_RECORDER := true
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 $(call inherit-product, vendor/ANXCamera/config.mk)
+$(call inherit-product, vendor/trCam/config.mk)
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
