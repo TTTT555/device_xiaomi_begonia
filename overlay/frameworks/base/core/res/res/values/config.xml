@@ -94,6 +94,8 @@
          Otherwise, the device may fail to wake out of suspend reliably.
          The default is false. -->
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+    <bool name="config_proximityCheckOnWake">true</bool>
+    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
 
     <!-- Config determines whether to update phone object when voice registration
          state changes. Voice radio tech change will always trigger an update of
