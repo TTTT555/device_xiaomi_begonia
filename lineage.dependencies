@@ -1,31 +1,44 @@
 [
  {
-   "repository": "device_mediatek_sepolicy",
+   "repository": "TTTT555/device_mediatek_sepolicy",
    "target_path": "device/mediatek/sepolicy",
    "branch": "ten",
-   "remote": "pixel"
+   "remote": "github"
  },
  {
-   "repository": "vendor_mediatek-opensource",
+   "repository": "TTTT555/vendor_mediatek-opensource",
    "target_path": "vendor/mediatek/opensource",
    "branch": "ten",
-   "remote": "pixel"
+   "remote": "github"
  },
  {
-   "repository": "packages_apps_PixelLiveWallpaper",
-   "target_path": "packages/apps/PixelLiveWallpaper",
-   "branch": "ten",
-   "remote": "pixel-gitlab"
- },
- {
-   "repository": "kernel_xiaomi_begonia",
+   "repository": "TTTT555/kernel_xiaomi_begonia",
    "target_path": "kernel/xiaomi/begonia",
-   "branch": "ten"
+   "branch": "6.13_qk-n_almk",   
+   "branch": "github"
  },
  {
-   "repository": "vendor_xiaomi_begonia",
+   "repository": "TTTT555/packages_services_Telephony",
+   "target_path": "packages/services/Telephony",
+   "branch": "ten",   
+   "branch": "github"
+ },
+ {
+   "repository": "TTTT555/vendor_ANXCamera",
+   "target_path": "vendor/ANXCamera",
+   "branch": "10",   
+   "branch": "github"
+ },
+ {
+   "repository": "TTTT555/vendor_trCam",
+   "target_path": "vendor/trCam",
+   "branch": "master",   
+   "branch": "github"
+ },
+ {
+   "repository": "TTTT555/vendor_xiaomi_begonia",
    "target_path": "vendor/xiaomi/begonia",
-   "branch": "ten",
-   "remote":"pixel-devices-blobs"
+   "branch": "6.13_cfw_2.0",
+   "remote":"github"
  }
 ]
