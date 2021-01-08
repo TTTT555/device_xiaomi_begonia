@@ -122,7 +122,12 @@ PRODUCT_PACKAGES += \
 
 # Keymaster
 PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.0-service
+    android.hardware.keymaster@4.0-service \
+    libkmsetkey \
+    vendor.mediatek.hardware.keymaster_attestation@1.0 \
+    vendor.mediatek.hardware.keymaster_attestation@1.1 \
+    vendor.mediatek.hardware.keymaster_attestation@1.1-impl \
+    vendor.mediatek.hardware.keymaster_attestation@1.1-service
 
 # Light
 PRODUCT_PACKAGES += \
