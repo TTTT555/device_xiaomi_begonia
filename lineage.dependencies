@@ -12,15 +12,21 @@
    "remote": "github"
  },
  {
+    "repository" : "PixelExperience/vendor_mediatek_interfaces",
+    "target_path": "vendor/mediatek/interfaces",
+    "branch"     : "eleven"
+    "remote"     : "github"
+ },
+ {
+    "repository" : "PixelExperience/vendor_mediatek_ims",
+    "target_path": "vendor/mediatek/ims",
+    "branch"     : "eleven"
+    "remote"     : "github"	
+ },
+ {
    "repository": "TTTT555/kernel_xiaomi_begonia",
    "target_path": "kernel/xiaomi/begonia",
    "branch": "6.13_qk-n_almk",   
-   "branch": "github"
- },
- {
-   "repository": "TTTT555/packages_services_Telephony",
-   "target_path": "packages/services/Telephony",
-   "branch": "ten",   
    "branch": "github"
  },
  {
