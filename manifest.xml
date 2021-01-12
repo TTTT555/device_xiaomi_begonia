@@ -818,6 +818,16 @@
         </interface>
         <fqname>@1.0::IVSIMService/default</fqname>
     </hal>
+    <hal format="hidl">
+        <name>vendor.mediatek.hardware.keyinstall</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IKeyinstall</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IKeyinstall/default</fqname>
+    </hal>
     <sepolicy>
         <version>30.0</version>
     </sepolicy>
