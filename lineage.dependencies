@@ -2,19 +2,19 @@
  {
    "repository": "TTTT555/device_mediatek_sepolicy",
    "target_path": "device/mediatek/sepolicy",
-   "branch": "ten",
+   "branch": "eleven",
    "remote": "github"
  },
  {
-   "repository": "TTTT555/vendor_mediatek-opensource",
+   "repository": "TTTT555/vendor_mediatek_opensource",
    "target_path": "vendor/mediatek/opensource",
-   "branch": "ten",
+   "branch": "11",
    "remote": "github"
  },
  {
-    "repository" : "PixelExperience/vendor_mediatek_interfaces",
+    "repository" : "TTTT555/vendor_mediatek_interfaces",
     "target_path": "vendor/mediatek/interfaces",
-    "branch"     : "eleven"
+    "branch"     : "11"
     "remote"     : "github"
  },
  {
@@ -26,13 +26,13 @@
  {
    "repository": "TTTT555/kernel_xiaomi_begonia",
    "target_path": "kernel/xiaomi/begonia",
-   "branch": "6.13_qk-n_almk",   
+   "branch": "7.2_qk-n_almk",   
    "branch": "github"
  },
  {
    "repository": "TTTT555/vendor_ANXCamera",
    "target_path": "vendor/ANXCamera",
-   "branch": "10",   
+   "branch": "11",   
    "branch": "github"
  },
  {
@@ -44,7 +44,7 @@
  {
    "repository": "TTTT555/vendor_xiaomi_begonia",
    "target_path": "vendor/xiaomi/begonia",
-   "branch": "6.13_cfw_2.0",
+   "branch": "7.2",
    "remote":"github"
  }
 ]
