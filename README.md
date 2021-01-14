@@ -1,23 +1,12 @@
 Device configuration for Redmi Note 8 Pro (begonia)
 ===================================================
 
-![begonia](https://i.imgur.com/MNHCoPC.jpg)
+Optimized for crDroid and other ROMs based on LineageOS. 
 
-The Redmi Note 8 Pro (codenamed _"begonia"_) is a high-end, mid-range smartphone from Xiaomi.
-It was released in September 2019.
+Cherry pick this commits for fix IMS:
 
-| Basic                   | Spec Sheet                                                                                                                     |
-| -----------------------:|:------------------------------------------------------------------------------------------------------------------------------ |
-| CPU                     | Octa-core                                                                                                                      |
-| Chipset                 | Mediatek Helio G90T                                                                                                            |
-| GPU                     | Mali-G76 MC4                                                                                                                   |
-| Memory                  | 6/8 GB RAM                                                                                                                     |
-| Shipped Android Version | 9.0                                                                                                                            |
-| Storage                 | 64/128/256 GB                                                                                                                  |
-| Battery                 | Non-removable Li-Po 4500 mAh battery                                                                                           |
-| Display                 | 1080 x 2340 pixels, 19.5:9 ratio (~395 ppi density)                                                                            |
-| Camera (Rear - Main)    | 64 MP, f/1.9, 26mm (wide), 1/1.7", 0.8µm, PDAF                                                                                 |
-| Camera (Front)          | 20 MP, f/2.0, 0.9µm                                                                                                            |
+https://github.com/PixysOS/frameworks_base/commit/43c906643ca30e1d433c9f1a5f292a0eeee30267
 
+https://github.com/PixysOS/frameworks_opt_net_ims/commit/30c271beb9974d59b43d76d618c5ec8249e2004b
 
-**Copyright (C) 2020 The Potato Open Source Project**
+https://github.com/PixysOS/frameworks_opt_net_wifi/commit/187a233b64296083c5c8e7031bc730e0ab00beac
