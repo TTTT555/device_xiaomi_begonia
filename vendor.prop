@@ -22,6 +22,9 @@ ro.vendor.mtk_hifiaudio_support=1
 # Background
 persist.vendor.heavy.loading.support=1
 
+# Bluetooth
+persist.bluetooth.avrcpversion=avrcp16
+
 # Camera
 persist.vendor.camera3.operationMode.superNightMode=0x800A
 persist.vendor.camera3.pipeline.bufnum.base.imgo=5
