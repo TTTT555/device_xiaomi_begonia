@@ -56,7 +56,7 @@
          be picked. Anyone who wants to disable the overlay mechanism can set it
          to false.
     -->
-    <bool name="config_enableNetworkLocationOverlay">false</bool>
+    <bool name="config_enableNetworkLocationOverlay">true</bool>
 
     <!-- Is the device capable of hot swapping an ICC Card -->
     <bool name="config_hotswapCapable">true</bool>
