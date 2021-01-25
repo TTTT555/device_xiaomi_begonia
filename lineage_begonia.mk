@@ -22,6 +22,9 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit some extras stuff
 $(call inherit-product-if-exists, vendor/extras/extras.mk)
 
+# Inherit some custom stuff
+$(call inherit-product, vendor/viper4androidFX/config.mk)
+
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi

@@ -28,5 +28,11 @@
    "target_path": "vendor/redmi/begonia",
    "branch": "11.0",
    "remote":"github"
+ }'
+ {
+   "repository": "TTTT555/viper4androidFX",
+   "target_path": "vendor/viper4androidFX",
+   "branch": "master",   
+   "remote": "github"
  }
 ]
