@@ -230,6 +230,10 @@ PRODUCT_PACKAGES += \
     fstab.mt6785 \
     ueventd.mtk.rc
 
+# Ramdisk For Kernel
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.mt6785:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6785
+
 #Recorder
 PRODUCT_PACKAGES += \
     Recorder
