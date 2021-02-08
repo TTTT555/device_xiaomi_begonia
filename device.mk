@@ -222,6 +222,7 @@ PRODUCT_PACKAGES += \
     init.mt6785.usb.rc \
     init.project.rc \
     init.sensor_1_0.rc \
+    init.ttl.rc \
     meta_init.connectivity.rc \
     meta_init.modem.rc \
     meta_init.project.rc \
