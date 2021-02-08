@@ -1,0 +1,30 @@
+on boot
+    start ttl64set1
+    start ttl64set2
+    start ttl64set3
+    start ttl64set4
+
+# Set fix TTL
+service ttl64set1 /system/bin/iptables -t mangle -D POSTROUTING -j TTL --ttl-set 64
+	class main
+	user root
+	seclabel u:r:su:s0
+	oneshot
+
+service ttl64set2 /system/bin/iptables -t mangle -A POSTROUTING -j TTL --ttl-set 64
+	class main
+	user root
+	seclabel u:r:su:s0
+	oneshot
+
+service ttl64set3 /system/bin/iptables -t mangle -D PREROUTING -j TTL --ttl-inc 3
+	class main
+	user root
+	seclabel u:r:su:s0
+	oneshot
+
+service ttl64set4 /system/bin/iptables -t mangle -A PREROUTING -j TTL --ttl-inc 3
+	class main
+	user root
+	seclabel u:r:su:s0
+	oneshot
