@@ -1,0 +1,512 @@
+From 4e0794eb7841376ce4135e7d80045e758c17eac9 Mon Sep 17 00:00:00 2001
+From: TTTT555 <albukerko@gmail.com>
+Date: Sun, 9 Jan 2022 13:59:35 +0000
+Subject: [PATCH] begonia: Add mtk wfd
+
+---
+ media/libmediaplayerservice/Android.bp        | 18 +++-
+ .../MediaPlayerService.cpp                    | 73 ++++++++++++++-
+ .../MediaPlayerService.h                      |  7 ++
+ .../StagefrightRecorder.h                     |  6 ++
+ .../include/RemoteDisplay.h                   | 64 +++++++++++++
+ .../libstagefright_wfd_mtk.so                 |  1 +
+ .../nuplayer/NuPlayerDecoder.cpp              |  7 ++
+ .../nuplayer/NuPlayerDecoderBase.cpp          |  2 +-
+ .../nuplayer/NuPlayerRenderer.cpp             | 93 ++++++++++++++++++-
+ .../nuplayer/NuPlayerRenderer.h               | 10 ++
+ 10 files changed, 271 insertions(+), 10 deletions(-)
+ create mode 100644 media/libmediaplayerservice/include/RemoteDisplay.h
+ create mode 120000 media/libmediaplayerservice/libstagefright_wfd_mtk.so
+
+diff --git a/media/libmediaplayerservice/Android.bp b/media/libmediaplayerservice/Android.bp
+index 28fa232781..02c60e296e 100644
+--- a/media/libmediaplayerservice/Android.bp
++++ b/media/libmediaplayerservice/Android.bp
+@@ -1,5 +1,6 @@
+ cc_library_shared {
+-
++        target: {
++            android_arm: {
+     srcs: [
+         "ActivityManager.cpp",
+         "DeathNotifier.cpp",
+@@ -38,6 +39,7 @@ cc_library_shared {
+         "libstagefright_httplive",
+         "libstagefright_omx",
+         "libutils",
++        "libstagefright_wfd_mtk",
+     ],
+ 
+     header_libs: [
+@@ -70,7 +72,8 @@ cc_library_shared {
+         "-Wno-error=deprecated-declarations",
+         "-Wall",
+     ],
+-
++            },
++        },
+     name: "libmediaplayerservice",
+ 
+     sanitize: {
+@@ -79,3 +82,14 @@ cc_library_shared {
+ 
+ }
+ 
++cc_prebuilt_library_shared {
++        name: "libstagefright_wfd_mtk",
++        target: {
++            android_arm: {
++                srcs: ["libstagefright_wfd_mtk.so"],
++            },
++        },
++        strip: {
++            none:true,
++        },
++}
+diff --git a/media/libmediaplayerservice/MediaPlayerService.cpp b/media/libmediaplayerservice/MediaPlayerService.cpp
+index 58ea70d2b8..3d0b7af301 100644
+--- a/media/libmediaplayerservice/MediaPlayerService.cpp
++++ b/media/libmediaplayerservice/MediaPlayerService.cpp
+@@ -82,6 +82,7 @@
+ #include "nuplayer/NuPlayerDriver.h"
+ 
+ #include "HTTPBase.h"
++#include "RemoteDisplay.h"
+ 
+ static const int kDumpLockRetries = 50;
+ static const int kDumpLockSleepUs = 20000;
+@@ -254,6 +255,67 @@ void unmarshallAudioAttributes(const Parcel& parcel, audio_attributes_t *attribu
+ 
+ 
+ namespace android {
++// wfd
++// add the declaration of checkPermission to avoid the using error
++static bool checkPermission(const char* permissionString);
++status_t MediaPlayerService::enableRemoteDisplay(const char *iface) {
++    if (!checkPermission("android.permission.CONTROL_WIFI_DISPLAY")) {
++        return PERMISSION_DENIED;
++    }
++
++    Mutex::Autolock autoLock(mLock);
++
++    if (iface != NULL) {
++        if (mRemoteDisplay != NULL) {
++            return INVALID_OPERATION;
++        }
++
++        mRemoteDisplay = new RemoteDisplay(String16(""), NULL /* client */, iface);
++        return OK;
++    }
++
++    if (mRemoteDisplay != NULL) {
++        mRemoteDisplay->dispose();
++        mRemoteDisplay.clear();
++    }
++
++
++    return OK;
++}
++
++status_t MediaPlayerService::enableRemoteDisplay(const char *iface, const uint32_t wfdFlags) {
++    if (!checkPermission("android.permission.CONTROL_WIFI_DISPLAY")) {
++        return PERMISSION_DENIED;
++    }
++
++    Mutex::Autolock autoLock(mLock);
++
++    if (iface != NULL) {
++        if (mRemoteDisplay != NULL) {
++            return INVALID_OPERATION;
++        }
++
++    #ifdef MTK_WFD_SINK_SUPPORT
++        if (wfdFlags == WifiDisplaySink::FLAG_SIGMA_TEST_MODE) {
++            mRemoteDisplay = new RemoteDisplay(
++                NULL /* client*/, iface, (const sp<IGraphicBufferProducer> &)NULL);
++        }
++        else
++    #endif /* MTK_WFD_SINK_SUPPORT */
++        {
++            mRemoteDisplay = new RemoteDisplay(
++                String16(""), NULL /* client */, iface, wfdFlags);
++        }
++        return OK;
++    }
++
++    if (mRemoteDisplay != NULL) {
++        mRemoteDisplay->dispose();
++        mRemoteDisplay.clear();
++    }
++
++    return OK;
++}
+ 
+ extern ALooperRoster gLooperRoster;
+ 
+@@ -339,12 +401,13 @@ sp<IMediaCodecList> MediaPlayerService::getCodecList() const {
+ }
+ 
+ sp<IRemoteDisplay> MediaPlayerService::listenForRemoteDisplay(
+-        const String16 &/*opPackageName*/,
+-        const sp<IRemoteDisplayClient>& /*client*/,
+-        const String8& /*iface*/) {
+-    ALOGE("listenForRemoteDisplay is no longer supported!");
++        const String16 &opPackageName,
++        const sp<IRemoteDisplayClient>& client, const String8& iface) {
++    if (!checkPermission("android.permission.CONTROL_WIFI_DISPLAY")) {
++        return NULL;
++    }
+ 
+-    return NULL;
++    return new RemoteDisplay(opPackageName, client, iface.string());
+ }
+ 
+ status_t MediaPlayerService::AudioOutput::dump(int fd, const Vector<String16>& args) const
+diff --git a/media/libmediaplayerservice/MediaPlayerService.h b/media/libmediaplayerservice/MediaPlayerService.h
+index 3392cec7d6..9e8d051cf2 100644
+--- a/media/libmediaplayerservice/MediaPlayerService.h
++++ b/media/libmediaplayerservice/MediaPlayerService.h
+@@ -44,6 +44,7 @@ class IMediaMetadataRetriever;
+ class IRemoteDisplay;
+ class IRemoteDisplayClient;
+ class MediaRecorderClient;
++struct RemoteDisplay;
+ 
+ #define CALLBACK_ANTAGONIZER 0
+ #if CALLBACK_ANTAGONIZER
+@@ -493,6 +494,12 @@ private:
+                 SortedVector< wp<Client> >  mClients;
+                 SortedVector< wp<MediaRecorderClient> > mMediaRecorderClients;
+                 int32_t                     mNextConnId;
++
++public:
++    virtual status_t            enableRemoteDisplay(const char *iface);
++    virtual status_t            enableRemoteDisplay(const char *iface, const uint32_t wfdFlags);
++private:
++    sp<RemoteDisplay>           mRemoteDisplay;
+ };
+ 
+ // ----------------------------------------------------------------------------
+diff --git a/media/libmediaplayerservice/StagefrightRecorder.h b/media/libmediaplayerservice/StagefrightRecorder.h
+index 9a5ef1ad99..3b2c0f2046 100644
+--- a/media/libmediaplayerservice/StagefrightRecorder.h
++++ b/media/libmediaplayerservice/StagefrightRecorder.h
+@@ -228,6 +228,12 @@ protected:
+ 
+     StagefrightRecorder(const StagefrightRecorder &);
+     StagefrightRecorder &operator=(const StagefrightRecorder &);
++// add for mtk
++private:
++    // add for mtk defined infos in mediarecorder.h, notify infos set by ap only.
++    int32_t mMediaInfoFlag;
++    status_t setParameterEx(const String8 &key, const String8 &value);
++// end of add fot mtk
+ };
+ 
+ }  // namespace android
+diff --git a/media/libmediaplayerservice/include/RemoteDisplay.h b/media/libmediaplayerservice/include/RemoteDisplay.h
+new file mode 100644
+index 0000000000..562441745c
+--- /dev/null
++++ b/media/libmediaplayerservice/include/RemoteDisplay.h
+@@ -0,0 +1,64 @@
++/*
++ * Copyright 2012, The Android Open Source Project
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++#ifndef REMOTE_DISPLAY_H_
++
++#define REMOTE_DISPLAY_H_
++
++#include <media/IMediaPlayerService.h>
++#include <media/IRemoteDisplay.h>
++#include <media/stagefright/foundation/ABase.h>
++#include <utils/Errors.h>
++#include <utils/RefBase.h>
++
++namespace android {
++
++struct ALooper;
++struct MtkANetworkSession;
++class IRemoteDisplayClient;
++struct MtkWifiDisplaySource;
++
++struct RemoteDisplay : public BnRemoteDisplay {
++    RemoteDisplay(
++            const String16 &opPackageName,
++            const sp<IRemoteDisplayClient> &client,
++            const char *iface);
++    RemoteDisplay(
++        const String16 &opPackageName,
++        const sp<IRemoteDisplayClient> &client,
++        const char *iface,
++        const uint32_t wfdFlags);
++
++    virtual status_t pause();
++    virtual status_t resume();
++    virtual status_t dispose();
++
++protected:
++    virtual ~RemoteDisplay();
++
++private:
++    sp<ALooper> mNetLooper;
++    sp<ALooper> mLooper;
++    sp<MtkANetworkSession> mNetSession;
++    sp<MtkWifiDisplaySource> mSource;
++
++    DISALLOW_EVIL_CONSTRUCTORS(RemoteDisplay);
++};
++
++}  // namespace android
++
++#endif  // REMOTE_DISPLAY_H_
++
+diff --git a/media/libmediaplayerservice/libstagefright_wfd_mtk.so b/media/libmediaplayerservice/libstagefright_wfd_mtk.so
+new file mode 120000
+index 0000000000..83db93f0cb
+--- /dev/null
++++ b/media/libmediaplayerservice/libstagefright_wfd_mtk.so
+@@ -0,0 +1 @@
++../../../../vendor/xiaomi/begonia/proprietary/lib/libstagefright_wfd_mtk.so
+\ No newline at end of file
+diff --git a/media/libmediaplayerservice/nuplayer/NuPlayerDecoder.cpp b/media/libmediaplayerservice/nuplayer/NuPlayerDecoder.cpp
+index 197bf86443..1bf6d39e4f 100644
+--- a/media/libmediaplayerservice/nuplayer/NuPlayerDecoder.cpp
++++ b/media/libmediaplayerservice/nuplayer/NuPlayerDecoder.cpp
+@@ -1180,6 +1180,13 @@ void NuPlayer::Decoder::onRenderBuffer(const sp<AMessage> &msg) {
+         if (mCCDecoder != NULL && mCCDecoder->isSelected()) {
+             mCCDecoder->display(timeUs);
+         }
++
++        //   set AvSyncRefTime to video codec +
++        int64_t AVSyncTime = 0;
++        if(msg->findInt64("AvSyncRefTimeUs", &AVSyncTime)){
++            buffer->meta()->setInt64("AvSyncRefTimeUs", AVSyncTime);
++        }
++        //   set AvSyncRefTime to video codec -
+     }
+ 
+     if (mCodec == NULL) {
+diff --git a/media/libmediaplayerservice/nuplayer/NuPlayerDecoderBase.cpp b/media/libmediaplayerservice/nuplayer/NuPlayerDecoderBase.cpp
+index 987c38d94e..047113dd84 100644
+--- a/media/libmediaplayerservice/nuplayer/NuPlayerDecoderBase.cpp
++++ b/media/libmediaplayerservice/nuplayer/NuPlayerDecoderBase.cpp
+@@ -121,7 +121,7 @@ void NuPlayer::DecoderBase::onRequestInputBuffers() {
+         mRequestInputBuffersPending = true;
+ 
+         sp<AMessage> msg = new AMessage(kWhatRequestInputBuffers, this);
+-        msg->post(mRequestInputBufferDelay);
++        msg->post(10 * 1000LL);
+     }
+ }
+ 
+diff --git a/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.cpp b/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.cpp
+index 5446a9c86a..473900a7d1 100644
+--- a/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.cpp
++++ b/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.cpp
+@@ -33,6 +33,7 @@
+ #include <media/stagefright/Utils.h>
+ #include <media/stagefright/VideoFrameScheduler.h>
+ #include <media/MediaCodecBuffer.h>
++#include <utils/SystemClock.h>
+ 
+ #include <inttypes.h>
+ #include "mediaplayerservice/AVNuExtensions.h"
+@@ -163,6 +164,9 @@ NuPlayer::Renderer::Renderer(
+     CHECK(mediaClock != NULL);
+     mPlaybackRate = mPlaybackSettings.mSpeed;
+     mMediaClock->setPlaybackRate(mPlaybackRate);
++    (void)mSyncFlag.test_and_set();
++    mPadding = 0;         //mtk add for start & seek not smooth
++    mLastFrameAt = 0;     //mtk add for start & seek not smooth
+ }
+ 
+ NuPlayer::Renderer::~Renderer() {
+@@ -332,13 +336,33 @@ void NuPlayer::Renderer::flush(bool audio, bool notifyComplete) {
+             mNextVideoTimeMediaUs = -1;
+         }
+ 
++        mMediaClock->clearAnchor();
+         mVideoLateByUs = 0;
+         mSyncQueues = false;
+     }
+ 
++    // Wait until the current job in the message queue is done, to make sure
++    // buffer processing from the old generation is finished. After the current
++    // job is finished, access to buffers are protected by generation.
++    Mutex::Autolock syncLock(mSyncLock);
++    int64_t syncCount = mSyncCount;
++    mSyncFlag.clear();
++
++    // Make sure message queue is not empty after mSyncFlag is cleared.
+     sp<AMessage> msg = new AMessage(kWhatFlush, this);
+     msg->setInt32("audio", static_cast<int32_t>(audio));
+     msg->post();
++
++    int64_t uptimeMs = uptimeMillis();
++    while (mSyncCount == syncCount) {
++        (void)mSyncCondition.waitRelative(mSyncLock, ms2ns(1000));
++        if (uptimeMillis() - uptimeMs > 1000) {
++            ALOGW("flush(): no wake-up from sync point for 1s; stop waiting to "
++                  "prevent being stuck indefinitely.");
++            break;
++        }
++    }
++
+ }
+ 
+ void NuPlayer::Renderer::signalTimeDiscontinuity() {
+@@ -793,6 +817,11 @@ void NuPlayer::Renderer::onMessageReceived(const sp<AMessage> &msg) {
+             TRESPASS();
+             break;
+     }
++    if (!mSyncFlag.test_and_set()) {
++        Mutex::Autolock syncLock(mSyncLock);
++        ++mSyncCount;
++        mSyncCondition.broadcast();
++    }
+ }
+ 
+ void NuPlayer::Renderer::postDrainAudioQueue_l(int64_t delayUs) {
+@@ -1143,6 +1172,13 @@ bool NuPlayer::Renderer::onDrainAudioQueue() {
+         }
+ 
+         if (written != (ssize_t)copy) {
++            // @ M add for music NE +
++            // audiosink maybe already close because of unexpected decoder error
++            // NE flow:NuplayerDecoder notify err -> Nuplayerrender notify playback complete
++            // ->MediaplayerService setnextoutput->mAudioSink clear mTrack
++            // -> mAudioSink framesize() return err
++            if (mAudioSink->ready())
++            // @M add for music NE -
+             // A short count was received from AudioSink::write()
+             //
+             // AudioSink write is called in non-blocking mode.
+@@ -1237,12 +1273,36 @@ void NuPlayer::Renderer::onNewAudioMediaTime(int64_t mediaTimeUs) {
+         AudioTimestamp ts;
+         if (mAudioSink->getTimestamp(ts) == OK && ts.mPosition > 0) {
+             mNextAudioClockUpdateTimeUs = 0; // start our clock updates
++            //mtk add for start & seek not smooth (1)
++            if (mHasVideo) {
++                // This is for start & seek not smooth issue.
++                // because before audioTrack start and can play pending audio data,video will play normally
++                //,so when audio data can be palyed,this one video frame will be early seriously,we will
++                //calculate the mPadding and add it to mediaclock->mAnchorMediaTimeUs
++                // count the mPadding value :FramePlayedAt - lastFramePlayedAt - mPosition/SampleRate
++                mPadding = (ts.mTime.tv_sec * 1000000LL + ts.mTime.tv_nsec / 1000)
++                  - mLastFrameAt - (int64_t)((int32_t)ts.mPosition  * 1000000LL / mCurrentPcmInfo.mSampleRate);
++                if (mPadding > 250 * 1000) {
++                    mPadding = 200 * 1000LL;
++                }
++            }
++        }
++        if (mHasVideo) {
++            // record last  framePlayedAt until ts.mPostion is not zero
++            mLastFrameAt = ts.mTime.tv_sec * 1000000LL + ts.mTime.tv_nsec / 1000;
+         }
+     }
+     int64_t nowUs = ALooper::GetNowUs();
+     if (mNextAudioClockUpdateTimeUs >= 0) {
+         if (nowUs >= mNextAudioClockUpdateTimeUs) {
+-            int64_t nowMediaUs = mediaTimeUs - getPendingAudioPlayoutDurationUs(nowUs);
++        //mtk add for start & seek not smooth (2)
++            int64_t nowMediaUs = 0;
++            if (mHasVideo) {
++                nowMediaUs = mPadding + mediaTimeUs - getPendingAudioPlayoutDurationUs(nowUs);
++            } else {
++                nowMediaUs = mediaTimeUs - getPendingAudioPlayoutDurationUs(nowUs);
++            }
++
+             mMediaClock->updateAnchor(nowMediaUs, nowUs, mediaTimeUs);
+             mAnchorTimeMediaUs = mediaTimeUs;
+             mAnchorNumFramesWritten = mNumFramesWritten;
+@@ -1403,7 +1463,7 @@ void NuPlayer::Renderer::onDrainVideoQueue() {
+ 
+     if (!mPaused) {
+         setVideoLateByUs(nowUs - realTimeUs);
+-        tooLate = (mVideoLateByUs > 40000);
++        tooLate = (mVideoLateByUs > 250000);
+ 
+         if (tooLate) {
+             ALOGV("video late by %lld us (%.2f secs)",
+@@ -1438,7 +1498,36 @@ void NuPlayer::Renderer::onDrainVideoQueue() {
+         tooLate = false;
+     }
+ 
++//   set AvSyncRefTime to video codec +
++    int64_t currentPositionUs;
++    if (getCurrentPosition(&currentPositionUs)!= OK) {
++        currentPositionUs = 0;
++    }
++    entry->mNotifyConsumed->setInt64("AvSyncRefTimeUs", currentPositionUs);
++//   set AvSyncRefTime to video codec -
+     entry->mNotifyConsumed->setInt64("timestampNs", realTimeUs * 1000LL);
++
++     /**************************************/
++    //mtk add drop one frame, show one frame
++    CHECK(entry->mBuffer->meta()->findInt64("timeUs", &mediaTimeUs));
++    static int32_t SinceLastDropped = 0;
++    if(tooLate)
++    {
++        if (SinceLastDropped > 0)
++        {
++            //drop
++            ALOGE("we're late dropping one timeUs %lld ms after %d frames",mediaTimeUs/1000ll,SinceLastDropped);
++            SinceLastDropped = 0;
++        }else{
++            //not drop
++            tooLate = false;
++            SinceLastDropped ++;
++        }
++    }else{
++        SinceLastDropped ++;
++    }
++    /**************************************/
++
+     entry->mNotifyConsumed->setInt32("render", !tooLate);
+     entry->mNotifyConsumed->post();
+     mVideoQueue.erase(mVideoQueue.begin());
+diff --git a/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.h b/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.h
+index 05e3b3cda5..a48cb9b683 100644
+--- a/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.h
++++ b/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.h
+@@ -18,6 +18,8 @@
+ 
+ #define NUPLAYER_RENDERER_H_
+ 
++#include <atomic>
++
+ #include <media/AudioResamplerPublic.h>
+ #include <media/AVSyncSettings.h>
+ 
+@@ -223,6 +225,14 @@ protected:
+ 
+     sp<AWakeLock> mWakeLock;
+ 
++    std::atomic_flag mSyncFlag = ATOMIC_FLAG_INIT;
++    Mutex mSyncLock;
++    Condition mSyncCondition;
++    int64_t mSyncCount{0};
++
++    uint32_t mLastFrameAt;  // for start & seek not smooth
++    int64_t mPadding;  // for start & seek not smooth
++
+     status_t getCurrentPositionOnLooper(int64_t *mediaUs);
+     status_t getCurrentPositionOnLooper(
+             int64_t *mediaUs, int64_t nowUs, bool allowPastQueuedVideo = false);
+-- 
+2.17.1
+
