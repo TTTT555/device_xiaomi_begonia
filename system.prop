@@ -1,14 +1,9 @@
-# Audio
-ro.camera.sound.forced=1
-ro.audio.silent=0
-#ro.vendor.audio.soundfx.type=mi
-#ro.vendor.audio.soundfx.usb=true
-vendor.audio.spkcal.copy.inhal=true
-audio.offload.disable=1
-audio.deep_buffer.media=true
 
 # Brand
 Build.BRAND=MTK
+
+# Bluetooth
+persist.bluetooth.avrcpversion=avrcp16
 
 # Camera
 ro.camera.sensor.id_rear=0
@@ -41,6 +36,9 @@ sys.ipo.disable=1
 # Kernel
 ro.kernel.zio=38,108,105,16
 
+#Misc
+ro.mtk_config_max_dram_size=0x180000000
+
 # Netflix
 ro.netflix.bsp_rev=MTK6785-18758-1
 
@@ -48,6 +46,7 @@ ro.netflix.bsp_rev=MTK6785-18758-1
 ro.mtk_perf_simple_start_win=1
 ro.mtk_perf_fast_start_win=1
 ro.mtk_perf_response_time=1
+sys.use_fifo_ui=1
 
 # Power
 sys.ipo.pwrdncap=2
@@ -74,4 +73,4 @@ wifi.direct.interface=p2p0
 ro.vendor.net.enable_dual_wifi=1
 
 # Zygote Preforking
-persist.device.config.runtime_native.uasp_pool_enabled=true
+persist.device.config.runtime_native.usap_pool_enabled=true

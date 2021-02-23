@@ -27,7 +27,7 @@
     <bool name="config_automatic_brightness_available">true</bool>
 
     <!-- Whether camera shutter sound is forced or not  (country specific). -->
-    <bool name="config_camera_sound_forced">true</bool>
+    <bool name="config_camera_sound_forced">false</bool>
 
     <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
     <bool name="config_cellBroadcastAppLinks">true</bool>
@@ -74,7 +74,7 @@
     <bool name="config_hotswapCapable">true</bool>
 
     <!-- reference volume index for music stream to limit headphone volume and display warning -->
-    <integer name="config_safe_media_volume_index">18</integer>
+    <integer name="config_safe_media_volume_index">20</integer>
 
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">true</bool>
@@ -92,6 +92,16 @@
 
     <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently in hardware. -->
     <bool name="config_setColorTransformAccelerated">true</bool>
+	
+	    <!-- Minimum color temperature, in Kelvin, supported by Night display. -->
+    <integer name="config_nightDisplayColorTemperatureMin">1000</integer>
+
+    <!-- Default color temperature, in Kelvin, to tint the screen when Night display is
+         activated. -->
+    <integer name="config_nightDisplayColorTemperatureDefault">2800</integer>
+
+    <!-- Maximum color temperature, in Kelvin, supported by Night display. -->
+    <integer name="config_nightDisplayColorTemperatureMax">6000</integer>
 
     <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
          autodetected from the Configuration. -->
@@ -137,7 +147,7 @@
     <integer name="config_wakeUpDelayDoze">32</integer>
 
     <!-- Height of the status bar -->
-    <dimen name="status_bar_height_portrait">78.0px</dimen>
+    <dimen name="status_bar_height_portrait">27.629974dp</dimen>
     <dimen name="status_bar_height_landscape">24.0dp</dimen>
 
     <!-- Rounded corner padding and radius -->
@@ -340,9 +350,12 @@
 
     <!-- Configure wifi tcp buffersizes in the form:
          rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
-    <string name="config_wifi_tcp_buffers">524288,1048576,4194304,262144,524288,3670016</string>
+    <string name="config_wifi_tcp_buffers">1730560,3461120,6922240,524288,1048576,4525824</string>
     <string name="config_wlan_data_service_package">com.android.phone</string>
     <string name="config_wlan_network_service_package">com.android.phone</string>
+	
+    <!-- Wifi driver supports Automatic channel selection (ACS) for softap -->
+    <bool translatable="false" name="config_wifi_softap_acs_supported">true</bool>
 
     <!-- Array of ConnectivityManager.TYPE_xxxx values allowable for tethering -->
     <!-- Common options are [1, 4] for TYPE_WIFI and TYPE_MOBILE_DUN or
@@ -516,12 +529,8 @@
          to maximize power savings but not all devices support it.
          Refer to autosuspend.h for details. -->
    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">false</bool>
-   
-   <!-- Smart charging -->
-    <bool name="config_SmartChargingAvailable">true</bool>
-    <string name="config_SmartChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/input_suspend</string>
-    <string name="config_SmartChargingSuspendValue" translatable="false">1</string>
-    <string name="config_SmartChargingResumeValue" translatable="false">0</string>
-   
+
+    <!-- Whether the Unprocessed audio source supports the required frequency range and level -->
+    <bool name="config_supportAudioSourceUnprocessed">true</bool>
 
 </resources>

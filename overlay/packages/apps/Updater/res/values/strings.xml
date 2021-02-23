@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Directory where the update files will be downloaded and stored.
+         WARNING: The application can and will delete any unknown file. -->
+    <string name="download_path" translatable="false">/data/media/0/crdroid_updates/</string>
+</resources>

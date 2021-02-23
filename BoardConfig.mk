@@ -4,6 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+TARGET_IGNORES_FTP_PPTP_CONNTRACK_FAILURE := true
+MTK_MEDIA_PROFILES := true
+BOARD_USES_MTK_MEDIA_PROFILES := true
+
 DEVICE_PATH := device/xiaomi/begonia
 MTK_HALS_PATH := vendor/mediatek/opensource
 
@@ -72,6 +76,13 @@ BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_CUSTOM_DTBOIMG_MK := $(DEVICE_PATH)/dtbo/dtbo.mk
+
+# Misc
+TARGET_USES_HWC2 := true
+TARGET_USES_HWC2ON1ADAPTER := false
+OVERRIDE_RS_DRIVER := libRSDriver_mtk.so
+SKIP_BOOT_JARS_CHECK := true
+#BUILD_BROKEN_USES_NETWORK := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := begonia,begoniain

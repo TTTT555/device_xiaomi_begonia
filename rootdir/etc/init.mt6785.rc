@@ -396,6 +396,7 @@ on post-fs-data
     chown media system /dev/video1
     mkdir /data/vendor/vcodec 0770 media system
     mkdir /data/vendor/vcodec/log 0770 media system
+    chmod 0666 /dev/Vcodec
 
     #MJC
     #insmod /vendor/lib/modules_prebuilt/mjc_kernel_driver.ko
@@ -736,6 +737,9 @@ on boot
 
     write /proc/sys/vm/dirty_writeback_centisecs 300
     chmod 0660 /sys/power/autosleep
+
+    chown system system /sys/class/power_supply/battery/input_suspend
+    chmod 0666 /sys/class/power_supply/battery/input_suspend
 
     chmod 0664 /sys/class/leds/lcd-backlight/brightness
     chown system system /sys/class/leds/lcd-backlight/brightness
