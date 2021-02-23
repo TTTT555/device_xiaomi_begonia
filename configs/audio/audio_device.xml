@@ -5,7 +5,7 @@
     <versioncontrol value="1.01">
         </versioncontrol>
     <!-- These are the initial mixer settings -->
-    <kctl name="Audio_Speaker_class_Switch" value="CLASSH"/>
+    <kctl name="Audio_Speaker_class_Switch" value="CLASSAB"/>
     <!--headphone output-->
     <path name="headphone_output" value="turnon">
       <kctl name="DAC In Mux" value="Normal Path"/>
