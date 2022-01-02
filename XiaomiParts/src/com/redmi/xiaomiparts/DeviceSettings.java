@@ -52,6 +52,9 @@ public class DeviceSettings extends PreferenceFragment implements
 
     public static final String PREF_TCP = "tcpcongestion";
     public static final String TCP_SYSTEM_PROPERTY = "persist.tcp.profile";
+	
+    public static final String PREF_DISABLE_VSYNC = "vsync";
+    public static final String VSYNC_SYSTEM_PROPERTY = "persist.xp.vsync.disabled";
     
     private VibratorStrengthPreference mVibratorStrength;
     private Preference mAmbientPref;
@@ -62,6 +65,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mSPECTRUM;
 
     private SecureSettingListPreference mTCP;
+	
+    private SecureSettingListPreference mDisableVSYNC;
     
     private static Context mContext;
 
@@ -123,6 +128,12 @@ public class DeviceSettings extends PreferenceFragment implements
 	mTCP.setSummary(mTCP.getEntry());
 	mTCP.setOnPreferenceChangeListener(this);
 
+    // VSYNC Disabler
+    mDisableVSYNC = (SecureSettingListPreference) findPreference(PREF_DISABLE_VSYNC);
+    mDisableVSYNC.setValue(FileUtils.getStringProp(VSYNC_SYSTEM_PROPERTY, "0"));
+    mDisableVSYNC.setSummary(mDisableVSYNC.getEntry());
+    mDisableVSYNC.setOnPreferenceChangeListener(this);
+
 	//Ambient gestures
 	mAmbientPref = findPreference("ambient_display_gestures");
         mAmbientPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -178,6 +189,12 @@ public class DeviceSettings extends PreferenceFragment implements
                 mTCP.setValue((String) value);
                 mTCP.setSummary(mTCP.getEntry());
                 FileUtils.setStringProp(TCP_SYSTEM_PROPERTY, (String) value);
+                break;
+            
+            case PREF_DISABLE_VSYNC:
+                mDisableVSYNC.setValue((String) value);
+                mDisableVSYNC.setSummary(mDisableVSYNC.getEntry());
+                FileUtils.setStringProp(VSYNC_SYSTEM_PROPERTY, (String) value);
                 break;
                
             case PREF_KEY_FPS_INFO:

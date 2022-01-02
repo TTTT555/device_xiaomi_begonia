@@ -1,10 +1,12 @@
 #!/bin/sh
+
 while [ "$(getprop sys.boot_completed | tr -d '\r')" != "1" ]; do sleep 1; done
 sleep 10
 
 # initial service variables with value more than available
 sprofileold=10
 tcprofileold=10
+vsyncdisold=10
 
 # loop, run every 3 seconds
 while true
@@ -74,6 +76,23 @@ if [ "$tcprofileold" != "$tcprofile" ]; then
   ;;
   esac
 	tcprofileold=$tcprofile
+fi
+
+## V-Sync Disabler
+vsyncdis="$(getprop persist.xp.vsync.disabled)"
+if [ "$vsyncdisold" != "$vsyncdis" ]; then
+  case $vsyncdis in
+  0)# Off
+  setprop ro.surface_flinger.running_without_sync_framework 0
+  ;;
+  1)# On
+  setprop ro.surface_flinger.running_without_sync_framework 1
+  ;;
+  *)# First boot params
+  setprop ro.surface_flinger.running_without_sync_framework 0
+  ;;
+  esac
+	vsyncdisold=$vsyncdis
 fi
 
 sleep 3
