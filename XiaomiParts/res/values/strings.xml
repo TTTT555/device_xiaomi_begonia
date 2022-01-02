@@ -156,6 +156,11 @@
     <string name="vsync_dialogTitle">Vertical Synchronization (need reboot)</string>
     <string name="vsync_enabled">Enabled</string>
     <string name="vsync_disabled">Disabled</string>
+	
+    <!-- latch_unsignaled -->
+    <string name="latch_unsignaled_title">debug.sf.latch_unsignaled</string>
+    <string name="latch_unsignaled_summary">Affects the rendering of overlays</string>
+    <string name="latch_unsignaled_dialogTitle">Affects the rendering of overlays</string>
 
     <!-- Label for feature switch [CHAR LIMIT=30] -->
     <string name="switch_bar_on">On</string>

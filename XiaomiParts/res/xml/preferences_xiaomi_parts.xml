@@ -92,6 +92,14 @@
 			android:dialogTitle="@string/vsync_dialogTitle"
             android:entries="@array/vsync_profiles"
             android:entryValues="@array/vsync_values" />
+
+        <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
+            android:defaultValue="0"
+            android:key="latch_unsignaled"
+            android:icon="@drawable/ic_latch"
+            android:title="@string/latch_unsignaled_title"
+			android:summary="@string/latch_unsignaled_summary"
+			android:dialogTitle="@string/latch_unsignaled_dialogTitle" />
         
         <SwitchPreference
             android:key="fps_info"
