@@ -129,6 +129,11 @@
     <string name="vsync_enabled">Включено</string>
     <string name="vsync_disabled">Отключено</string>
 
+    <!-- latch_unsignaled -->
+    <string name="latch_unsignaled_title">debug.sf.latch_unsignaled</string>
+    <string name="latch_unsignaled_summary">Влияет на отрисовку наложений. Устройство будет перезагружено после изменения.</string>
+    <string name="latch_unsignaled_dialogTitle">Влияет на отрисовку наложений. Устройство будет перезагружено после изменения.</string>
+
     <!-- Ambient gesture haptic feedback -->
     <string name="ambient_gesture_haptic_feedback">Виброотдача</string>
     <string name="ambient_gesture_haptic_feedback_summary">Вибрировать при задействовании определённого жеста</string>

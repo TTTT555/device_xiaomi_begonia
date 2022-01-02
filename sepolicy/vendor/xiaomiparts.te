@@ -55,6 +55,9 @@ set_prop(xiaomiparts, tcp_prop);
 allow xiaomiparts vsync_prop:property_service set;
 get_prop(xiaomiparts, vsync_prop);
 set_prop(xiaomiparts, vsync_prop);
+allow xiaomiparts latch_unsignaled_prop:property_service set;
+get_prop(xiaomiparts, latch_unsignaled_prop);
+set_prop(xiaomiparts, latch_unsignaled_prop);
 
 allow xiaomiparts sysfs:dir r_dir_perms;
 allow xiaomiparts sysfs:file r_file_perms;
