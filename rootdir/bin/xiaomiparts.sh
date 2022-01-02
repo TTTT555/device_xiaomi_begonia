@@ -3,10 +3,25 @@
 while [ "$(getprop sys.boot_completed | tr -d '\r')" != "1" ]; do sleep 1; done
 sleep 10
 
-# initial service variables with value more than available
+# initial service variables and check first boot
 sprofileold=10
 tcprofileold=10
 vsyncdisold=10
+
+latch_unsignaled_old="$(getprop persist.xp.latch_unsignaled)"
+if [ "$latch_unsignaled_old" == 0 ]; then
+  # Off
+  setprop vendor.debug.sf.latch_unsignaled 0
+  setprop debug.sf.latch_unsignaled 0
+elif [ "$latch_unsignaled_old" == 1 ]; then
+  # On
+  setprop vendor.debug.sf.latch_unsignaled 1
+  setprop debug.sf.latch_unsignaled 1
+else
+  # First boot params
+  setprop vendor.debug.sf.latch_unsignaled 0
+  setprop debug.sf.latch_unsignaled 0
+fi
 
 # loop, run every 3 seconds
 while true
@@ -93,6 +108,28 @@ if [ "$vsyncdisold" != "$vsyncdis" ]; then
   ;;
   esac
 	vsyncdisold=$vsyncdis
+fi
+
+## debug.sf.latch_unsignaled
+latch_unsignaled="$(getprop persist.xp.latch_unsignaled)"
+if [ "$latch_unsignaled_old" != "$latch_unsignaled" ]; then
+  case $latch_unsignaled in
+  0)# Off
+  setprop vendor.debug.sf.latch_unsignaled 0
+  setprop debug.sf.latch_unsignaled 0
+  setprop ctl.restart zygote
+  ;;
+  1)# On
+  setprop vendor.debug.sf.latch_unsignaled 1
+  setprop debug.sf.latch_unsignaled 1
+  setprop ctl.restart zygote
+  ;;
+  *)# Other (default)
+  setprop vendor.debug.sf.latch_unsignaled 0
+  setprop debug.sf.latch_unsignaled 0
+  ;;
+  esac
+	latch_unsignaled_old=$latch_unsignaled
 fi
 
 sleep 3
