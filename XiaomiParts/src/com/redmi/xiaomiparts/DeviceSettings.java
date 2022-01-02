@@ -50,6 +50,9 @@ public class DeviceSettings extends PreferenceFragment implements
     
     public static final String PREF_KEY_FPS_INFO = "fps_info";
 
+    public static final String PREF_HWCODECS = "codecs";
+    public static final String HWCODECS_SYSTEM_PROPERTY = "persist.xp.hw_codecs";
+
     public static final String PREF_TCP = "tcpcongestion";
     public static final String TCP_SYSTEM_PROPERTY = "persist.tcp.profile";
 	
@@ -66,6 +69,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mPreset;
     
     private SecureSettingListPreference mSPECTRUM;
+
+    private SecureSettingListPreference mHwCodecs;
 
     private SecureSettingListPreference mTCP;
 	
@@ -126,6 +131,12 @@ public class DeviceSettings extends PreferenceFragment implements
         mSPECTRUM.setValue(FileUtils.getStringProp(SPECTRUM_SYSTEM_PROPERTY, "0"));
         mSPECTRUM.setSummary(mSPECTRUM.getEntry());
         mSPECTRUM.setOnPreferenceChangeListener(this);
+
+    // Codecs
+    mHwCodecs = (SecureSettingListPreference) findPreference(PREF_HWCODECS);
+    mHwCodecs.setValue(FileUtils.getStringProp(HWCODECS_SYSTEM_PROPERTY, "0"));
+    mHwCodecs.setSummary(mHwCodecs.getEntry());
+    mHwCodecs.setOnPreferenceChangeListener(this);
 
 	// TCP
 	mTCP = (SecureSettingListPreference) findPreference(PREF_TCP);
@@ -194,7 +205,13 @@ public class DeviceSettings extends PreferenceFragment implements
                 mSPECTRUM.setSummary(mSPECTRUM.getEntry());
                 FileUtils.setStringProp(SPECTRUM_SYSTEM_PROPERTY, (String) value);
                 break;
-            
+
+            case PREF_HWCODECS:
+                mHwCodecs.setValue((String) value);
+                mHwCodecs.setSummary(mHwCodecs.getEntry());
+                FileUtils.setStringProp(HWCODECS_SYSTEM_PROPERTY, (String) value);
+                break;
+
             case PREF_TCP:
                 mTCP.setValue((String) value);
                 mTCP.setSummary(mTCP.getEntry());

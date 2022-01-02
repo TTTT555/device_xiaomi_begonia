@@ -131,14 +131,21 @@
     <string name="proximity_wake_enable_title">Proximity wake</string>
     <string name="proximity_wake_enable_summary">Wake device on hand wave</string>
 
-    <!-- LKM Profiles -->
+    <!-- Codecs -->
+    <string name="codecs_title">Codecs</string>
+    <string name="codecs_summary">Codecs priority</string>
+    <string name="codecs_dialogTitle">Codecs priority</string>
+    <string name="codecs_mtk">МТК/C2</string>
+    <string name="codecs_omx">Google OMX</string>
+
+    <!-- TCP Profiles -->
     <string name="tcpcongestion_title">TCP Congestion</string>
     <string name="tcpcongestion_summary">Transmission Control Protocol Congestion Algorithm</string>
     <string name="tcpcongestion_dialogTitle">Choose your TCP Congestion Algorithm</string>
 
     <string name="misc_title">Miscellaneous</string>
 
-    <!-- Values for LKM Presets -->
+    <!-- Values for TCP Presets -->
     <string name="tcpcongestion_cubic">cubic</string>
     <string name="tcpcongestion_westwood">westwood</string>
     <string name="tcpcongestion_veno">veno</string>
@@ -156,7 +163,7 @@
     <string name="vsync_dialogTitle">Vertical Synchronization (need reboot)</string>
     <string name="vsync_enabled">Enabled</string>
     <string name="vsync_disabled">Disabled</string>
-	
+
     <!-- latch_unsignaled -->
     <string name="latch_unsignaled_title">debug.sf.latch_unsignaled</string>
     <string name="latch_unsignaled_summary">Affects the rendering of overlays. The device will reboot after changing.</string>

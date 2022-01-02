@@ -66,6 +66,16 @@
     <PreferenceCategory
         android:key="misc"
         android:title="@string/misc_title">
+		
+        <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
+            android:defaultValue="0"
+            android:key="codecs"
+            android:icon="@drawable/ic_codecs"
+            android:title="@string/codecs_title"
+			android:summary="@string/codecs_summary"
+			android:dialogTitle="@string/codecs_dialogTitle"
+            android:entries="@array/codecs_profiles"
+            android:entryValues="@array/codecs_values" />
         
         <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
             android:defaultValue="0"

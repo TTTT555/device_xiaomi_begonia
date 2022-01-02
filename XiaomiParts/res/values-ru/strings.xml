@@ -166,6 +166,13 @@
     <string name="spectrum_powerful">Мощный (1m)</string>
     <string name="spectrum_spowerful">Сверхмощный (10m)</string>
 
+    <!-- Codecs -->
+    <string name="codecs_title">Кодеки</string>
+    <string name="codecs_summary">Приоритетные кодеки</string>
+    <string name="codecs_dialogTitle">Приоритетные кодеки</string>
+    <string name="codecs_mtk">МТК/C2</string>
+    <string name="codecs_omx">Google OMX</string>
+
     <!-- TCP Profiles -->
     <string name="tcpcongestion_title">TCP Алгоритм</string>
     <string name="tcpcongestion_summary">Алгоритм улучшения работы TCP</string>
