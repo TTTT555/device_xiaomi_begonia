@@ -150,6 +150,13 @@
     <string name="fps_info_title">FPS Info Overlay</string>
     <string name="fps_info_summary">Show current frames per second by overlay</string>
 
+    <!-- V-SYNC -->
+    <string name="vsync_title">V-Sync</string>
+    <string name="vsync_summary">V-Sync Disabler(need reboot)</string>
+    <string name="vsync_dialogTitle">Vertical Synchronization (need reboot)</string>
+    <string name="vsync_enabled">Enabled</string>
+    <string name="vsync_disabled">Disabled</string>
+
     <!-- Label for feature switch [CHAR LIMIT=30] -->
     <string name="switch_bar_on">On</string>
 

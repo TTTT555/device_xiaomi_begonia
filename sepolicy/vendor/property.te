@@ -10,3 +10,4 @@ type deviceid_prop, property_type;
 type dirac_prop, property_type;
 type spectrum_prop, property_type;
 type tcp_prop, property_type;
+type vsync_prop, property_type;

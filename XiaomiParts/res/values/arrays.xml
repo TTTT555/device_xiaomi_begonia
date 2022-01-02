@@ -132,5 +132,16 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+
+    <!-- V-Sync -->
+    <string-array name="vsync_profiles">
+        <item>@string/vsync_enabled</item>
+        <item>@string/vsync_disabled</item>
+    </string-array>
+    
+    <string-array name="vsync_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
     
 </resources>
