@@ -114,7 +114,18 @@
         <item>"2,3,-7,-2,4,4,4"</item>
         <item>"2,0,0,-2,-4,0,0"</item>
     </string-array>
+
+    <!-- Codecs -->
+    <string-array name="codecs_profiles">
+        <item>@string/codecs_mtk</item>
+        <item>@string/codecs_omx</item>
+    </string-array>
     
+    <string-array name="codecs_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
     <string-array name="tcpcongestion_profiles">
         <item>@string/tcpcongestion_cubic</item>
         <item>@string/tcpcongestion_westwood</item>        
