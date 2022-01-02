@@ -166,6 +166,13 @@
     <string name="spectrum_performance">Мощный (300к)</string>
     <string name="spectrum_crazy">Прощай заряд (1000к)</string>
 
+    <!-- Codecs -->
+    <string name="codecs_title">Кодеки</string>
+    <string name="codecs_summary">Приоритетные кодеки</string>
+    <string name="codecs_dialogTitle">Приоритетные кодеки</string>
+    <string name="codecs_mtk">МТК HW</string>
+    <string name="codecs_omx">Google OMX</string>
+
     <!-- TCP Profiles -->
     <string name="tcpcongestion_title">TCP Алгоритм</string>
     <string name="tcpcongestion_summary">Алгоритм улучшения работы TCP</string>
