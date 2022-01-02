@@ -38,6 +38,7 @@ persist.spectrum.profile            u:object_r:spectrum_prop:s0
 persist.tcp.profile		            u:object_r:tcp_prop:s0
 persist.xp.vsync.disabled		    u:object_r:vsync_prop:s0
 persist.xp.latch_unsignaled		    u:object_r:latch_unsignaled_prop:s0
+persist.xp.hw_codecs        	    u:object_r:codecs_prop:s0
 ## Dirac
 audio.dirac.                        u:object_r:dirac_prop:s0
 audio.dirac.logging                 u:object_r:dirac_prop:s0
