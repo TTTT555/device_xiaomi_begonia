@@ -82,6 +82,16 @@
     <PreferenceCategory
         android:key="display"
         android:title="@string/display_title">
+		
+        <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
+            android:defaultValue="0"
+            android:key="vsync"
+            android:icon="@drawable/ic_vs"
+            android:title="@string/vsync_title"
+			android:summary="@string/vsync_summary"
+			android:dialogTitle="@string/vsync_dialogTitle"
+            android:entries="@array/vsync_profiles"
+            android:entryValues="@array/vsync_values" />
         
         <SwitchPreference
             android:key="fps_info"
@@ -89,7 +99,7 @@
             android:title="@string/fps_info_title"
             android:summary="@string/fps_info_summary"
             android:persistent="false" />
-
+			
     </PreferenceCategory>
 
     <PreferenceCategory

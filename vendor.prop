@@ -80,8 +80,8 @@ ro.vendor.mtk_tee_gp_support=1
 # DRM
 drm.service.enabled=true
 
-# Display
-debug.cpurend.vsync=1
+# Display (xiaomiparts params under #)
+#debug.cpurend.vsync=1
 debug.sf.disable_backpressure=1
 #vendor.debug.sf.latch_unsignaled=1
 ro.vendor.jpeg_decode_sw_opt=1
@@ -89,9 +89,9 @@ ro.surface_flinger.max_frame_buffer_acquired_buffers=9
 ro.surface_flinger.vsync_event_phase_offset_ns=2000000
 ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
 ro.surface_flinger.present_time_offset_from_vsync_ns=0
-ro.surface_flinger.running_without_sync_framework=0
+#ro.surface_flinger.running_without_sync_framework=0
 debug.sf.enable_hwc_vds=1
-debug.sf.hw=1
+#debug.sf.hw=1
 ro.surface_flinger.use_color_management=1
 vendor.gralloc.enable_fb_ubwc=1
 vendor.gralloc.disable_ubwc=0

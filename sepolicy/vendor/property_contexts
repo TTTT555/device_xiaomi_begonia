@@ -84,8 +84,9 @@ sys.thermal.                u:object_r:thermal_engine_prop:s0
 persist.sys.thermal.        u:object_r:thermal_engine_prop:s0
 
 ### XiaomiParts ###
-persist.spectrum.profile           u:object_r:spectrum_prop:s0
-persist.tcp.profile		   u:object_r:tcp_prop:s0
+persist.spectrum.profile            u:object_r:spectrum_prop:s0
+persist.tcp.profile		            u:object_r:tcp_prop:s0
+persist.xp.vsync.disabled		    u:object_r:vsync_prop:s0
 ## Dirac
 audio.dirac.                        u:object_r:dirac_prop:s0
 audio.dirac.logging                 u:object_r:dirac_prop:s0

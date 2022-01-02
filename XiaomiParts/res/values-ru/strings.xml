@@ -122,6 +122,13 @@
     <string name="fps_info_title">Датчик FPS</string>
     <string name="fps_info_summary">Отобразить информацию с текущими кадрами в секунду</string>
 
+    <!-- V-SYNC -->
+    <string name="vsync_title">V-Sync</string>
+    <string name="vsync_summary">Вертикальная синхронизация (нужна перезагрузка)</string>
+    <string name="vsync_dialogTitle">Вертикальная синхронизация (нужна перезагрузка)</string>
+    <string name="vsync_enabled">Включено</string>
+    <string name="vsync_disabled">Отключено</string>
+
     <!-- Ambient gesture haptic feedback -->
     <string name="ambient_gesture_haptic_feedback">Виброотдача</string>
     <string name="ambient_gesture_haptic_feedback_summary">Вибрировать при задействовании определённого жеста</string>
