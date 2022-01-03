@@ -70,6 +70,9 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5.vendor \
     android.hardware.camera.provider@2.6.vendor
 
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/configs/gcam/Burial8_perfect_2_fix2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/Gcam/configs7/Burial/Burial8_perfect_2_fix2.xml
+
 # Dex
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI
@@ -239,6 +242,7 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    gcam.sh \
     partition_permission.sh \
     setup_MTK_In-Call_volume_adjust.sh \
     throttle.sh \

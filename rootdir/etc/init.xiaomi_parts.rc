@@ -51,9 +51,17 @@ on boot
 
 # Start service
    start xiaomiparts_sh
+# Start Gcam cp service
+   start gcam_sh
 
 # FIXME: Dummy service (not works "on property:*****" construction with Sepolicy Enforce with any denials)
 service xiaomiparts_sh /vendor/bin/xiaomiparts.sh
+	class main
+	user root
+	seclabel u:r:su:s0
+	oneshot
+
+service gcam_sh /vendor/bin/gcam.sh
 	class main
 	user root
 	seclabel u:r:su:s0
