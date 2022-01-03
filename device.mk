@@ -207,6 +207,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     capture.sh \
     capture_headsetmic.sh \
+    gcam.sh \
     playback.sh \
     playback_headset.sh \
     setup_headset2rcv.sh \
