@@ -110,6 +110,14 @@
             android:title="@string/latch_unsignaled_title"
 			android:summary="@string/latch_unsignaled_summary"
 			android:dialogTitle="@string/latch_unsignaled_dialogTitle" />
+
+        <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
+            android:defaultValue="0"
+            android:key="hw_overlays"
+            android:icon="@drawable/ic_hwoverlays"
+            android:title="@string/hw_overlays_title"
+			android:summary="@string/hw_overlays_summary"
+			android:dialogTitle="@string/hw_overlays_dialogTitle" />
         
         <SwitchPreference
             android:key="fps_info"

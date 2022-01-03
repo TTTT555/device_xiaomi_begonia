@@ -6,6 +6,7 @@ tcprofileold=10
 vsyncdisold=10
 latch_unsignaled_old=10
 codecs_old=10
+hw_overlays_old=10
 
 # loop, run every 3 seconds
 while true
@@ -131,6 +132,23 @@ if [ "$codecs_old" != "$codecs" ]; then
   ;;
   esac
 	codecs_old=$codecs
+fi
+
+## HW overlays
+hw_overlays="$(getprop persist.xp.hw_overlays)"
+if [ "$hw_overlays_old" != "$hw_overlays" ]; then
+  case $hw_overlays in
+  0)# On
+  /system/bin/service call SurfaceFlinger 1008 i32 0
+  ;;
+  1)# Off
+  /system/bin/service call SurfaceFlinger 1008 i32 1
+  ;;
+  *)# First boot params
+  /system/bin/service call SurfaceFlinger 1008 i32 0
+  ;;
+  esac
+	hw_overlays_old=$hw_overlays
 fi
 
 sleep 3
