@@ -86,6 +86,14 @@
             android:summary="@string/tcpcongestion_summary"
             android:icon="@drawable/ic_tcp" 
             android:title="@string/tcpcongestion_title" />
+
+        <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
+            android:defaultValue="0"
+            android:key="force64"
+            android:icon="@drawable/ic_64mp"
+            android:title="@string/force64_title"
+			android:summary="@string/force64_summary"
+			android:dialogTitle="@string/force64_dialogTitle" />
             
     </PreferenceCategory>
 

@@ -138,6 +138,11 @@
     <string name="codecs_mtk">МТК HW</string>
     <string name="codecs_omx">Google OMX</string>
 
+    <!-- Force 64 Mp -->
+    <string name="force64_title">Force 64 Mp</string>
+    <string name="force64_summary">Supported only by adapted cameras</string>
+    <string name="force64_dialogTitle">Supported only by adapted cameras</string>
+
     <!-- TCP Profiles -->
     <string name="tcpcongestion_title">TCP Congestion</string>
     <string name="tcpcongestion_summary">Transmission Control Protocol Congestion Algorithm</string>
