@@ -239,6 +239,7 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    gcam.sh \
     partition_permission.sh \
     setup_MTK_In-Call_volume_adjust.sh \
     throttle.sh \
