@@ -25,6 +25,7 @@ fi
 
 codecs_old=10
 hw_overlays_old=10
+force64_old=10
 
 # loop, run every 3 seconds
 while true
@@ -171,6 +172,41 @@ if [ "$hw_overlays_old" != "$hw_overlays" ]; then
 	hw_overlays_old=$hw_overlays
 fi
 
-sleep 3
+## Force 64 Mp
+force64="$(getprop persist.xp.force64)"
+if [ "$force64_old" != "$force64" ]; then
+  case $force64 in
+  0)# Off
+  stop camerahalserver
+  umount /vendor/lib64/libcam.hal3a.v3.lscMgr.so
+  umount /vendor/lib64/libcam.halsensor.so
+  umount /vendor/lib64/libmtkcam.logicalmodule.so
+  umount /vendor/lib64/libmtkcam_metastore.so
+  umount /vendor/lib64/libmtkcam_pipelinepolicy.so
+  start camerahalserver
+  ;;
+  1)# On
+  stop camerahalserver
+  mount --bind /vendor/lib64/2libcam.hal3a.v3.lscMgr.so /vendor/lib64/libcam.hal3a.v3.lscMgr.so
+  mount --bind /vendor/lib64/2libcam.halsensor.so /vendor/lib64/libcam.halsensor.so
+  mount --bind /vendor/lib64/2libmtkcam.logicalmodule.so /vendor/lib64/libmtkcam.logicalmodule.so
+  mount --bind /vendor/lib64/2libmtkcam_metastore.so /vendor/lib64/libmtkcam_metastore.so
+  mount --bind /vendor/lib64/2libmtkcam_pipelinepolicy.so /vendor/lib64/libmtkcam_pipelinepolicy.so
+  start camerahalserver
+  ;;
+  *)# First boot params
+  stop camerahalserver
+  umount /vendor/lib64/libcam.hal3a.v3.lscMgr.so
+  umount /vendor/lib64/libcam.halsensor.so
+  umount /vendor/lib64/libmtkcam.logicalmodule.so
+  umount /vendor/lib64/libmtkcam_metastore.so
+  umount /vendor/lib64/libmtkcam_pipelinepolicy.so
+  start camerahalserver
+  ;;
+  esac
+	force64_old=$force64
+fi
+
+sleep 2
 
 done

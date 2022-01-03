@@ -178,6 +178,11 @@
     <string name="codecs_mtk">МТК/C2</string>
     <string name="codecs_omx">Google OMX</string>
 
+    <!-- Force 64 Mp -->
+    <string name="force64_title">Форсировать 64 Мп</string>
+    <string name="force64_summary">Поддерживается только адаптированными камерами</string>
+    <string name="force64_dialogTitle">Поддерживается только адаптированными камерами</string>
+
     <!-- TCP Profiles -->
     <string name="tcpcongestion_title">TCP Алгоритм</string>
     <string name="tcpcongestion_summary">Алгоритм улучшения работы TCP</string>

@@ -55,6 +55,9 @@ public class DeviceSettings extends PreferenceFragment implements
 
     public static final String PREF_TCP = "tcpcongestion";
     public static final String TCP_SYSTEM_PROPERTY = "persist.tcp.profile";
+
+    public static final String PREF_FORCE64 = "force64";
+    public static final String FORCE64_SYSTEM_PROPERTY = "persist.xp.force64";
 	
     public static final String PREF_DISABLE_VSYNC = "vsync";
     public static final String VSYNC_SYSTEM_PROPERTY = "persist.xp.vsync.disabled";
@@ -76,6 +79,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mHwCodecs;
 
     private SecureSettingListPreference mTCP;
+	
+    private SecureSettingSwitchPreference mForce64;
 	
     private SecureSettingListPreference mDisableVSYNC;
 
@@ -148,6 +153,11 @@ public class DeviceSettings extends PreferenceFragment implements
 	mTCP.setValue(FileUtils.getStringProp(TCP_SYSTEM_PROPERTY, "0"));
 	mTCP.setSummary(mTCP.getEntry());
 	mTCP.setOnPreferenceChangeListener(this);
+
+    // Force 64
+    mForce64 = (SecureSettingSwitchPreference) findPreference(PREF_FORCE64);
+    mForce64.setChecked(FileUtils.getProp(FORCE64_SYSTEM_PROPERTY, false));
+    mForce64.setOnPreferenceChangeListener(this);
 
     // VSYNC Disabler
     mDisableVSYNC = (SecureSettingListPreference) findPreference(PREF_DISABLE_VSYNC);
@@ -227,7 +237,11 @@ public class DeviceSettings extends PreferenceFragment implements
                 mTCP.setSummary(mTCP.getEntry());
                 FileUtils.setStringProp(TCP_SYSTEM_PROPERTY, (String) value);
                 break;
-            
+
+            case PREF_FORCE64:
+                FileUtils.setProp(FORCE64_SYSTEM_PROPERTY, (Boolean) value);
+                break;
+
             case PREF_DISABLE_VSYNC:
                 mDisableVSYNC.setValue((String) value);
                 mDisableVSYNC.setSummary(mDisableVSYNC.getEntry());
