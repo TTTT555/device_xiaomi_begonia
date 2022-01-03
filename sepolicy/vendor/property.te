@@ -13,3 +13,4 @@ type tcp_prop, property_type;
 type vsync_prop, property_type;
 type latch_unsignaled_prop, property_type;
 type codecs_prop, property_type;
+type hw_overlays_prop, property_type;

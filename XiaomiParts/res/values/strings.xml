@@ -169,6 +169,11 @@
     <string name="latch_unsignaled_summary">Affects the rendering of overlays. The device will reboot after changing.</string>
     <string name="latch_unsignaled_dialogTitle">Affects the rendering of overlays. The device will reboot after changing.</string>
 
+    <!-- HW Overlays -->
+    <string name="hw_overlays_title">Disable HW overlays</string>
+    <string name="hw_overlays_summary">Always use GPU for screen compositing</string>
+    <string name="hw_overlays_dialogTitle">Always use GPU for screen compositing</string>
+
     <!-- Label for feature switch [CHAR LIMIT=30] -->
     <string name="switch_bar_on">On</string>
 

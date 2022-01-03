@@ -61,6 +61,9 @@ set_prop(xiaomiparts, latch_unsignaled_prop);
 allow xiaomiparts codecs_prop:property_service set;
 get_prop(xiaomiparts, codecs_prop);
 set_prop(xiaomiparts, codecs_prop);
+allow xiaomiparts hw_overlays_prop:property_service set;
+get_prop(xiaomiparts, hw_overlays_prop);
+set_prop(xiaomiparts, hw_overlays_prop);
 
 allow xiaomiparts sysfs:dir r_dir_perms;
 allow xiaomiparts sysfs:file r_file_perms;
