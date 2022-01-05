@@ -190,6 +190,17 @@
 
     <string name="misc_title">Разное</string>
 
+    <!-- WiFi Profiles -->
+    <string name="wifi80_title">MTK Wi-Fi Sta2 Режим</string>
+    <string name="wifi80_summary">Выберите Wi-Fi режим</string>
+    <string name="wifi80_dialogTitle">Выберите Wi-Fi режим</string>
+
+    <!-- Values for WiFi Presets -->
+    <string name="wifi80_default">По умолчанию (20-40 МГц)</string>
+    <string name="wifi80_2">Форсировать 2G/80 МГц</string>
+    <string name="wifi80_5">Форсировать 5G/80 МГц</string>
+    <string name="wifi80_25">Форсировать 2G+5G/80 МГц</string>
+
     <!-- Hand wave gesture -->
     <string name="hand_wave_gesture_title">Взмах руки</string>
     <string name="hand_wave_gesture_summary">Показать уведомления при взмахе рукой</string>
