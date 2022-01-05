@@ -56,6 +56,9 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_TCP = "tcpcongestion";
     public static final String TCP_SYSTEM_PROPERTY = "persist.tcp.profile";
 
+    public static final String PREF_WIFI80 = "wifi80";
+    public static final String WIFI80_SYSTEM_PROPERTY = "persist.xp.wifi80";
+
     public static final String PREF_FORCE64 = "force64";
     public static final String FORCE64_SYSTEM_PROPERTY = "persist.xp.force64";
 	
@@ -79,6 +82,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mHwCodecs;
 
     private SecureSettingListPreference mTCP;
+
+    private SecureSettingListPreference mWiFi80;
 	
     private SecureSettingSwitchPreference mForce64;
 	
@@ -153,6 +158,12 @@ public class DeviceSettings extends PreferenceFragment implements
 	mTCP.setValue(FileUtils.getStringProp(TCP_SYSTEM_PROPERTY, "0"));
 	mTCP.setSummary(mTCP.getEntry());
 	mTCP.setOnPreferenceChangeListener(this);
+
+	// WiFi 80
+	mWiFi80 = (SecureSettingListPreference) findPreference(PREF_WIFI80);
+	mWiFi80.setValue(FileUtils.getStringProp(WIFI80_SYSTEM_PROPERTY, "0"));
+	mWiFi80.setSummary(mWiFi80.getEntry());
+	mWiFi80.setOnPreferenceChangeListener(this);
 
     // Force 64
     mForce64 = (SecureSettingSwitchPreference) findPreference(PREF_FORCE64);
@@ -236,6 +247,12 @@ public class DeviceSettings extends PreferenceFragment implements
                 mTCP.setValue((String) value);
                 mTCP.setSummary(mTCP.getEntry());
                 FileUtils.setStringProp(TCP_SYSTEM_PROPERTY, (String) value);
+                break;
+
+            case PREF_WIFI80:
+                mWiFi80.setValue((String) value);
+                mWiFi80.setSummary(mWiFi80.getEntry());
+                FileUtils.setStringProp(WIFI80_SYSTEM_PROPERTY, (String) value);
                 break;
 
             case PREF_FORCE64:

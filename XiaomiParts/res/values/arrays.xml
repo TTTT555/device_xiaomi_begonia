@@ -144,6 +144,21 @@
         <item>5</item>
     </string-array>
 
+    <!-- WiFi Profiles -->
+    <string-array name="wifi80_profiles">
+        <item>@string/wifi80_default</item>
+        <item>@string/wifi80_2</item>        
+        <item>@string/wifi80_5</item>
+        <item>@string/wifi80_25</item>
+    </string-array>
+    
+    <string-array name="wifi80_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     <!-- V-Sync -->
     <string-array name="vsync_profiles">
         <item>@string/vsync_enabled</item>

@@ -87,6 +87,16 @@
             android:icon="@drawable/ic_tcp" 
             android:title="@string/tcpcongestion_title" />
 
+        <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
+            android:defaultValue="0"
+            android:dialogTitle="@string/wifi80_dialogTitle"
+            android:entries="@array/wifi80_profiles"
+            android:entryValues="@array/wifi80_values"
+            android:key="wifi80"
+            android:summary="@string/wifi80_summary"
+            android:icon="@drawable/ic_wifi80" 
+            android:title="@string/wifi80_title" />
+
         <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
             android:defaultValue="0"
             android:key="force64"

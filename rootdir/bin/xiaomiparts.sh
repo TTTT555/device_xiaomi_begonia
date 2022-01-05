@@ -8,6 +8,7 @@ latch_unsignaled_old=10
 codecs_old=10
 hw_overlays_old=10
 force64_old=10
+wifi80_old=10
 
 # loop, run every 3 seconds
 while true
@@ -185,6 +186,42 @@ if [ "$force64_old" != "$force64" ]; then
   ;;
   esac
 	force64_old=$force64
+fi
+
+## Force WiFi 80 Mhz
+wifi80="$(getprop persist.xp.wifi80)"
+if [ "$wifi80_old" != "$wifi80" ]; then
+  case $wifi80 in
+  0)# Default
+  svc wifi disable
+  umount /vendor/firmware/wifi.cfg
+  svc wifi enable
+  ;;
+  1)# Only 2G
+  svc wifi disable
+  umount /vendor/firmware/wifi.cfg
+  mount --bind /vendor/firmware/wifi_sta2.cfg /vendor/firmware/wifi.cfg
+  svc wifi enable
+  ;;
+  2)# Only 5G
+  svc wifi disable
+  umount /vendor/firmware/wifi.cfg
+  mount --bind /vendor/firmware/wifi_sta5.cfg /vendor/firmware/wifi.cfg
+  svc wifi enable
+  ;;
+  3)# 2G + 5G
+  svc wifi disable
+  umount /vendor/firmware/wifi.cfg
+  mount --bind /vendor/firmware/wifi_sta25.cfg /vendor/firmware/wifi.cfg
+  svc wifi enable
+  ;;
+  *)# First boot params
+  svc wifi disable
+  umount /vendor/firmware/wifi.cfg
+  svc wifi enable
+  ;;
+  esac
+	wifi80_old=$wifi80
 fi
 
 sleep 2
