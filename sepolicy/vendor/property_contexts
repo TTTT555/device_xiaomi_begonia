@@ -41,6 +41,7 @@ persist.xp.latch_unsignaled		    u:object_r:latch_unsignaled_prop:s0
 persist.xp.hw_codecs        	    u:object_r:codecs_prop:s0
 persist.xp.hw_overlays        	    u:object_r:hw_overlays_prop:s0
 persist.xp.force64          	    u:object_r:force64_prop:s0
+persist.xp.wifi80           	    u:object_r:wifi80_prop:s0
 ## Dirac
 audio.dirac.                        u:object_r:dirac_prop:s0
 audio.dirac.logging                 u:object_r:dirac_prop:s0
