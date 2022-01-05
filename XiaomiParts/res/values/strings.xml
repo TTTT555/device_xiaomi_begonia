@@ -158,6 +158,17 @@
     <string name="tcpcongestion_illinois">illinois</string>
     <string name="tcpcongestion_htcp">htcp</string>
 
+    <!-- WiFi Profiles -->
+    <string name="wifi80_title">MTK Wi-Fi Sta2 Mode</string>
+    <string name="wifi80_summary">Choose your Wi-Fi mode</string>
+    <string name="wifi80_dialogTitle">Choose your Wi-Fi mode</string>
+
+    <!-- Values for WiFi Presets -->
+    <string name="wifi80_default">Default (20-40 MHz)</string>
+    <string name="wifi80_2">Force 2G/80 MHz</string>
+    <string name="wifi80_5">Force 5G/80 MHz</string>
+    <string name="wifi80_25">Force 2G+5G/80 Mhz</string>
+
     <!-- FPS Info -->
     <string name="fps_info_title">FPS Info Overlay</string>
     <string name="fps_info_summary">Show current frames per second by overlay</string>
