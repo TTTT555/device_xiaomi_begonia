@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2018 The Asus-SDM660 Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="advanced_settings">BegoniaParts</string>
+    <string name="advanced_settings_summary">Особые настройки устройства</string>
+
+    <string name="display_title">Дисплей</string>
+
+    <string name="vibration_title">Вибрация</string>
+    <string name="vibration_strength_title">Уровень вибрации</string>
+
+    <!-- Dirac settings -->
+    <string name="dirac_title">Технология звука Dirac</string>
+    <string name="dirac_summary">Оптимизировать качество звука</string>
+    <string name="dirac_headset_title">Выберите тип наушников</string>
+    <string name="dirac_preset_title">Выберите пресет</string>
+
+    <!-- Dirac settings: Headset types -->
+    <string name="dirac_headset_default">По умолчанию</string>
+    <string name="dirac_headset_earbuds">Mi Earbuds</string>
+    <string name="dirac_headset_in_ear_2013">Mi In-Ear (2013)</string>
+    <string name="dirac_headset_piston_1">Mi Piston-1</string>
+    <string name="dirac_headset_general">General</string>
+    <string name="dirac_headset_general_inear">General In-Ear</string>
+    <string name="dirac_headset_piston_basic">Basic Edition</string>
+    <string name="dirac_headset_piston_2">Mi Piston-2</string>
+    <string name="dirac_headset_piston_standard">Standard Edition</string>
+    <string name="dirac_headset_headphone">Mi Headphones</string>
+    <string name="dirac_headset_piston_youth">Youth Edition</string>
+    <string name="dirac_headset_piston_color">Color Edition</string>
+    <string name="dirac_headset_in_ear">Mi In-Ear</string>
+    <string name="dirac_headset_capsule">Mi Capsule</string>
+    <string name="dirac_headset_in_ear_pro">Mi In-Ear Pro</string>
+    <string name="dirac_headset_comfort">Mi Comfort</string>
+    <string name="dirac_headset_reduction_noise">Mi Noise Cancelling Type-C</string>
+    <string name="dirac_headset_cancelling">Mi Noise Cancelling 3.5mm</string>
+    <string name="dirac_headset_half_in_ear">Mi Half In-Ear</string>
+    <string name="dirac_headset_in_ear2">Mi In-Ear 2</string>
+    <string name="dirac_headset_earphone_basic">Mi Earphones Basic</string>
+    <string name="dirac_headset_earphone">Mi Earphones</string>
+
+    <!-- Dirac settings: Equalizer presets -->
+    <string name="dirac_preset_default">По умолчанию</string>
+    <string name="dirac_preset_rock">Рок</string>
+    <string name="dirac_preset_jazz">Джаз</string>
+    <string name="dirac_preset_pop">Поп</string>
+    <string name="dirac_preset_classical">Классика</string>
+    <string name="dirac_preset_hiphop">Хип-Хоп</string>
+    <string name="dirac_preset_blues">Блюз</string>
+    <string name="dirac_preset_electronic">Электронная</string>
+    <string name="dirac_preset_country">Кантри</string>
+    <string name="dirac_preset_dance">Клубная</string>
+    <string name="dirac_preset_metal">Метал</string>
+
+    <!-- Audio amplification -->
+    <string name="audio_title">Аудио</string>
+    <string name="headphone_gain">Усиление звука в наушниках</string>
+    <string name="microphone_gain">Усиление звука микрофона</string>
+    <string name="earpiece_gain">Усиление динамика (звонки)</string>
+    <string name="speaker_gain">Усиление динамика</string>
+    
+    <!-- Presets -->
+    <string name="preset_default">По умолчанию</string>
+    <string name="preset_version_1">Версия 1</string>
+    <string name="preset_version_2">Версия 2</string>
+    <string name="preset_version_3">Версия 3</string>
+    <string name="preset_triluminous">Triluminous</string>
+    <string name="preset_deep_black_white">Глубокий черный и белый</string>
+    <string name="preset_deep_natural">Глубокий естественный</string>
+    <string name="preset_cool_amoled">Cool Amoled</string>
+    <string name="preset_extreme_amoled">Extreme Amoled</string>
+    <string name="preset_warm_amoled">Тёплый Amoled</string>
+    <string name="preset_hybrid_mamba">Hybrid Mamba</string>
+    <string name="preset_sir_banger">Sir Banger</string>
+    <string name="preset_gerard_extrem_cool">Gerard Extreme Cool</string>
+    <string name="preset_yoyoz808">Yoyoz808</string>
+    <string name="preset_purian">Purian</string>
+    <string name="preset_deep_black_colorful">Deep Black Colorful</string>
+    <string name="preset_vomer_deep_rich">Vomer Deep Rich</string>
+    <string name="preset_franco">Franco</string>
+    <string name="preset_wrinklefree_cool">WrinkleFree Cool</string>
+    <string name="preset_harley_tech">Harley-Tech</string>
+    <string name="preset_perfection">Perfection</string>
+    <string name="preset_banged_up">Banged up</string>
+    <string name="preset_sim_cooler">SimCooler</string>
+    <string name="preset_obsanity">Obsanity</string>
+    <string name="preset_obsanity_ips">Obsanity IPS</string>
+
+    <!-- USB fastcharge -->
+    <string name="usb_fastcharge_title">Быстрая зарядка по USB</string>
+    <string name="fastcharge_title">Включить быструю зарядку по USB</string>
+    <string name="fastcharge_summary">Зарядка до 900 мА при подключении к компьютеру через порт USB 3.0</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Значение: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">По умолчанию</string>
+    <string name="custom_seekbar_default_value_to_set">Значение по умолчанию: <xliff:g id="v">%s</xliff:g>Длительное нажатие, чтобы установить</string>
+    <string name="custom_seekbar_default_value_is_set">Значение по умолчанию установлено</string>
+
+    <!-- Gestures: Touchscreen gestures -->
+    <string name="touch_gestures">Жесты</string>
+
+    <!-- Log Tile -->
+    <string name="quick_settings_log_tile_label">LogTile</string>
+    <string name="quick_settings_log_tile_dialog_title">Опции</string>
+    <string name="cannot_get_su">Не удалось выполнить действие из-за отсутствия доступа суперпользователя</string>
+
+    <!-- FPS Info -->
+    <string name="fps_info_title">Датчик FPS</string>
+    <string name="fps_info_summary">Отобразить информацию с текущими кадрами в секунду</string>
+
+    <!-- Ambient gesture haptic feedback -->
+    <string name="ambient_gesture_haptic_feedback">Виброотдача</string>
+    <string name="ambient_gesture_haptic_feedback_summary">Вибрировать при задействовании определённого жеста</string>
+
+    <!-- Ambient Display -->
+    <string name="ambient_display_enable_title">Жесты активного дисплея</string>
+    <string name="ambient_display_enable_summary">Пробуждение экрана при получении уведомлений</string>
+    <string name="ambient_display_gestures_title">Жесты активного дисплея</string>
+    <string name="ambient_display_gestures_summary">Дополнительные жесты, чтобы разбудить экран</string>
+    <string name="ambient_display_summary">Пробуждение экрана при получении уведомлений</string>
+    <string name="ambient_display_summary_on">Экран будет просыпаться при получении уведомлений</string>
+    <string name="ambient_display_summary_off">Экран не будет просыпаться при получении уведомлений</string>
+
+    <!-- Doze sensor -->
+    <string name="tilt_sensor_title">Датчик наклона</string>
+    <string name="pickup_sensor_title">Датчик срабатывания</string>
+    <string name="proximity_sensor_title">Датчик приближения</string>
+
+    <!-- Spectrum Profiles -->
+    <string name="spectrum_profile_title">Производительность</string>
+    <string name="spectrum_title">Профиль</string>
+    <string name="spectrum_summary">Выберите коэффициент Schedutil</string>
+    <string name="spectrum_dialogTitle">Выберите коэффициент Schedutil</string>
+
+    <!-- Values for Spectrum Presets -->
+    <string name="spectrum_battery1">Батарея (1к)</string>
+    <string name="spectrum_battery2">Батарея (10к)</string>
+    <string name="spectrum_balance">Баланс (100к)</string>
+    <string name="spectrum_gaming">Игровой (200к)</string>
+    <string name="spectrum_performance">Мощный (300к)</string>
+    <string name="spectrum_crazy">Прощай заряд (1000к)</string>
+
+    <!-- TCP Profiles -->
+    <string name="tcpcongestion_title">TCP Алгоритм</string>
+    <string name="tcpcongestion_summary">Алгоритм улучшения работы TCP</string>
+    <string name="tcpcongestion_dialogTitle">Выберите алгоритм улучшения TCP</string>
+
+    <string name="misc_title">Разное</string>
+
+    <!-- Hand wave gesture -->
+    <string name="hand_wave_gesture_title">Взмах руки</string>
+    <string name="hand_wave_gesture_summary">Показать уведомления при взмахе рукой</string>
+    <string name="hand_wave_gesture_flat_title">Определить положение устройства</string>
+    <string name="hand_wave_gesture_flat_summary">Отображать только если телефон лежит на ровной поверхности</string>
+
+    <!-- Pick-up gesture -->
+    <string name="pick_up_gesture_title">Срабатывание</string>
+    <string name="pick_up_gesture_summary">Показать уведомления при поднятии</string>
+
+    <!-- Pocket gesture -->
+    <string name="pocket_gesture_title">Карман</string>
+    <string name="pocket_gesture_summary">Отображать уведомления при извлечении из кармана</string>
+
+    <!-- Proximity wake -->
+    <string name="proximity_wake_title">Пробуждение экрана датчиком приближения</string>
+    <string name="proximity_wake_enable_title">Пробуждение экрана датчиком приближения</string>
+    <string name="proximity_wake_enable_summary">Пробуждение экрана при взмахе рукой</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_on">Вкл</string>
+
+    <!-- Label for feature switch -->
+    <string name="switch_bar_off">Выкл</string>
+
+    <!-- Touchboost -->
+    <string name="boost_title">Boost</string>
+    <string name="touchboost_title">Задействовать "Touchboost"</string>
+    <string name="touchboost_summary">Увеличьте скорость процессора при обнаружении касания для плавной работы</string>
+</resources>

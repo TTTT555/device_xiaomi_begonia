@@ -214,6 +214,7 @@ PRODUCT_PACKAGES += \
     setup_mainmic2headphone.sh \
     setup_topmic2headphone.sh \
     teardown_loopback.sh \
+    xiaomiparts.sh \
     init.aee.rc \
     init.ago.rc \
     init.connectivity.rc \
@@ -224,6 +225,7 @@ PRODUCT_PACKAGES += \
     init.project.rc \
     init.sensor_1_0.rc \
     init.ttl.rc \
+    init.xiaomi_parts.rc \
     meta_init.connectivity.rc \
     meta_init.modem.rc \
     meta_init.project.rc \
@@ -279,6 +281,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
+
+# XiaomiParts
+PRODUCT_PACKAGES += \
+    XiaomiParts
 
 # Wallpapers
 PRODUCT_PACKAGES += \

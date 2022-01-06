@@ -27,6 +27,11 @@ audio.offload.disable=1
 audio.deep_buffer.media=true
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=7
+persist.dirac.acs.controller=qem
+persist.dirac.acs.storeSettings=1
+persist.dirac.acs.ignore_error=1
+ro.audio.soundfx.dirac=true
+ro.vendor.audio.soundfx.dirac=true
 
 # Background
 persist.vendor.heavy.loading.support=1

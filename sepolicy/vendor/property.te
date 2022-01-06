@@ -16,3 +16,7 @@ type public_vendor_default_prop, property_type;
 type telephony_prop, property_type;
 type render_prop, property_type;
 type factor_prop, property_type;
+# XiaomiParts
+type dirac_prop, property_type;
+type spectrum_prop, property_type;
+type tcp_prop, property_type;

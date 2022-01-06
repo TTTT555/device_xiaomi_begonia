@@ -1,0 +1,57 @@
+type xiaomiparts, domain;
+app_domain(xiaomiparts)
+
+# Allow xiaomiparts to find system services
+allow xiaomiparts {
+  app_api_service
+  audioserver_service
+  cameraserver_service
+  drmserver_service
+  mediaextractor_service
+  mediametrics_service
+  mediaserver_service
+}:service_manager find;
+
+# Allow xiaomiparts read and write /data/data subdirectory
+allow xiaomiparts system_app_data_file:dir create_dir_perms;
+allow xiaomiparts system_app_data_file:{
+  file
+  lnk_file
+} create_file_perms;
+
+# Allow xiaomiparts to search nodes dirs
+allow xiaomiparts {
+  sysfs_scontrol
+  sysfs_leds
+  sysfs_gesture_node
+}:dir { r_dir_perms };
+
+# Allow xiaomiparts to control vibrator, gesture_node and mic/headphone gain nodes
+allow xiaomiparts {
+  sysfs_scontrol
+  sysfs_leds
+  sysfs_gesture_node
+}:file rw_file_perms;
+
+# Allow xiaomiparts to read fps info
+allow xiaomiparts sysfs_fps:file r_file_perms;
+
+allow xiaomiparts cgroup:file rw_file_perms;
+allow xiaomiparts property_socket:sock_file write;
+allow xiaomiparts init:unix_stream_socket connectto;
+allow xiaomiparts gpuservice:binder call;
+allow xiaomiparts debugfs_ion:dir rw_dir_perms;
+
+allow xiaomiparts dirac_prop:property_service set;
+get_prop(xiaomiparts, dirac_prop);
+set_prop(xiaomiparts, dirac_prop);
+allow xiaomiparts spectrum_prop:property_service set;
+get_prop(xiaomiparts, spectrum_prop);
+set_prop(xiaomiparts, spectrum_prop);
+allow xiaomiparts tcp_prop:property_service set;
+get_prop(xiaomiparts, tcp_prop);
+set_prop(xiaomiparts, tcp_prop);
+
+allow xiaomiparts sysfs:dir r_dir_perms;
+allow xiaomiparts sysfs:file r_file_perms;
+allow xiaomiparts sysfs_thunderquake_engine:file rw_file_perms;

@@ -42,6 +42,12 @@
    "branch": "github"
  },
  {
+   "repository": "TTTT555/dirac",
+   "target_path": "vendor/dirac",
+   "branch": "master",   
+   "branch": "github"
+ },
+ {
    "repository": "TTTT555/vendor_xiaomi_begonia",
    "target_path": "vendor/xiaomi/begonia",
    "branch": "6.13_cfw_2.0",

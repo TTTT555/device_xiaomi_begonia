@@ -27,6 +27,7 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 $(call inherit-product, vendor/ANXCamera/config.mk)
 $(call inherit-product, vendor/trCam/config.mk)
 $(call inherit-product, vendor/viper4androidFX/config.mk)
+$(call inherit-product, vendor/dirac/config.mk)
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal

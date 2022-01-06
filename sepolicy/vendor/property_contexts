@@ -83,5 +83,18 @@ ro.telephony.              u:object_r:telephony_prop:s0
 sys.thermal.                u:object_r:thermal_engine_prop:s0
 persist.sys.thermal.        u:object_r:thermal_engine_prop:s0
 
+### XiaomiParts ###
+persist.spectrum.profile           u:object_r:spectrum_prop:s0
+persist.tcp.profile		   u:object_r:tcp_prop:s0
+## Dirac
+audio.dirac.                        u:object_r:dirac_prop:s0
+audio.dirac.logging                 u:object_r:dirac_prop:s0
+persist.audio.dirac.                u:object_r:dirac_prop:s0
+persist.dirac.acs.controller        u:object_r:vendor_audio_prop:s0
+persist.dirac.acs.storeSettings     u:object_r:vendor_audio_prop:s0
+persist.dirac.acs.ignore_error      u:object_r:vendor_audio_prop:s0
+ro.audio.soundfx.dirac              u:object_r:vendor_audio_prop:s0
+persist.audio.dirac.speaker         u:object_r:vendor_audio_prop:s0
+
 # WFD
 persist.vendor.setWFDInfo.R2             u:object_r:wfd_sys_debug_prop:s0
