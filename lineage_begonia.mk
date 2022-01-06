@@ -24,6 +24,7 @@ $(call inherit-product-if-exists, vendor/extras/extras.mk)
 
 # Inherit some custom stuff
 $(call inherit-product, vendor/viper4androidFX/config.mk)
+$(call inherit-product, vendor/dirac/config.mk)
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
