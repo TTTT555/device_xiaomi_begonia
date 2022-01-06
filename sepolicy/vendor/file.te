@@ -5,3 +5,9 @@ type vendor_fingerprint_data_file, file_type, data_file_type;
 type sysfs_light, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_graphics, sysfs_type, fs_type, mlstrustedobject;
 type sysfs_fpsinfo, sysfs_type, fs_type;
+
+# XiaomiParts
+type sysfs_gesture_node, sysfs_type, fs_type;
+type sysfs_scontrol, sysfs_type, fs_type;
+type sysfs_iio_devices, sysfs_type, fs_type;
+type sysfs_thunderquake_engine, sysfs_type, fs_type;
