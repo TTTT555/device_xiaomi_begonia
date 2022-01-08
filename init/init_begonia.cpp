@@ -36,24 +36,30 @@ void property_override(char const prop[], char const value[])
 }
 
 void load_begoniaglobal() {
-        property_override("ro.build.fingerprint", "google/coral/coral:11/RQ1A.210105.003/7005429:user/release-keys");
+        property_override("ro.build.fingerprint", "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys");
         property_override("ro.product.board", "begonia");
         property_override("ro.product.device", "begonia");
         property_override("ro.product.model", "Redmi Note 8 Pro");
+        property_override("ro.product.system.model", "Redmi Note 8 Pro");
+        property_override("ro.product.vendor.model", "Redmi Note 8 Pro");
 }
 
 void load_begoniain() {
-        property_override("ro.build.fingerprint", "google/coral/coral:11/RQ1A.210105.003/7005429:user/release-keys");
+        property_override("ro.build.fingerprint", "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys");
         property_override("ro.product.board", "begoniain");
         property_override("ro.product.device", "begoniain");
         property_override("ro.product.model", "Redmi Note 8 Pro");
+        property_override("ro.product.system.model", "Redmi Note 8 Pro");
+        property_override("ro.product.vendor.model", "Redmi Note 8 Pro");
 }
 
 void load_begonia() {
-        property_override("ro.build.fingerprint", "google/coral/coral:11/RQ1A.210105.003/7005429:user/release-keys");
+        property_override("ro.build.fingerprint", "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys");
         property_override("ro.product.board", "begonia");
         property_override("ro.product.device", "begonia");
         property_override("ro.product.model", "Redmi Note 8 Pro");
+        property_override("ro.product.system.model", "Redmi Note 8 Pro");
+        property_override("ro.product.vendor.model", "Redmi Note 8 Pro");
 }
 
 void vendor_load_properties() {
@@ -70,4 +76,22 @@ void vendor_load_properties() {
     }
 
     property_override("ro.oem_unlock_supported", "0");
+    property_override("ro.boot.flash.locked", "1");
+    property_override("ro.boot.verifiedbootstate", "green");
+    property_override("ro.boot.veritymode", "enforcing");
+    property_override("ro.boot.vbmeta.device_state", "locked");
+    property_override("ro.boot.veritymode", "enforcing");
+    property_override("ro.boot.warranty_bit", "0");
+    property_override("ro.warranty_bit", "0");
+    property_override("ro.debuggable", "0");
+    property_override("ro.secure", "1");
+    property_override("ro.build.type", "user");
+    property_override("ro.build.tags", "release-keys");
+    property_override("ro.vendor.boot.warranty_bit", "0");
+    property_override("ro.vendor.warranty_bit", "0");
+    property_override("vendor.boot.vbmeta.device_state", "locked");
+    property_override("vendor.boot.verifiedbootstate", "green");
+    // Fix some apps identification
+    property_override("ro.product.vendor.model", "begonia");
+    property_override("ro.product.system.model", "begonia");
 }
