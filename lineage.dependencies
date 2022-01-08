@@ -10,5 +10,11 @@
   {
     "repository" : "vendor_redmi_begonia-ims",
     "target_path": "vendor/redmi/begonia-ims"
-  }
+  },
+ {
+   "repository": "TTTT555/vendor_xiaomi_begonia-firmware",
+   "target_path": "vendor/redmi/begonia",
+   "branch": "11.0",
+   "remote":"github"
+ }
 ]
