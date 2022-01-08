@@ -46,5 +46,11 @@
    "target_path": "vendor/xiaomi/begonia",
    "branch": "6.13_cfw_2.0",
    "remote":"github"
+ },
+ {
+   "repository": "TTTT555/vendor_xiaomi_begonia-firmware",
+   "target_path": "vendor/xiaomi/begonia",
+   "branch": "6.25",
+   "remote":"github"
  }
 ]
