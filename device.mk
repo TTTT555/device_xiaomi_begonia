@@ -65,7 +65,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.media.swcodec \
     libsfplugin_ccodec \
-    android.hardware.media.c2@1.0-service \
     libcodec2_client \
     libcodec2_soft_avcdec
 
