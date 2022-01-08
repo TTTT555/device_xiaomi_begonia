@@ -213,6 +213,7 @@ PRODUCT_PACKAGES += \
     setup_headset2rcv.sh \
     setup_headsetmic2headphone.sh \
     setup_mainmic2headphone.sh \
+    setup_MTK_In-Call_volume_adjust.sh \
     setup_topmic2headphone.sh \
     teardown_loopback.sh \
     xiaomiparts.sh \
@@ -223,6 +224,7 @@ PRODUCT_PACKAGES += \
     init.modem.rc \
     init.mt6785.rc \
     init.mt6785.usb.rc \
+    init.mtkincalladj.rc \
     init.project.rc \
     init.sensor_1_0.rc \
     init.ttl.rc \

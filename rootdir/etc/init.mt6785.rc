@@ -13,6 +13,7 @@ import /vendor/etc/init/hw/init.stnfc.rc
 import /system/etc/init/hw/init.stnfc.rc
 import /vendor/etc/init/hw/init.xiaomi_parts.rc
 import /vendor/etc/init/hw/init.ttl.rc
+import /vendor/etc/init/hw/init.mtkincalladj.rc
 
 # init.modem.rc must be the LAST rc file because vold.post_fs_data_done is set in it
 import /vendor/etc/init/hw/init.modem.rc
