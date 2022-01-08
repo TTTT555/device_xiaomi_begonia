@@ -36,7 +36,8 @@ PRODUCT_PACKAGES += \
     libtinycompress \
     libtinycompress.vendor \
     libaudiofoundation \
-    libaudiofoundation.vendor
+    libaudiofoundation.vendor \
+    tinymix
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_device.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_device.xml \
@@ -239,12 +240,14 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     partition_permission.sh \
+    setup_MTK_In-Call_volume_adjust.sh \
     throttle.sh \
     xiaomiparts.sh \
     init.connectivity.rc \
     init.modem.rc \
     init.mt6785.rc \
     init.mt6785.usb.rc \
+    init.mtkincalladj.rc \
     init.project.rc \
     init.sensor_1_0.rc \
     init.ttl.rc \
