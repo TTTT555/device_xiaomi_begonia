@@ -9,4 +9,7 @@ allow platform_app mtk_cmdq_device:chr_file rw_file_perms;
 allow platform_app mtk_mdp_device:chr_file rw_file_perms;
 allow platform_app sysfs_therm:dir r_dir_perms;
 allow platform_app sysfs_therm:file r_file_perms;
+allow platform_app sysfs_thermal:lnk_file r_file_perms;
 allow platform_app recovery_service:service_manager find;
+allow platform_app misys_hwservice:hwservice_manager find;
+allow platform_app panel_display_prop:file { read open };
