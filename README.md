@@ -1,23 +1,17 @@
-Device configuration for Redmi Note 8 Pro (begonia)
+crDroid 6.25 FINAL
 ===================================================
+Device configuration for Redmi Note 8 Pro (begonia)
+---------------------------------------------------
 
-![begonia](https://i.imgur.com/MNHCoPC.jpg)
+Full description (Russian language): https://4pda.to/forum/index.php?showtopic=974421&view=findpost&p=97822397
 
-The Redmi Note 8 Pro (codenamed _"begonia"_) is a high-end, mid-range smartphone from Xiaomi.
-It was released in September 2019.
+Before building:
 
-| Basic                   | Spec Sheet                                                                                                                     |
-| -----------------------:|:------------------------------------------------------------------------------------------------------------------------------ |
-| CPU                     | Octa-core                                                                                                                      |
-| Chipset                 | Mediatek Helio G90T                                                                                                            |
-| GPU                     | Mali-G76 MC4                                                                                                                   |
-| Memory                  | 6/8 GB RAM                                                                                                                     |
-| Shipped Android Version | 9.0                                                                                                                            |
-| Storage                 | 64/128/256 GB                                                                                                                  |
-| Battery                 | Non-removable Li-Po 4500 mAh battery                                                                                           |
-| Display                 | 1080 x 2340 pixels, 19.5:9 ratio (~395 ppi density)                                                                            |
-| Camera (Rear - Main)    | 64 MP, f/1.9, 26mm (wide), 1/1.7", 0.8µm, PDAF                                                                                 |
-| Camera (Front)          | 20 MP, f/2.0, 0.9µm                                                                                                            |
+1) Check https://github.com/crdroidandroid/android/tree/10.0
+2) Check lineage.dependencies file
+3) Git apply framework patches from /patches
+4) Run command `export SKIP_ABI_CHECKS=true`
+5) Revert this commits (for ANX): https://github.com/crdroidandroid/android_external_libjpeg-turbo/commit/f3681be16369fe3871966cda7263b7bffb8623a9
+https://github.com/crdroidandroid/android_external_skia/commit/13bad33ef859f9c0d0796d3461d315c7c09b28c5
 
 
-**Copyright (C) 2020 The Potato Open Source Project**

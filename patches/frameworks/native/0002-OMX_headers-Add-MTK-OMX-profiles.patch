@@ -1,0 +1,634 @@
+From beea80c4615c7837cc9a9f6d5424575e36ad52cf Mon Sep 17 00:00:00 2001
+From: TTTT555 <albukerko@gmail.com>
+Date: Wed, 12 May 2021 16:52:34 +0000
+Subject: [PATCH 2/2] OMX_headers: Add MTK OMX profiles
+
+---
+ headers/media_plugin/media/openmax/OMX_Core.h |  71 +++++++
+ .../media_plugin/media/openmax/OMX_IVCommon.h |  16 ++
+ .../media_plugin/media/openmax/OMX_Index.h    | 115 +++++++++++
+ .../media_plugin/media/openmax/OMX_Video.h    |  56 ++++++
+ .../media_plugin/media/openmax/OMX_VideoExt.h |  40 ++++
+ .../media/openmax/OMX_Video_Extensions.h      | 179 ++++++++++++++++++
+ 6 files changed, 477 insertions(+)
+ create mode 100644 headers/media_plugin/media/openmax/OMX_Video_Extensions.h
+
+diff --git a/headers/media_plugin/media/openmax/OMX_Core.h b/headers/media_plugin/media/openmax/OMX_Core.h
+index 9ff934e4a..ff094e373 100644
+--- a/headers/media_plugin/media/openmax/OMX_Core.h
++++ b/headers/media_plugin/media/openmax/OMX_Core.h
+@@ -270,6 +270,10 @@ typedef enum OMX_ERRORTYPE
+ 
+   OMX_ErrorKhronosExtensions = (OMX_S32)0x8F000000, /**< Reserved region for introducing Khronos Standard Extensions */
+   OMX_ErrorVendorStartUnused = (OMX_S32)0x90000000, /**< Reserved region for introducing Vendor Extensions */
++  OMX_ErrorSliceLossIndication = (OMX_S32)0x90000001,
++  OMX_ErrorPictureLossIndication = (OMX_S32)0x90000002,
++  OMX_ErrorFullIntraRequestStart = (OMX_S32)0x90000003,
++  OMX_ErrorFullIntraRequestEnd = (OMX_S32)0x90000004,
+   OMX_ErrorMax = 0x7FFFFFFF
+ } OMX_ERRORTYPE;
+ 
+@@ -409,7 +413,42 @@ typedef struct OMX_PARAM_COMPONENTROLETYPE {
+  */
+ #define OMX_BUFFERFLAG_CODECCONFIG 0x00000080
+ 
++// <--- Morris Yang 20110322 add for RV resizing
++#define OMX_BUFFERFLAG_SPECIFYRESOLUTION 0x00000100
++// --->
+ 
++// for invalid pts file
++#define OMX_BUFFERFLAG_INVALID_TIMESTAMP 0x00000800
++
++// for Secure video playback
++#define OMX_BUFFERFLAG_SECUREBUF   0x00002000
++
++// Bruce Hsu for dummy NALU
++#define OMX_BUFFERFLAG_DUMMY_NALU   0x00004000
++
++// For multi slice bitstream
++#define OMX_BUFFERFLAG_MULTISLICE   0x00008000
++
++//for crossMount
++#define OMX_BUFFERFLAG_VDEC_OUTPRIVATE   0x00010000
++
++#ifdef MTK_AOSP_ENHANCEMENT
++#define OMX_BUFFERFLAG_INTERPOLATE_FRAME             0x10000000
++#define OMX_BUFFERFLAG_SCALER_FRAME                  0x20000000
++#define OMX_BUFFERFLAG_PPFW_PRIVATEBUFFER            0x40000000
++#define OMX_BUFFERFLAG_NOT_UPDATE_VIDEO_SIZE         0x20001000
++#define OMX_BUFFERFLAG_CLEARMOTION_ENABLED           0x20002000
++#endif
++#define OMX_BUFFERFLAG_TRIGGER_OUTPUT               0x20004000
++#define OMX_BUFFERFLAG_CAMERASWITCH                 0x80000000
++#define OMX_BUFFERFLAG_COLORCONVERT_NEEDRETURN      0x01000000
++#define OMX_BUFFERFLAG_MJC_DUMMY_OUTPUT_BUFFER      0x20007000
++typedef enum _OMX_COLOR_PRIMARIES_E {
++    OMX_COLOR_PRIMARIES_NO_INFO = 0,
++    OMX_COLOR_PRIMARIES_BT709 = 1,
++    OMX_COLOR_PRIMARIES_BT601 = 6,
++    OMX_COLOR_PRIMARIES_BT2020 = 9
++} OMX_COLOR_PRIMARIES_E;
+ 
+ /** @ingroup buf */
+ typedef struct OMX_BUFFERHEADERTYPE
+@@ -457,6 +496,17 @@ typedef struct OMX_BUFFERHEADERTYPE
+                                      this buffer */
+   OMX_U32 nInputPortIndex;      /**< The index of the input port (if any) using
+                                      this buffer */
++    OMX_U32 u4VideoRange;         /* 0: narrow; 1: full  */
++    OMX_BOOL bVideoRangeExist;   /* 0: not exist; 1: exist */
++    OMX_COLOR_PRIMARIES_E eColourPrimaries;  /* OMX_COLOR_PRIMARIES_E */
++    OMX_BOOL bColourPrimariesExist; /* 0: not exist; 1: exist */
++
++// <--- Morris Yang 20110322 add for RV resizing
++  OMX_U32 nWidth;
++  OMX_U32 nHeight;
++  OMX_U32 nStride;
++  OMX_U32 nSliceHeight;
++// --->
+ } OMX_BUFFERHEADERTYPE;
+ 
+ /** The OMX_EXTRADATATYPE enumeration is used to define the
+@@ -492,6 +542,21 @@ typedef struct OMX_PORT_PARAM_TYPE {
+     OMX_U32 nStartPortNumber;   /** first port number for this type of port */
+ } OMX_PORT_PARAM_TYPE;
+ 
++/** @ingroup comp */
++typedef struct OMX_MTK_PLATFORM_PRIVATE {
++    OMX_U32 mM4UMVABufferPa;
++    OMX_U32 mM4UVABufferVa;
++    //add next private members
++} OMX_MTK_PLATFORM_PRIVATE;
++
++typedef struct OMX_MTK_SLOWMOTION_SECTION {
++    OMX_U32 nSize;                    /**< Size of this structure, in Bytes */
++    OMX_VERSIONTYPE nVersion;         /**< OMX specification version information */
++    OMX_U32 nPortIndex;               /**< port that this structure applies to */
++    OMX_S64 StartTime;
++    OMX_S64 EndTime;
++} OMX_MTK_SLOWMOTION_SECTION;
++
+ /** @ingroup comp */
+ typedef enum OMX_EVENTTYPE
+ {
+@@ -506,6 +571,12 @@ typedef enum OMX_EVENTTYPE
+     OMX_EventComponentResumed,     /**< Component resumed due to reacquisition of resources */
+     OMX_EventDynamicResourcesAvailable, /**< Component has acquired previously unavailable dynamic resources */
+     OMX_EventPortFormatDetected,      /**< Component has detected a supported format. */
++
++// <--- Morris Yang 20110322 add for RV resizing
++   OMX_EventPortResolutionChanged,
++// --->
++   OMX_EventComponentInfoNotified,  /**< component has notified infomation for IL */
++
+     OMX_EventKhronosExtensions = 0x6F000000, /**< Reserved region for introducing Khronos Standard Extensions */
+     OMX_EventVendorStartUnused = 0x7F000000, /**< Reserved region for introducing Vendor Extensions */
+ 
+diff --git a/headers/media_plugin/media/openmax/OMX_IVCommon.h b/headers/media_plugin/media/openmax/OMX_IVCommon.h
+index f83114b04..4abf784d5 100644
+--- a/headers/media_plugin/media/openmax/OMX_IVCommon.h
++++ b/headers/media_plugin/media/openmax/OMX_IVCommon.h
+@@ -149,6 +149,19 @@ typedef enum OMX_COLOR_FORMATTYPE {
+     OMX_COLOR_Format24BitABGR6666,
+     OMX_COLOR_FormatKhronosExtensions = 0x6F000000, /**< Reserved region for introducing Khronos Standard Extensions */
+     OMX_COLOR_FormatVendorStartUnused = 0x7F000000, /**< Reserved region for introducing Vendor Extensions */
++    OMX_COLOR_FormatVendorMTKYUV = 0x7F000001,
++    OMX_COLOR_FormatVendorMTKYUV_FCM = 0x7F000002,
++    OMX_COLOR_FormatVendorMTKYUV_UFO = 0x7F000003,
++    OMX_COLOR_FormatVendorMTKYUV_10BIT_H = 0x7F000004,
++    OMX_COLOR_FormatVendorMTKYUV_10BIT_V = 0x7F000005,
++    OMX_COLOR_FormatVendorMTKYUV_UFO_10BIT_H = 0x7F000006,
++    OMX_COLOR_FormatVendorMTKYUV_UFO_10BIT_V = 0x7F000007,
++    OMX_COLOR_FormatVendorMTKYUV_10BIT_H_JUMP = 0x7F000008,
++    OMX_COLOR_FormatVendorMTKYUV_10BIT_V_JUMP = 0x7F000009,
++    OMX_COLOR_FormatVendorMTKYUV_UFO_10BIT_H_JUMP = 0x7F00000A,
++    OMX_COLOR_FormatVendorMTKYUV_UFO_10BIT_V_JUMP = 0x7F00000B,
++    OMX_COLOR_FormatVendorMTKYUV_UFO_AUO = 0x7F00000C,
++
+     /**<Reserved android opaque colorformat. Tells the encoder that
+      * the actual colorformat will be  relayed by the
+      * Gralloc Buffers.
+@@ -158,6 +171,7 @@ typedef enum OMX_COLOR_FORMATTYPE {
+      * */
+     OMX_COLOR_FormatAndroidOpaque = 0x7F000789,
+     OMX_COLOR_Format32BitRGBA8888 = 0x7F00A000,
++    OMX_COLOR_Format32BitABGR8888 = 0x7F00B000,
+     /** Flexible 8-bit YUV format.  Codec should report this format
+      *  as being supported if it supports any YUV420 packed planar
+      *  or semiplanar formats.  When port is set to use this format,
+@@ -174,6 +188,8 @@ typedef enum OMX_COLOR_FORMATTYPE {
+     OMX_COLOR_FormatYUV444Y410 = 0x7F444AAA,
+ 
+     OMX_TI_COLOR_FormatYUV420PackedSemiPlanar = 0x7F000100,
++    OMX_MTK_COLOR_FormatYV12 = 0x7F000200,
++    OMX_MTK_COLOR_FormatBitStream = 0x7F000300,
+     OMX_QCOM_COLOR_FormatYVU420SemiPlanar = 0x7FA30C00,
+     OMX_QCOM_COLOR_FormatYUV420PackedSemiPlanar64x32Tile2m8ka = 0x7FA30C03,
+     OMX_SEC_COLOR_FormatNV12Tiled = 0x7FC00002,
+diff --git a/headers/media_plugin/media/openmax/OMX_Index.h b/headers/media_plugin/media/openmax/OMX_Index.h
+index 5be1355a9..94742315b 100644
+--- a/headers/media_plugin/media/openmax/OMX_Index.h
++++ b/headers/media_plugin/media/openmax/OMX_Index.h
+@@ -268,6 +268,121 @@ typedef enum OMX_INDEXTYPE {
+        private indexes are not guaranteed unique and therefore should
+        only be sent to the appropriate component. */
+ 
++    //Bruce Hsu 20120416 Rename index enum
++	//qian 2011-09-26
++    OMX_IndexVendorMtkOmxVdecTimeSource = 0x7F000001,
++
++    OMX_IndexVendorMtkOmxVdecPriorityAdjustment,
++    OMX_IndexVendorMtkOmxVdecVideoSpecQuerySupported,
++
++    // Morris Yang 20111125 for ICS
++    OMX_GoogleAndroidIndexEnableAndroidNativeBuffers,
++    OMX_GoogleAndroidIndexUseAndroidNativeBuffer,
++    OMX_GoogleAndroidIndexGetAndroidNativeBufferUsage,
++    OMX_GoogleAndroidIndexStoreMetaDataInBuffers,   // Morris Yang 20120214 add for live effect recording
++    OMX_GoogleAndroidIndexstoreANWBufferInMetadata, // Sharon add for M
++    OMX_GoogleAndroidIndexPrepareForAdaptivePlayback,
++    OMX_IndexVendorMtkOmxPartialFrameQuerySupported,    /**< reference: OMX_PARAM_U32TYPE */
++
++    OMX_IndexVendorMtkOmxVdecThumbnailMode,    /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVdecSeekMode,    /**< reference: OMX_PARAM_S64TYPE */
++    OMX_IndexVendorMtkOmxVdecSwitchBwTVout,
++
++    OMX_IndexVendorMtkOmxVdecUseClearMotion,    /**< reference: OMX_PARAM_U32TYPE */
++
++    OMX_IndexVendorMtkOmxVdecGetMinUndequeuedBufs,    /**< reference: OMX_PARAM_U32TYPE */
++
++    OMX_IndexVendorMtkOmxVdecUsePostProcessingFw,
++    OMX_IndexVendorMtkOmxVdecEnablePostProcessingModule,
++
++    OMX_IndexVendorMtkOmxVencSetForceIframe,    /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVencSetTimelapseMode,
++    OMX_IndexVendorMtkOmxVencSetWhiteboardEffectMode,
++    OMX_IndexVendorMtkOmxVencSetMCIMode,
++
++    OMX_IndexVendorMtkOmxVdecConcealmentLevel,
++    OMX_IndexVendorMtkOmxVdecStreamingMode,    /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkMP3Decode,
++    OMX_IndexVendorMtkOmxVdec3DVideoPlayback,
++    OMX_IndexVendorMtkOmxVenc3DVideoRecode,
++    OMX_IndexVendorMtkOmxVdecGetAspectRatio,     /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVdecGetCropInfo,
++    OMX_IndexVendorMtkOmxVideoUseIonBuffer,
++    OMX_IndexVendorMtkOmxVencSetIInterval,    /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVencSkipFrame,    /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVdecFixedMaxBuffer,
++    OMX_IndexVendorMtkOmxVencDrawBlack,     //for Miracast test case SIGMA 5.1.11 workaround  /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVdecNoReorderMode,    /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVideoSetClientLocally,    /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVdecSkipReferenceCheckMode, // Cheng-Jung 20131010 Skip reference check
++    OMX_IndexVendorMtkOmxVencSetScenario,   //for Live photo (set venc scenario)  /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVencPrependSPSPPS, //for prepend SPS/PPS
++    OMX_IndexVendorMtkOmxVencSwitchWFDSecureOut,    //for SVP
++    OMX_IndexVendorMtkOmxVdecComponentColorConvert,    //for return component do internal color convert or not. /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVdecSetScenario,   //for CrossMount (set vdec scenario) /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVdecTaskGroup,
++    OMX_IndexVendorMtkOmxVdecANW_HWComposer,
++    OMX_IndexVendorMtkOmxVencNonRefPOp = 0x7F000040,    //for non ref p operation   /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVdecLowLatencyDecode,    /**< reference: OMX_PARAM_U32TYPE */
++    OMX_IndexVendorMtkOmxVdecSetHeifGridNum,     /**< reference: OMX_PARAM_U32TYPE */
++
++    //Gary Wu add for ACodec color convert to get MVA addrs
++    //OMX_IndexVendorMtkOmxVdecACodecColorConvertGetMVAAddr = 0x7F0FF001,
++    OMX_IndexVendorMtkOmxVdecACodecColorConvertMode = 0x7F0FF002,
++    //add for MediaCodec encode with input data format is RGB
++    OMX_IndexVendorMtkOmxVdecACodecEncodeRGB2YUVMode = 0x7F0FF101,
++
++    // ginny add for AIV
++    OMX_IndexVendorMtkOmxAIVConfigSurface,
++    OMX_IndexVendorMtkOmxAIVEncrypMeta,
++    OMX_IndexVendorMtkOmxAIVAC3Param,
++    OMX_IndexVendorMtkOmxAIVExtraDataFlag = 0x7f100004,
++    OMX_IndexVendorMtkOmxAIVEXTIndexObject = 0x7f10000B,
++    //MTK DEINTERLACE SUPPORT [
++    OMX_IndexVendMtkOmxUpdateColorFormat = 0x7F200103,
++    OMX_IndexVendorMtkOmxVdecGetColorFormat = 0x7F200104, //for De-Interlacing (set color format run-time) /**< reference: OMX_PARAM_U32TYPE */
++    // ]
++
++    //For slow motion
++    OMX_IndexVendorMtkOmxVdecUse16xSlowMotion   =   0x7F200401,
++    OMX_IndexVendorMtkOmxVdecSlowMotionSpeed    =   0x7F200402,    /**< reference: OMX_PARAM_S32TYPE */
++
++    OMX_IndexVendorMtkOmxVdecSlowMotionSection  =   0x7F200403,   /**< reference: OMX_MTK_SLOWMOTION_SECTION */
++
++    OMX_IndexVendorMtkOmxVdecAVSyncTime,     /**< reference: OMX_PARAM_S64TYPE */
++
++    OMX_GoogleAndroidIndexDescribeColorFormat,
++
++    OMX_IndexVendorMtkOmxHandle,    /**< reference: OMX_PARAM_U32TYPE */
++
++    //For Skype
++    OMX_IndexVendorMtkQueryDriverVersion,
++    OMX_IndexVendorMtkConfigQP,
++
++    // For MediaCodecListOverride
++    OMX_IndexVendorMtkOmxVdecQueryCodecsSizes,
++    OMX_IndexVendorMtkOmxVencQueryCodecsSizes,
++
++    OMX_IndexVendorMtkOmxSliceLossIndication,
++    OMX_IndexVendorMtkOmxVencSetForceFullIframe,    /**< reference: OMX_PARAM_U32TYPE */
++
++    //ANDROID_N[
++    OMX_GoogleAndroidIndexDescribeColorFormat2,
++    OMX_GoogleAndroidIndexEnableAndroidNativeHandle,
++    OMX_GoogleAndroidIndexDescribeColorAspects,
++    OMX_GoogleAndroidIndexDescribeHDRStaticInfo,
++    //]
++
++    OMX_IndexVendorMtkOmxVencSeResolutionChange,
++    OMX_IndexVendorMtkOmxVencInputScaling,
++
++    OMX_IndexVendorMtkOmxVencRoiSwitch,
++    OMX_IndexVendorMtkOmxVencRoiSize,
++    OMX_IndexVendorMtkOmxVencRoiInfo,
++    OMX_IndexVendorMtkOmxVencRoiLicenseSize,
++    OMX_IndexVendorMtkOmxVencRoiLicense,
++
++
+     OMX_IndexMax = 0x7FFFFFFF
+ 
+ } OMX_INDEXTYPE;
+diff --git a/headers/media_plugin/media/openmax/OMX_Video.h b/headers/media_plugin/media/openmax/OMX_Video.h
+index 81ee5fb2e..4b49ac7e0 100644
+--- a/headers/media_plugin/media/openmax/OMX_Video.h
++++ b/headers/media_plugin/media/openmax/OMX_Video.h
+@@ -65,6 +65,9 @@ extern "C" {
+ 
+ #include <OMX_IVCommon.h>
+ 
++#include <OMX_VideoExt.h>
++
++#define MTK_ENUM_OFFSET 0x00F00000
+ 
+ /**
+  * Enumeration used to define the possible video compression codings.
+@@ -93,6 +96,10 @@ typedef enum OMX_VIDEO_CODINGTYPE {
+     OMX_VIDEO_CodingAV1,        /**< AV1 */
+     OMX_VIDEO_CodingKhronosExtensions = 0x6F000000, /**< Reserved region for introducing Khronos Standard Extensions */
+     OMX_VIDEO_CodingVendorStartUnused = 0x7F000000, /**< Reserved region for introducing Vendor Extensions */
++    OMX_VIDEO_CodingDIVX3 = (0x7F000000+MTK_ENUM_OFFSET+0x1),      /**< DIVX311 */
++    OMX_VIDEO_CodingXVID = (0x7F000000+MTK_ENUM_OFFSET+0x2),       /**< XVID */
++    OMX_VIDEO_CodingS263 = (0x7F000000+MTK_ENUM_OFFSET+0x3),       /**< Sorenson H263 / Sorenson Spark / FLV1 */
++    OMX_VIDEO_CodingDIVX = 0x7FA30C02,      /**< DIVX456; requested by Huawei */
+     OMX_VIDEO_CodingMax = 0x7FFFFFFF
+ } OMX_VIDEO_CODINGTYPE;
+ 
+@@ -245,6 +252,8 @@ typedef enum OMX_VIDEO_CONTROLRATETYPE {
+     OMX_Video_ControlRateConstantQuality,
+     OMX_Video_ControlRateKhronosExtensions = 0x6F000000, /**< Reserved region for introducing Khronos Standard Extensions */
+     OMX_Video_ControlRateVendorStartUnused = 0x7F000000, /**< Reserved region for introducing Vendor Extensions */
++    OMX_Video_ControlRateMtkWFD = 0x7F000001,   //for wifi-display mode
++    OMX_Video_ControlRateMtkStreaming = 0x7F000002,   //for video streaming mode
+     OMX_Video_ControlRateMax = 0x7FFFFFFF
+ } OMX_VIDEO_CONTROLRATETYPE;
+ 
+@@ -956,6 +965,21 @@ typedef struct OMX_VIDEO_PARAM_PROFILELEVELTYPE {
+                                For all other indices this parameter is to be ignored. */
+ } OMX_VIDEO_PARAM_PROFILELEVELTYPE;
+ 
++
++typedef struct OMX_VIDEO_PARAM_SPEC_QUERY {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_BOOL bSupported;
++    OMX_U16 profile;
++    OMX_U16 level;
++    OMX_U16 nFrameWidth;
++    OMX_U16 nFrameHeight;
++    OMX_U16 nFps;
++    OMX_U8  pCodecPrivateData[0];
++} OMX_VIDEO_PARAM_SPEC_QUERY;
++
++
+ /**
+  * Structure for dynamically configuring bitrate mode of a codec.
+  *
+@@ -1087,6 +1111,38 @@ typedef struct OMX_VIDEO_CONFIG_NALSIZE {
+     OMX_U32 nNaluBytes;
+ } OMX_VIDEO_CONFIG_NALSIZE;
+ 
++/** Structure for non-reference P frame operation
++ * STRUCT MEMBERS:
++ *  nSize      : Size of the structure in bytes
++ *  nVersion   : OMX specification version information
++ *  nPortIndex : Port that this structure applies to
++ *  bEnabled   : Input (For Setting)
++ *  nFreq      : Output (High 16 bits = numerator, Low = denominator)
++ */
++typedef struct OMX_VIDEO_NONREFP {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_BOOL bEnable;
++    OMX_U32 nFreq;
++} OMX_VIDEO_NONREFP;
++
++typedef struct OMX_CONFIG_SLICE_LOSS_INDICATION {
++  OMX_U32 nSize;
++  OMX_VERSIONTYPE nVersion;
++  OMX_U32 nPortIndex;
++  OMX_TICKS nTimeStamp;
++  OMX_U32 nSliceCount;
++  OMX_U32 SliceLoss[8];
++} OMX_CONFIG_SLICE_LOSS_INDICATION;
++
++typedef struct OMX_VIDEO_PARAM_RESOLUTION {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U16 nFrameWidth;
++    OMX_U16 nFrameHeight;
++} OMX_VIDEO_PARAM_RESOLUTION;
++
+ /** @} */
+ 
+ #ifdef __cplusplus
+diff --git a/headers/media_plugin/media/openmax/OMX_VideoExt.h b/headers/media_plugin/media/openmax/OMX_VideoExt.h
+index 435fcc8cc..50ffafd3a 100644
+--- a/headers/media_plugin/media/openmax/OMX_VideoExt.h
++++ b/headers/media_plugin/media/openmax/OMX_VideoExt.h
+@@ -425,6 +425,37 @@ typedef struct OMX_VIDEO_CONFIG_ANDROID_TEMPORALLAYERINGTYPE {
+     OMX_U32 nBitrateRatios[OMX_VIDEO_ANDROID_MAXTEMPORALLAYERS];
+ } OMX_VIDEO_CONFIG_ANDROID_TEMPORALLAYERINGTYPE;
+ 
++/** @ingroup comp */
++typedef struct OMX_PARAM_S64TYPE {
++    OMX_U32 nSize;                    /**< Size of this structure, in Bytes */
++    OMX_VERSIONTYPE nVersion;         /**< OMX specification version information */
++    OMX_U32 nPortIndex;               /**< port that this structure applies to */
++    OMX_S64 nS64;                     /**< S64 value */
++} OMX_PARAM_S64TYPE;
++
++/** @ingroup comp */
++typedef struct OMX_PARAM_S32TYPE {
++    OMX_U32 nSize;                    /**< Size of this structure, in Bytes */
++    OMX_VERSIONTYPE nVersion;         /**< OMX specification version information */
++    OMX_U32 nPortIndex;               /**< port that this structure applies to */
++    OMX_S32 nS32;                     /**< S32 value */
++} OMX_PARAM_S32TYPE;
++
++/**
++ *  MTK SPECIFIC SCENARIO = [16-bits reserved][8-bits App ID][8-bits Scenario ID]
++ *  App ID = 0x00 MediaTek
++ *  App ID = 0x01 WeChat
++ */
++typedef enum OMX_VIDEO_MTK_SPECIFIC_SCENARIOTYPE {
++    OMX_VIDEO_MTKSpecificScenario_Unknown       = 0x0,
++    OMX_VIDEO_MTKSpecificScenario_LivePhoto     = 0x1,
++    OMX_VIDEO_MTKSpecificScenario_ViLTE         = 0x2,
++    OMX_VIDEO_MTKSpecificScenario_CrossMount    = 0x4,
++    OMX_VIDEO_MTKSpecificScenario_WeChatCameraRecord = 0x101,
++    OMX_VIDEO_MTKSpecificScenarioMax            = 0x7FFFFFFF
++} OMX_VIDEO_MTK_SPECIFIC_SCENARIOTYPE;
++
++
+ /**
+  * Android specific param for specifying image grid layout information for image encoding
+  * use cases, corresponding to index OMX_IndexParamVideoAndroidImageGrid.
+@@ -468,6 +499,15 @@ typedef struct OMX_VIDEO_PARAM_ANDROID_IMAGEGRIDTYPE {
+     OMX_U32 nGridCols;
+ } OMX_VIDEO_PARAM_ANDROID_IMAGEGRIDTYPE;
+ 
++typedef struct OMX_VIDEO_CONFIG_ROI_INFO {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nRoiInfoSize;
++    OMX_U32 nRoiStringSize;
++    OMX_U16 nRoiBaseQp;
++    OMX_U8 pRoiInfoCheck[4];
++} OMX_VIDEO_CONFIG_ROI_INFO;
++
+ #ifdef __cplusplus
+ }
+ #endif /* __cplusplus */
+diff --git a/headers/media_plugin/media/openmax/OMX_Video_Extensions.h b/headers/media_plugin/media/openmax/OMX_Video_Extensions.h
+new file mode 100644
+index 000000000..af21d4c34
+--- /dev/null
++++ b/headers/media_plugin/media/openmax/OMX_Video_Extensions.h
+@@ -0,0 +1,179 @@
++/*@@@+++@@@@******************************************************************
++
++ Microsoft Skype Engineering
++ Copyright (C) 2014 Microsoft Corporation.
++
++MIT License
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++ of this software and associated documentation files (the "Software"), to deal
++ in the Software without restriction, including without limitation the rights
++ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++ copies of the Software, and to permit persons to whom the Software is
++ furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in
++ all copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
++ THE SOFTWARE.
++
++*@@@---@@@@******************************************************************/
++
++
++#ifndef __OMX_VIDEO_EXTENSIONS_H__
++#define __OMX_VIDEO_EXTENSIONS_H__
++
++#ifdef __cplusplus
++extern "C"
++{
++#endif
++
++#include <OMX_Core.h>
++
++#pragma pack(push, 1)
++
++typedef enum OMX_VIDEO_SliceControlMode
++{
++    OMX_VIDEO_SliceControlModeNone        = 0,
++    OMX_VIDEO_SliceControlModeMB          = 1,
++    OMX_VIDEO_SliceControlModeByte        = 2,
++    OMX_VIDEO_SliceControlModMBRow        = 3,
++} OMX_VIDEO_SliceControlMode;
++
++typedef enum OMX_VIDEO_DownScaleFactor
++{
++    OMX_VIDEO_DownScaleFactor_1_1         = 0,
++    OMX_VIDEO_DownScaleFactor_Equal_AR    = 1,
++    OMX_VIDEO_DownScaleFactor_Any         = 2,
++} OMX_VIDEO_DownScaleFactor;
++
++typedef enum OMX_VIDEO_HierarType
++{
++    OMX_VIDEO_HierarType_P                = 0x01,
++    OMX_VIDEO_HierarType_B                = 0x02,
++} OMX_VIDEO_HierarType;
++
++typedef enum OMX_VIDEO_EXTENSION_AVCPROFILETYPE
++{
++    OMX_VIDEO_EXT_AVCProfileConstrainedBaseline = 0x01,
++    OMX_VIDEO_EXT_AVCProfileConstrainedHigh     = 0x02,
++} OMX_VIDEO_EXTENSION_AVCPROFILETYPE;
++
++typedef struct OMX_VIDEO_ENCODERPARAMS {
++    OMX_BOOL bLowLatency;
++    OMX_BOOL bUseExtendedProfile;
++    OMX_BOOL bSequenceHeaderWithIDR;
++    OMX_VIDEO_EXTENSION_AVCPROFILETYPE eProfile;
++    OMX_U32 nLTRFrames;
++    OMX_VIDEO_HierarType eHierarType;
++    OMX_U32 nMaxTemporalLayerCount;
++    OMX_VIDEO_SliceControlMode eSliceControlMode;
++    OMX_U32 nSarIndex;
++    OMX_U32 nSarWidth;
++    OMX_U32 nSarHeight;
++} OMX_VIDEO_ENCODERPARAMS;
++
++typedef struct OMX_VIDEO_ENCODERCAP {
++    OMX_BOOL bLowLatency;
++    OMX_U32 nMaxFrameWidth;
++    OMX_U32 nMaxFrameHeight;
++    OMX_U32 nMaxInstances;
++    OMX_U32 nMaxTemporaLayerCount;
++    OMX_U32 nMaxRefFrames;
++    OMX_U32 nMaxLTRFrames;
++    OMX_VIDEO_AVCLEVELTYPE nMaxLevel;
++    OMX_U32 nSliceControlModesBM;
++    OMX_U32 nMaxMacroblockProcessingRate;
++    OMX_VIDEO_DownScaleFactor nResize;
++    OMX_U32 xMinScaleFactor;
++} OMX_VIDEO_ENCODERCAP;
++
++typedef struct OMX_VIDEO_PARAM_ENCODERSETTING {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_VIDEO_ENCODERPARAMS stEncParam;
++} OMX_VIDEO_PARAM_ENCODESETTING;
++
++typedef struct OMX_VIDEO_PARAM_ENCODERCAP {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_VIDEO_ENCODERCAP stEncCap;
++} OMX_VIDEO_PARAM_ENCODERCAP;
++
++typedef struct OMX_VIDEO_CONFIG_MARKLTRFRAME {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_U32 nLongTermFrmIdx;
++} OMX_VIDEO_CONFIG_MARKLTRFRAME;
++
++typedef struct OMX_VIDEO_CONFIG_USELTRFRAME {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_U16 nUsedLTRFrameBM;
++} OMX_VIDEO_CONFIG_USELTRFRAME;
++
++typedef struct OMX_VIDEO_CONFIG_QP {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_U32 nQP;
++} OMX_VIDEO_CONFIG_QP;
++
++typedef struct OMX_VIDEO_CONFIG_TEMPORALLAYERCOUNT {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_U32 nTemproalLayerCount;
++} OMX_VIDEO_CONFIG_TEMPORALLAYERCOUNT;
++
++typedef struct OMX_VIDEO_CONFIG_BASELAYERPID{
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_U32 nPID;
++} OMX_VIDEO_CONFIG_BASELAYERPID;
++
++typedef struct OMX_VIDEO_DECODERPARAMS {
++    OMX_BOOL bLowLatency;
++} OMX_VIDEO_DECODERPARAMS;
++
++typedef struct OMX_VIDEO_DECODERCAP {
++    OMX_BOOL bLowLatency;
++    OMX_U32 nMaxFrameWidth;
++    OMX_U32 nMaxFrameHeight;
++    OMX_U32 nMaxInstances;
++    OMX_VIDEO_AVCLEVELTYPE nMaxLevel;
++    OMX_U32 nMaxMacroblockProcessingRate;
++} OMX_VIDEO_DECODERCAP;
++
++typedef struct OMX_VIDEO_PARAM_DECODERCAP {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_VIDEO_DECODERCAP stDecoderCap;
++} OMX_VIDEO_PARAM_DECODERCAP;
++
++typedef struct OMX_VIDEO_PARAM_DRIVERVER {
++    OMX_U32 nSize;
++    OMX_VERSIONTYPE nVersion;
++    OMX_U32 nPortIndex;
++    OMX_U64 nDriverVersion;
++} OMX_VIDEO_PARAM_DRIVERVER;
++
++#pragma pack(pop)
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif
+-- 
+2.17.1
+

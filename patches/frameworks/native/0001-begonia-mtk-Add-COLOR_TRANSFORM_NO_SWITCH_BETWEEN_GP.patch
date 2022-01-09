@@ -1,0 +1,222 @@
+From cf88f25c6378e052b0d9c79440b086955f20a433 Mon Sep 17 00:00:00 2001
+From: TTTT555 <albukerko@gmail.com>
+Date: Mon, 12 Apr 2021 18:58:08 +0000
+Subject: [PATCH] begonia: mtk: Add
+ COLOR_TRANSFORM_NO_SWITCH_BETWEEN_GPU_AND_HWC  * fix hwc color flickering
+ (Night mode etc.)
+
+---
+ services/surfaceflinger/Android.bp                   |  1 +
+ services/surfaceflinger/CompositionEngine/Android.bp |  1 +
+ .../include/compositionengine/Display.h              |  3 +++
+ .../include/compositionengine/impl/Display.h         |  6 ++++++
+ .../include/compositionengine/mock/Display.h         |  4 ++++
+ .../surfaceflinger/CompositionEngine/src/Display.cpp | 12 +++++++++++-
+ .../surfaceflinger/DisplayHardware/ComposerHal.cpp   | 10 +++++++++-
+ .../surfaceflinger/DisplayHardware/HWComposer.cpp    |  4 ++++
+ services/surfaceflinger/SurfaceFlinger.cpp           |  8 +++++++-
+ services/surfaceflinger/SurfaceFlinger.h             |  4 ++++
+ 10 files changed, 50 insertions(+), 3 deletions(-)
+
+diff --git a/services/surfaceflinger/Android.bp b/services/surfaceflinger/Android.bp
+index 37b11de07..2339c40c7 100644
+--- a/services/surfaceflinger/Android.bp
++++ b/services/surfaceflinger/Android.bp
+@@ -7,6 +7,7 @@ cc_defaults {
+         "-Wthread-safety",
+         "-Wunused",
+         "-Wunreachable-code",
++        "-DMTK_COLOR_TRANSFORM_NO_SWITCH_BETWEEN_GPU_AND_HWC",
+     ],
+ }
+ 
+diff --git a/services/surfaceflinger/CompositionEngine/Android.bp b/services/surfaceflinger/CompositionEngine/Android.bp
+index fd1c369d8..ce340518b 100644
+--- a/services/surfaceflinger/CompositionEngine/Android.bp
++++ b/services/surfaceflinger/CompositionEngine/Android.bp
+@@ -3,6 +3,7 @@ cc_defaults {
+     defaults: ["surfaceflinger_defaults"],
+     cflags: [
+         "-DLOG_TAG=\"CompositionEngine\"",
++        "-DMTK_COLOR_TRANSFORM_NO_SWITCH_BETWEEN_GPU_AND_HWC",
+     ],
+     shared_libs: [
+         "android.frameworks.vr.composer@1.0",
+diff --git a/services/surfaceflinger/CompositionEngine/include/compositionengine/Display.h b/services/surfaceflinger/CompositionEngine/include/compositionengine/Display.h
+index dbcd3bd5f..bbc245255 100644
+--- a/services/surfaceflinger/CompositionEngine/include/compositionengine/Display.h
++++ b/services/surfaceflinger/CompositionEngine/include/compositionengine/Display.h
+@@ -52,6 +52,9 @@ public:
+     // Creates a render surface for the display
+     virtual void createRenderSurface(RenderSurfaceCreationArgs&&) = 0;
+ 
++
++    virtual status_t getStatusOfColorTransform() const = 0;
++
+ protected:
+     ~Display() = default;
+ };
+diff --git a/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/Display.h b/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/Display.h
+index 0e20c4332..0645421fc 100644
+--- a/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/Display.h
++++ b/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/Display.h
+@@ -49,9 +49,15 @@ public:
+     void createDisplayColorProfile(compositionengine::DisplayColorProfileCreationArgs&&) override;
+     void createRenderSurface(compositionengine::RenderSurfaceCreationArgs&&) override;
+ 
++    status_t getStatusOfColorTransform() const override;
++
++
+ private:
+     const bool mIsVirtual;
+     std::optional<DisplayId> mId;
++
++    status_t mStatusOfColorTransform;
++
+ };
+ 
+ std::shared_ptr<compositionengine::Display> createDisplay(
+diff --git a/services/surfaceflinger/CompositionEngine/include/compositionengine/mock/Display.h b/services/surfaceflinger/CompositionEngine/include/compositionengine/mock/Display.h
+index d763aa6a2..7cb014a2e 100644
+--- a/services/surfaceflinger/CompositionEngine/include/compositionengine/mock/Display.h
++++ b/services/surfaceflinger/CompositionEngine/include/compositionengine/mock/Display.h
+@@ -40,6 +40,10 @@ public:
+ 
+     MOCK_METHOD1(createDisplayColorProfile, void(DisplayColorProfileCreationArgs&&));
+     MOCK_METHOD1(createRenderSurface, void(RenderSurfaceCreationArgs&&));
++
++
++    MOCK_CONST_METHOD0(getStatusOfColorTransform, status_t());
++
+ };
+ 
+ } // namespace android::compositionengine::mock
+diff --git a/services/surfaceflinger/CompositionEngine/src/Display.cpp b/services/surfaceflinger/CompositionEngine/src/Display.cpp
+index f9d70e3c9..9ace99db6 100644
+--- a/services/surfaceflinger/CompositionEngine/src/Display.cpp
++++ b/services/surfaceflinger/CompositionEngine/src/Display.cpp
+@@ -38,6 +38,9 @@ Display::Display(const CompositionEngine& compositionEngine, DisplayCreationArgs
+         mIsVirtual(args.isVirtual),
+         mId(args.displayId) {
+     editState().isSecure = args.isSecure;
++
++    mStatusOfColorTransform = NO_ERROR;
++
+ }
+ 
+ Display::~Display() = default;
+@@ -69,7 +72,8 @@ void Display::setColorTransform(const mat4& transform) {
+ 
+     auto& hwc = getCompositionEngine().getHwComposer();
+     status_t result = hwc.setColorTransform(*mId, transform);
+-    ALOGE_IF(result != NO_ERROR, "Failed to set color transform on display \"%s\": %d",
++    mStatusOfColorTransform = result;
++    ALOGE_IF(result != NO_ERROR && result != BAD_VALUE, "Failed to set color transform on display \"%s\": %d",
+              mId ? to_string(*mId).c_str() : "", result);
+ }
+ 
+@@ -119,4 +123,10 @@ void Display::createRenderSurface(RenderSurfaceCreationArgs&& args) {
+                                                                   std::move(args)));
+ }
+ 
++
++status_t Display::getStatusOfColorTransform() const {
++    return mStatusOfColorTransform;
++}
++
++
+ } // namespace android::compositionengine::impl
+diff --git a/services/surfaceflinger/DisplayHardware/ComposerHal.cpp b/services/surfaceflinger/DisplayHardware/ComposerHal.cpp
+index 7f47a2ecd..7ed022726 100644
+--- a/services/surfaceflinger/DisplayHardware/ComposerHal.cpp
++++ b/services/surfaceflinger/DisplayHardware/ComposerHal.cpp
+@@ -607,6 +607,13 @@ Error Composer::setColorTransform(Display display, const float* matrix,
+ {
+     mWriter.selectDisplay(display);
+     mWriter.setColorTransform(matrix, hint);
++
++    Return<Error> ret(Error::NONE);
++    Error error = execute();
++    if (error != Error::NONE) {
++        return error;
++    }
++
+     return Error::NONE;
+ }
+ 
+@@ -915,7 +922,8 @@ Error Composer::execute()
+ 
+             if (command == IComposerClient::Command::VALIDATE_DISPLAY ||
+                 command == IComposerClient::Command::PRESENT_DISPLAY ||
+-                command == IComposerClient::Command::PRESENT_OR_VALIDATE_DISPLAY) {
++                command == IComposerClient::Command::PRESENT_OR_VALIDATE_DISPLAY ||
++                command == IComposerClient::Command::SET_COLOR_TRANSFORM) {
+                 error = cmdErr.error;
+             } else {
+                 ALOGW("command 0x%x generated error %d",
+diff --git a/services/surfaceflinger/DisplayHardware/HWComposer.cpp b/services/surfaceflinger/DisplayHardware/HWComposer.cpp
+index 1099041b4..751093ee0 100644
+--- a/services/surfaceflinger/DisplayHardware/HWComposer.cpp
++++ b/services/surfaceflinger/DisplayHardware/HWComposer.cpp
+@@ -663,6 +663,10 @@ status_t HWComposer::setColorTransform(DisplayId displayId, const mat4& transfor
+     auto error = displayData.hwcDisplay->setColorTransform(transform,
+             isIdentity ? HAL_COLOR_TRANSFORM_IDENTITY :
+             HAL_COLOR_TRANSFORM_ARBITRARY_MATRIX);
++
++    if (error == HWC2::Error::Unsupported)
++        return BAD_VALUE;
++
+     RETURN_IF_HWC_ERROR(error, displayId, UNKNOWN_ERROR);
+     return NO_ERROR;
+ }
+diff --git a/services/surfaceflinger/SurfaceFlinger.cpp b/services/surfaceflinger/SurfaceFlinger.cpp
+index c88aa2bf8..d357cc29b 100644
+--- a/services/surfaceflinger/SurfaceFlinger.cpp
++++ b/services/surfaceflinger/SurfaceFlinger.cpp
+@@ -703,7 +703,7 @@ void SurfaceFlinger::init() {
+     if (mStartPropertySetThread->Start() != NO_ERROR) {
+         ALOGE("Run StartPropertySetThread failed!");
+     }
+-
++    mIsHWCSupportColorTransform = false;
+     ALOGV("Done initializing");
+ }
+ 
+@@ -1861,6 +1861,9 @@ void SurfaceFlinger::calculateWorkingSet() {
+ 
+         if (mDrawingState.colorMatrixChanged) {
+             display->setColorTransform(mDrawingState.colorMatrix);
++
++            mIsHWCSupportColorTransform = (display->getStatusOfColorTransform() != NO_ERROR) ? false : true;
++
+         }
+         Dataspace targetDataspace = Dataspace::UNKNOWN;
+         if (useColorManagement) {
+@@ -3481,6 +3484,9 @@ bool SurfaceFlinger::doComposeSurfaces(const sp<DisplayDevice>& displayDevice,
+ 
+         // Compute the global color transform matrix.
+         applyColorMatrix = !hasDeviceComposition && !skipClientColorTransform;
++
++        applyColorMatrix = (mIsHWCSupportColorTransform) ? false : applyColorMatrix;
++
+         if (applyColorMatrix) {
+             clientCompositionDisplay.colorTransform = displayState.colorTransformMat;
+         }
+diff --git a/services/surfaceflinger/SurfaceFlinger.h b/services/surfaceflinger/SurfaceFlinger.h
+index bae4405f6..c79a6756c 100644
+--- a/services/surfaceflinger/SurfaceFlinger.h
++++ b/services/surfaceflinger/SurfaceFlinger.h
+@@ -1198,6 +1198,10 @@ private:
+     HWC2::Vsync mHWCVsyncPendingState = HWC2::Vsync::Disable;
+ 
+     nsecs_t mExpectedPresentTime;
++
++private:
++    bool mIsHWCSupportColorTransform;
++
+ };
+ 
+ } // namespace android
+-- 
+2.17.1
+
