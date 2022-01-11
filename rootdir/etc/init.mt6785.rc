@@ -967,3 +967,6 @@ on boot
 
     # Disable serial console
     stop console
+
+on property:sys.boot_completed=1
+    stop bootanim
