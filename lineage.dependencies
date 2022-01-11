@@ -1,15 +1,26 @@
 [
   {
-    "repository" : "AgentFabulous/begonia",
+    "repository" : "TTTT555/kernel_xiaomi_begonia",
     "target_path": "kernel/xiaomi/mt6785",
-    "branch" : "android-11.0"
+    "branch": "7.17_cocolite_ross",
+    "remote":"github"
   },
   {
-    "repository" : "vendor_redmi_begonia",
-    "target_path": "vendor/redmi/begonia"
+    "repository" : "TTTT555/vendor_xiaomi_begonia",
+    "target_path": "vendor/redmi/begonia",
+    "branch": "7.17",
+    "remote":"github"
   },
   {
-    "repository" : "vendor_redmi_begonia-ims",
-    "target_path": "vendor/redmi/begonia-ims"
+    "repository" : "begonia-dev/android_device_mediatek_sepolicy",
+    "target_path": "device/mediatek/sepolicy",
+    "branch": "11.0",
+    "remote":"github"
+  },
+  {
+    "repository" : "begonia-dev/android_vendor_redmi_begonia-ims",
+    "target_path": "vendor/redmi/begonia-ims",
+    "branch": "12.0",
+    "remote":"github"
   }
 ]
