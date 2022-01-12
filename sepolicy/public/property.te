@@ -1,2 +1,2 @@
 # IMEI
-system_internal_prop(deviceid_prop)
+type deviceid_prop, property_type;
