@@ -119,6 +119,7 @@ vendor/etc/aurisys_config.xml
 vendor/etc/aurisys_config_hifi3.xml
 vendor/etc/default_volume_tables.xml
 vendor/firmware/tfa98xx.cnt
+vendor/lib/soundfx/libmisoundfx.so
 vendor/lib/libaudio_param_parser-vnd.so
 vendor/lib/libaudiocompensationfilter_vendor.so
 vendor/lib/libaudiocompensationfilterc.so
@@ -1826,6 +1827,7 @@ vendor/etc/ecc_list_OP20.xml
 vendor/etc/ecc_list_preference.xml
 vendor/etc/factory.ini
 vendor/etc/meow.cfg
+vendor/etc/misound_res.bin
 vendor/etc/mpe.conf
 vendor/etc/mtk_omx_core.cfg
 vendor/etc/nhw
@@ -1963,6 +1965,7 @@ vendor/lib/libjpeg-alpha_vendor.so
 vendor/lib/libladder.so
 vendor/lib/liblogwrap_vendor.so
 vendor/lib/libminiui.so
+vendor/lib/libmisound.so
 vendor/lib/libmmprofile.so
 vendor/lib/libmnetlink_v104.so
 vendor/lib/libmnl.so
@@ -2178,6 +2181,7 @@ vendor/lib64/liblogwrap_vendor.so
 vendor/lib64/liblpcnr.so
 vendor/lib64/libmfllcore.so
 vendor/lib64/libminiui.so
+vendor/lib64/libmisound.so
 vendor/lib64/libmmprofile.so
 vendor/lib64/libmnetlink_v104.so
 vendor/lib64/libmsbc_mtk.so
