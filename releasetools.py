@@ -57,7 +57,6 @@ def Firmware_Images(info, incremental):
       'gz': ['gz1', 'gz2'],
       'lk': ['lk', 'lk2'],
       'md1img': ['md1img'],
-      'recovery': ['recovery'],
       'scp': ['scp1', 'scp2'],
       'spmfw': ['spmfw'],
       'sspm': ['sspm_1', 'sspm_2'],
