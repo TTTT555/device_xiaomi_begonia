@@ -35,6 +35,7 @@ allow xiaomiparts {
 
 # Allow xiaomiparts to read fps info
 allow xiaomiparts sysfs_fps:file r_file_perms;
+allow xiaomiparts sysfs_fpsinfo:file r_file_perms;
 
 allow xiaomiparts cgroup:file rw_file_perms;
 allow xiaomiparts property_socket:sock_file write;

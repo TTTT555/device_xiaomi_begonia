@@ -1,5 +1,8 @@
 #!/bin/sh
 
+while [ "$(getprop sys.boot_completed | tr -d '\r')" != "1" ]; do sleep 1; done
+sleep 10
+
 # initial service variables with value more than available
 sprofileold=10
 tcprofileold=10
