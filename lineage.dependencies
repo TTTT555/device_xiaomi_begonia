@@ -28,5 +28,11 @@
    "target_path": "vendor/dirac",
    "branch": "master",   
    "branch": "github"
+ },
+ {
+   "repository": "TTTT555/vendor_ANXCamera",
+   "target_path": "vendor/ANXCamera",
+   "branch": "11",   
+   "branch": "github"
  }
 ]
