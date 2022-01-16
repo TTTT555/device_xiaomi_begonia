@@ -26,6 +26,7 @@ $(call inherit-product-if-exists, vendor/extras/extras.mk)
 $(call inherit-product, vendor/viper4androidFX/config.mk)
 $(call inherit-product, vendor/dirac/config.mk)
 $(call inherit-product, vendor/ANXCamera/config.mk)
+$(call inherit-product, vendor/burial8/config.mk)
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
