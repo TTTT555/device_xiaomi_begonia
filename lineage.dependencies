@@ -46,5 +46,11 @@
    "target_path": "vendor/ANXCamera",
    "branch": "11",   
    "remote": "github"
+ },
+ {
+   "repository": "TTTT555/vendor_burial8",
+   "target_path": "vendor/burial8",
+   "branch": "master",   
+   "remote": "github"
  }
 ]
