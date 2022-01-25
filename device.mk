@@ -75,7 +75,9 @@ PRODUCT_COPY_FILES += \
 
 # Dex
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI
+    SystemUI \
+    com.android.launcher3 \
+    Launcher3QuickStep
 
 # Display
 PRODUCT_PACKAGES += \
