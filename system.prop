@@ -4,6 +4,9 @@ ro.apex.updatable=false
 # Audio
 ro.audio.silent=0
 
+# Bluetooth
+persist.bluetooth.avrcpversion=avrcp16
+
 # Blur
 persist.sys.sf.disable_blurs=1
 
