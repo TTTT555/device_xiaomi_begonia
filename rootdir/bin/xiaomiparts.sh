@@ -18,37 +18,37 @@ while true
 do
 
 ## Spectrum performance profiles
-# Schedutil governor params
+# EAS governors params
 sprofile="$(getprop persist.spectrum.profile)"
 if [ "$sprofileold" != "$sprofile" ]; then
   case $sprofile in
   0)# Battery1
-  /system/bin/echo -n 1000 > /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us
-  /system/bin/echo -n 1000 > /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us
+  /system/bin/echo -n 1000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
+  /system/bin/echo -n 1000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
   1)# Battery2
-  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us
-  /system/bin/echo -n 10000 > /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us
+  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
+  /system/bin/echo -n 10000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
   2)# Balance
-  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us
-  /system/bin/echo -n 100000 > /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us
+  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
+  /system/bin/echo -n 100000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
   3)# Gaming
-  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us
-  /system/bin/echo -n 200000 > /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us
+  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
+  /system/bin/echo -n 200000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
   4)# Performance
-  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us
-  /system/bin/echo -n 300000 > /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us
+  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
+  /system/bin/echo -n 300000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
   5)# Crazy
-  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us
-  /system/bin/echo -n 1000000 > /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us
+  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
+  /system/bin/echo -n 1000000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
   *)# First boot params (Balance)
-  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us
-  /system/bin/echo -n 100000 > /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us
+  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
+  /system/bin/echo -n 100000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
   esac
 	sprofileold=$sprofile
