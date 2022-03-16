@@ -61,23 +61,26 @@ if [ "$tcprofileold" != "$tcprofile" ]; then
   0)# cubic
   /system/bin/echo -n cubic > /proc/sys/net/ipv4/tcp_congestion_control
   ;;
-  1)# westwood
+  1)# bbr
+  /system/bin/echo -n bbr > /proc/sys/net/ipv4/tcp_congestion_control
+  ;;
+  2)# westwood
   /system/bin/echo -n westwood > /proc/sys/net/ipv4/tcp_congestion_control
   ;;
-  2)# veno
+  3)# veno
   /system/bin/echo -n veno > /proc/sys/net/ipv4/tcp_congestion_control
   ;;
-  3)# bic
+  4)# bic
   /system/bin/echo -n bic > /proc/sys/net/ipv4/tcp_congestion_control
   ;;
-  4)# illinois
+  5)# illinois
   /system/bin/echo -n illinois > /proc/sys/net/ipv4/tcp_congestion_control
   ;;
-  5)# htcp
+  6)# htcp
   /system/bin/echo -n htcp > /proc/sys/net/ipv4/tcp_congestion_control
   ;;
-  *)# First boot params (westwood)
-  /system/bin/echo -n westwood > /proc/sys/net/ipv4/tcp_congestion_control
+  *)# First boot params (cubic)
+  /system/bin/echo -n cubic > /proc/sys/net/ipv4/tcp_congestion_control
   ;;
   esac
 	tcprofileold=$tcprofile

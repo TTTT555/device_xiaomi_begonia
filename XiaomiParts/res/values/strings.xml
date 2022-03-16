@@ -152,6 +152,7 @@
 
     <!-- Values for TCP Presets -->
     <string name="tcpcongestion_cubic">cubic</string>
+    <string name="tcpcongestion_bbr">bbr</string>
     <string name="tcpcongestion_westwood">westwood</string>
     <string name="tcpcongestion_veno">veno</string>
     <string name="tcpcongestion_bic">bic</string>

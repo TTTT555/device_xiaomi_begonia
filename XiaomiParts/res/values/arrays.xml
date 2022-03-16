@@ -128,6 +128,7 @@
 
     <string-array name="tcpcongestion_profiles">
         <item>@string/tcpcongestion_cubic</item>
+        <item>@string/tcpcongestion_bbr</item>
         <item>@string/tcpcongestion_westwood</item>        
         <item>@string/tcpcongestion_veno</item>
         <item>@string/tcpcongestion_bic</item>
@@ -142,6 +143,7 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
     </string-array>
 
     <!-- WiFi Profiles -->
