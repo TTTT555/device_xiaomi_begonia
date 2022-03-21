@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INJECT_EVENTS"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_DEVICE_CONFIG" />
     
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
     <protected-broadcast android:name="com.redmi.xiaomiparts.CUST_UPDATE" />
@@ -32,12 +33,10 @@
         android:supportsRtl="true"
         android:theme="@style/CustomOptionsTheme">
         <receiver
-            android:name=".BootReceiver"
-            android:defaultToDeviceProtectedStorage="true"
-            android:directBootAware="true"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
+            android:exported="true"
+            android:permission="android.permission.READ_DEVICE_CONFIG"
+            android:name=".BootReceiver">
+            <intent-filter android:priority="1000" >
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -46,13 +45,13 @@
         </receiver>
         <activity
             android:name="com.redmi.xiaomiparts.DeviceSettingsActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/advanced_settings"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="com.android.settings.dismiss"
@@ -84,6 +83,7 @@
         <service
             android:name=".XiaomipartsTile"
             android:enabled="true"
+            android:exported="true"
             android:icon="@drawable/qs_xiaomi"
             android:label="@string/advanced_settings"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -92,26 +92,31 @@
             </intent-filter>
         </service>
         <service android:name="com.redmi.xiaomiparts.ambient.SensorsDozeService"
+                 android:exported="true"
                  android:permission="SensorsDozeService">
         </service>
 
         <activity
             android:name="com.redmi.xiaomiparts.ambient.AmbientGesturePreferenceActivity"
             android:label="@string/ambient_display_gestures_title"
+            android:exported="true"
             android:icon="@drawable/ic_doze">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         
         <service
             android:name=".FPSInfoService"
-            android:exported="false">
+            android:exported="true">
         </service>
         <service
             android:name=".FPSTileService"
             android:icon="@drawable/ic_fps_info"
             android:label="@string/fps_info_title"
+            android:exported="true"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
@@ -122,12 +127,14 @@
         <service
             android:name=".DiracService"
             android:enabled="true"
+            android:exported="true"
             android:stopWithTask="false" />
         
         <service
             android:name=".DiracTileService"
             android:icon="@drawable/dirac_qs_tile_icon"
             android:label="@string/dirac_qs_tile_title"
+            android:exported="true"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
@@ -137,6 +144,7 @@
             android:name=".SpectrumTileService" 
             android:icon="@drawable/ic_spectrum" 
             android:label="@string/spectrum_profile_title" 
+            android:exported="true"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"> 
             <intent-filter>
                 <action 
