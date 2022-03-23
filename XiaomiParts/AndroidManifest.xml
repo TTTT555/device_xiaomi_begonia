@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INJECT_EVENTS"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_DEVICE_CONFIG" />
     
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
     <protected-broadcast android:name="com.redmi.xiaomiparts.CUST_UPDATE" />
@@ -32,12 +33,10 @@
         android:supportsRtl="true"
         android:theme="@style/CustomOptionsTheme">
         <receiver
-            android:name=".BootReceiver"
-            android:defaultToDeviceProtectedStorage="true"
-            android:directBootAware="true"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
+            android:exported="true"
+            android:permission="android.permission.READ_DEVICE_CONFIG"
+            android:name=".BootReceiver">
+            <intent-filter android:priority="100" >
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
