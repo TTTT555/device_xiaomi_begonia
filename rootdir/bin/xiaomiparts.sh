@@ -47,8 +47,6 @@ else
   umount /vendor/firmware/wifi.cfg
 fi
 
-audoffl_old=10
-
 # loop, run every 3 seconds
 while true
 do
@@ -137,25 +135,6 @@ if [ "$vsyncdisold" != "$vsyncdis" ]; then
   ;;
   esac
 	vsyncdisold=$vsyncdis
-fi
-
-## Audio Offload
-audoffl="$(getprop persist.xp.audoffl)"
-if [ "$audoffl_old" != "$audoffl" ]; then
-  case $audoffl in
-  0)# Off
-  setprop audio.offload.disable 1
-  killall audioserver
-  ;;
-  1)# On
-  setprop audio.offload.disable 0
-  killall audioserver
-  ;;
-  *)# First boot params
-  setprop audio.offload.disable 0
-  ;;
-  esac
-	audoffl_old=$audoffl
 fi
 
 ## debug.sf.latch_unsignaled
