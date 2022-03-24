@@ -65,9 +65,6 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_DISABLE_VSYNC = "vsync";
     public static final String VSYNC_SYSTEM_PROPERTY = "persist.xp.vsync.disabled";
 
-    public static final String PREF_AUDOFFL = "audoffl";
-    public static final String AUDOFFL_SYSTEM_PROPERTY = "persist.xp.audoffl";
-
     public static final String PREF_LATCH_UNSIGNALED = "latch_unsignaled";
     public static final String LATCH_UNSIGNALED_SYSTEM_PROPERTY = "persist.xp.latch_unsignaled";
 
@@ -91,8 +88,6 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingSwitchPreference mForce64;
 	
     private SecureSettingListPreference mDisableVSYNC;
-
-    private SecureSettingSwitchPreference mAudOffl;
 
     private SecureSettingSwitchPreference mLatchUnsignaled;
 
@@ -180,11 +175,6 @@ public class DeviceSettings extends PreferenceFragment implements
     mDisableVSYNC.setValue(FileUtils.getStringProp(VSYNC_SYSTEM_PROPERTY, "0"));
     mDisableVSYNC.setSummary(mDisableVSYNC.getEntry());
     mDisableVSYNC.setOnPreferenceChangeListener(this);
-
-    // Audio Offload
-    mAudOffl = (SecureSettingSwitchPreference) findPreference(PREF_AUDOFFL);
-    mAudOffl.setChecked(FileUtils.getProp(AUDOFFL_SYSTEM_PROPERTY, true));
-    mAudOffl.setOnPreferenceChangeListener(this);
 
     // latch_unsignaled
     mLatchUnsignaled = (SecureSettingSwitchPreference) findPreference(PREF_LATCH_UNSIGNALED);
@@ -274,11 +264,7 @@ public class DeviceSettings extends PreferenceFragment implements
                 mDisableVSYNC.setSummary(mDisableVSYNC.getEntry());
                 FileUtils.setStringProp(VSYNC_SYSTEM_PROPERTY, (String) value);
                 break;
-
-            case PREF_AUDOFFL:
-                FileUtils.setProp(AUDOFFL_SYSTEM_PROPERTY, (Boolean) value);
-                break;
-
+            
             case PREF_LATCH_UNSIGNALED:
                 FileUtils.setProp(LATCH_UNSIGNALED_SYSTEM_PROPERTY, (Boolean) value);
                 break;
