@@ -70,6 +70,9 @@ set_prop(xiaomiparts, force64_prop);
 allow xiaomiparts wifi80_prop:property_service set;
 get_prop(xiaomiparts, wifi80_prop);
 set_prop(xiaomiparts, wifi80_prop);
+allow xiaomiparts audoffl_prop:property_service set;
+get_prop(xiaomiparts, audoffl_prop);
+set_prop(xiaomiparts, audoffl_prop);
 
 allow xiaomiparts sysfs:dir r_dir_perms;
 allow xiaomiparts sysfs:file r_file_perms;
