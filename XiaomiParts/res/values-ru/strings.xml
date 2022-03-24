@@ -65,11 +65,6 @@
     <string name="dirac_preset_dance">Клубная</string>
     <string name="dirac_preset_metal">Метал</string>
 
-    <!-- Audio Offload -->
-    <string name="audoffl_title">Audio Offload</string>
-    <string name="audoffl_summary">Отключение переводит обработку звука на CPU</string>
-    <string name="audoffl_dialogTitle">Отключение переводит обработку звука на CPU</string>
-
     <!-- Audio amplification -->
     <string name="audio_title">Аудио</string>
     <string name="headphone_gain">Усиление звука в наушниках</string>

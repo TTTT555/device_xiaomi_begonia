@@ -16,5 +16,3 @@ type codecs_prop, property_type;
 type hw_overlays_prop, property_type;
 type force64_prop, property_type;
 type wifi80_prop, property_type;
-type audoffl_prop, property_type;
-
