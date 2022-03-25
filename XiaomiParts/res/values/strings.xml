@@ -164,6 +164,11 @@
     <string name="wifi80_summary">Choose your Wi-Fi mode</string>
     <string name="wifi80_dialogTitle">Choose your Wi-Fi mode</string>
 
+    <!-- USB Charging -->
+    <string name="usb_title">USB Charging</string>
+    <string name="usb_summary">Enable 900 mA USB charging</string>
+    <string name="usb_dialogTitle">Enable 900 mA USB charging</string>
+
     <!-- Values for WiFi Presets -->
     <string name="wifi80_default">Default (20-40 MHz)</string>
     <string name="wifi80_2">Force 2G/80 MHz</string>

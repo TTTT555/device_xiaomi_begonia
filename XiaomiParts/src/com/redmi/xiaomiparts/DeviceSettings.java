@@ -59,6 +59,9 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_WIFI80 = "wifi80";
     public static final String WIFI80_SYSTEM_PROPERTY = "persist.xp.wifi80";
 
+    public static final String PREF_USB = "usb";
+    public static final String USB_SYSTEM_PROPERTY = "persist.xp.usb";
+
     public static final String PREF_FORCE64 = "force64";
     public static final String FORCE64_SYSTEM_PROPERTY = "persist.xp.force64";
 	
@@ -87,7 +90,9 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mTCP;
 
     private SecureSettingListPreference mWiFi80;
-	
+
+    private SecureSettingSwitchPreference mUsb;
+
     private SecureSettingSwitchPreference mForce64;
 	
     private SecureSettingListPreference mDisableVSYNC;
@@ -169,6 +174,11 @@ public class DeviceSettings extends PreferenceFragment implements
 	mWiFi80.setValue(FileUtils.getStringProp(WIFI80_SYSTEM_PROPERTY, "0"));
 	mWiFi80.setSummary(mWiFi80.getEntry());
 	mWiFi80.setOnPreferenceChangeListener(this);
+
+    // USB Charging
+    mUsb = (SecureSettingSwitchPreference) findPreference(PREF_USB);
+    mUsb.setChecked(FileUtils.getProp(USB_SYSTEM_PROPERTY, false));
+    mUsb.setOnPreferenceChangeListener(this);
 
     // Force 64
     mForce64 = (SecureSettingSwitchPreference) findPreference(PREF_FORCE64);
@@ -263,6 +273,10 @@ public class DeviceSettings extends PreferenceFragment implements
                 mWiFi80.setValue((String) value);
                 mWiFi80.setSummary(mWiFi80.getEntry());
                 FileUtils.setStringProp(WIFI80_SYSTEM_PROPERTY, (String) value);
+                break;
+
+            case PREF_USB:
+                FileUtils.setProp(USB_SYSTEM_PROPERTY, (Boolean) value);
                 break;
 
             case PREF_FORCE64:
