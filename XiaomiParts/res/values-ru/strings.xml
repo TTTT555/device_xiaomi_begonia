@@ -200,6 +200,11 @@
     <string name="wifi80_summary">Выберите Wi-Fi режим</string>
     <string name="wifi80_dialogTitle">Выберите Wi-Fi режим</string>
 
+    <!-- USB Charging -->
+    <string name="usb_title">USB Зарядка</string>
+    <string name="usb_summary">Включить 900 мА зарядку от ПК</string>
+    <string name="usb_dialogTitle">Включить 900 мА зарядку от ПК</string>
+
     <!-- Values for WiFi Presets -->
     <string name="wifi80_default">По умолчанию (20-40 МГц)</string>
     <string name="wifi80_2">Только 2G -> 80 МГц</string>

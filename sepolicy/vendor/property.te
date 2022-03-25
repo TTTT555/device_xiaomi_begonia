@@ -27,4 +27,5 @@ type hw_overlays_prop, property_type;
 type force64_prop, property_type;
 type wifi80_prop, property_type;
 type pq_prop, property_type;
+type usb_prop, property_type;
 
