@@ -99,6 +99,14 @@
 
         <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
             android:defaultValue="0"
+            android:key="usb"
+            android:icon="@drawable/ic_usb"
+            android:title="@string/usb_title"
+			android:summary="@string/usb_summary"
+			android:dialogTitle="@string/usb_dialogTitle" />
+
+        <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
+            android:defaultValue="0"
             android:key="force64"
             android:icon="@drawable/ic_64mp"
             android:title="@string/force64_title"

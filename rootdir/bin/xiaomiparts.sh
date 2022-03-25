@@ -48,6 +48,7 @@ else
 fi
 
 pq_old=10
+usb_old=10
 
 # loop, run every 3 seconds
 while true
@@ -176,6 +177,23 @@ if [ "$pq_old" != "$pq" ]; then
   ;;
   esac
 	pq_old=$pq
+fi
+
+## USB Charging
+usb="$(getprop persist.xp.usb)"
+if [ "$usb_old" != "$usb" ]; then
+  case $usb in
+  0)# Off
+  /system/bin/echo -n 0 > /sys/kernel/fast_charge/force_fast_charge
+  ;;
+  1)# On
+  /system/bin/echo -n 1 > /sys/kernel/fast_charge/force_fast_charge
+  ;;
+  *)# First boot params
+  /system/bin/echo -n 0 > /sys/kernel/fast_charge/force_fast_charge
+  ;;
+  esac
+	usb_old=$usb
 fi
 
 ## Codecs priority
