@@ -131,6 +131,14 @@
 
         <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
             android:defaultValue="0"
+            android:key="pq"
+            android:icon="@drawable/ic_pq"
+            android:title="@string/pq_title"
+			android:summary="@string/pq_summary"
+			android:dialogTitle="@string/pq_dialogTitle" />
+
+        <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
+            android:defaultValue="0"
             android:key="hw_overlays"
             android:icon="@drawable/ic_hwoverlays"
             android:title="@string/hw_overlays_title"

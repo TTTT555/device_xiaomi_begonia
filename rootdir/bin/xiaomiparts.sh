@@ -47,6 +47,8 @@ else
   umount /vendor/firmware/wifi.cfg
 fi
 
+pq_old=10
+
 # loop, run every 3 seconds
 while true
 do
@@ -157,6 +159,23 @@ if [ "$latch_unsignaled_old" != "$latch_unsignaled" ]; then
   ;;
   esac
 	latch_unsignaled_old=$latch_unsignaled
+fi
+
+## PQ
+pq="$(getprop persist.xp.pq)"
+if [ "$pq_old" != "$pq" ]; then
+  case $pq in
+  0)# Off
+  setprop ro.vendor.mtk_pq_support 0
+  ;;
+  1)# On
+  setprop ro.vendor.mtk_pq_support 1
+  ;;
+  *)# First boot params
+  setprop ro.vendor.mtk_pq_support 0
+  ;;
+  esac
+	pq_old=$pq
 fi
 
 ## Codecs priority
