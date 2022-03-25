@@ -134,6 +134,11 @@
     <string name="latch_unsignaled_summary">Влияет на отрисовку наложений</string>
     <string name="latch_unsignaled_dialogTitle">Влияет на отрисовку наложений</string>
 
+    <!-- PQ -->
+    <string name="pq_title">MTK PQ Сервис</string>
+    <string name="pq_summary">MTK шарпинг (нужна перезагрузка)</string>
+    <string name="pq_dialogTitle">MTK шарпинг (нужна перезагрузка)</string>
+
     <!-- HW Overlays -->
     <string name="hw_overlays_title">Отключить HW оверлеи</string>
     <string name="hw_overlays_summary">Переключить отрисовку с CPU на GPU</string>

@@ -68,6 +68,9 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_LATCH_UNSIGNALED = "latch_unsignaled";
     public static final String LATCH_UNSIGNALED_SYSTEM_PROPERTY = "persist.xp.latch_unsignaled";
 
+    public static final String PREF_PQ = "pq";
+    public static final String PQ_SYSTEM_PROPERTY = "persist.xp.pq";
+
     public static final String PREF_HW_OVERLAYS = "hw_overlays";
     public static final String HW_OVERLAYS_SYSTEM_PROPERTY = "persist.xp.hw_overlays";
     
@@ -90,6 +93,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mDisableVSYNC;
 
     private SecureSettingSwitchPreference mLatchUnsignaled;
+
+    private SecureSettingSwitchPreference mPq;
 
     private SecureSettingSwitchPreference mHwOverlays;
     
@@ -181,6 +186,11 @@ public class DeviceSettings extends PreferenceFragment implements
     mLatchUnsignaled.setChecked(FileUtils.getProp(LATCH_UNSIGNALED_SYSTEM_PROPERTY, false));
     mLatchUnsignaled.setOnPreferenceChangeListener(this);
 
+    // PQ
+    mPq = (SecureSettingSwitchPreference) findPreference(PREF_PQ);
+    mPq.setChecked(FileUtils.getProp(PQ_SYSTEM_PROPERTY, false));
+    mPq.setOnPreferenceChangeListener(this);
+
     // HW overlays
     mHwOverlays = (SecureSettingSwitchPreference) findPreference(PREF_HW_OVERLAYS);
     mHwOverlays.setChecked(FileUtils.getProp(HW_OVERLAYS_SYSTEM_PROPERTY, false));
@@ -267,6 +277,10 @@ public class DeviceSettings extends PreferenceFragment implements
             
             case PREF_LATCH_UNSIGNALED:
                 FileUtils.setProp(LATCH_UNSIGNALED_SYSTEM_PROPERTY, (Boolean) value);
+                break;
+
+            case PREF_PQ:
+                FileUtils.setProp(PQ_SYSTEM_PROPERTY, (Boolean) value);
                 break;
 
             case PREF_HW_OVERLAYS:

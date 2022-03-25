@@ -186,6 +186,11 @@
     <string name="latch_unsignaled_summary">Affects the rendering of overlays</string>
     <string name="latch_unsignaled_dialogTitle">Affects the rendering of overlays</string>
 
+    <!-- PQ -->
+    <string name="pq_title">MTK PQ Service</string>
+    <string name="pq_summary">MTK sharping (need reboot)</string>
+    <string name="pq_dialogTitle">MTK sharping (need reboot)</string>
+
     <!-- HW Overlays -->
     <string name="hw_overlays_title">Disable HW overlays</string>
     <string name="hw_overlays_summary">Always use GPU for screen compositing</string>
