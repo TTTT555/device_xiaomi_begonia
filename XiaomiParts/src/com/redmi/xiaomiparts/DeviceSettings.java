@@ -44,7 +44,10 @@ public class DeviceSettings extends PreferenceFragment implements
 
     public static final String KEY_VIBSTRENGTH = "vib_strength";
     private static final String CATEGORY_DISPLAY = "display";
-    
+
+    public static final String PREF_GOVERNOR = "governor";
+    public static final String GOVERNOR_SYSTEM_PROPERTY = "persist.xp.governor";
+
     public static final String PREF_SPECTRUM = "spectrum";
     public static final String SPECTRUM_SYSTEM_PROPERTY = "persist.spectrum.profile";
     
@@ -82,7 +85,9 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingSwitchPreference mEnableDirac;
     private SecureSettingListPreference mHeadsetType;
     private SecureSettingListPreference mPreset;
-    
+
+    private SecureSettingListPreference mGovernor;
+
     private SecureSettingListPreference mSPECTRUM;
 
     private SecureSettingListPreference mHwCodecs;
@@ -156,6 +161,12 @@ public class DeviceSettings extends PreferenceFragment implements
         mSPECTRUM.setValue(FileUtils.getStringProp(SPECTRUM_SYSTEM_PROPERTY, "0"));
         mSPECTRUM.setSummary(mSPECTRUM.getEntry());
         mSPECTRUM.setOnPreferenceChangeListener(this);
+
+    // Governor
+    mGovernor = (SecureSettingListPreference) findPreference(PREF_GOVERNOR);
+    mGovernor.setValue(FileUtils.getStringProp(GOVERNOR_SYSTEM_PROPERTY, "0"));
+    mGovernor.setSummary(mGovernor.getEntry());
+    mGovernor.setOnPreferenceChangeListener(this);
 
     // Codecs
     mHwCodecs = (SecureSettingListPreference) findPreference(PREF_HWCODECS);
@@ -250,7 +261,13 @@ public class DeviceSettings extends PreferenceFragment implements
                     DiracService.sDiracUtils.setLevel(String.valueOf(value));
                 }
                 break;
-                
+
+            case PREF_GOVERNOR:
+                mGovernor.setValue((String) value);
+                mGovernor.setSummary(mGovernor.getEntry());
+                FileUtils.setStringProp(GOVERNOR_SYSTEM_PROPERTY, (String) value);
+                break;
+
             case PREF_SPECTRUM:
                 mSPECTRUM.setValue((String) value);
                 mSPECTRUM.setSummary(mSPECTRUM.getEntry());
