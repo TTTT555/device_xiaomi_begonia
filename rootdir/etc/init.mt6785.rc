@@ -1162,3 +1162,8 @@ on property:sys.camera.miui.apk=*
 on property:vendor.ril.mtk=1
     stop vendor.ril-daemon
 
+# Fix VoIP apps call echo
+on property:persist.vendor.mtk_aurisys_framework_support=*
+    stop audioserver
+    start audioserver
+
