@@ -1000,3 +1000,8 @@ on property:sys.boot_completed=1
     swapon_all /vendor/etc/fstab.mt6785
     write /proc/sys/vm/swappiness 40
 
+# Fix VoIP apps call echo
+on property:persist.vendor.mtk_aurisys_framework_support=*
+    stop audioserver
+    start audioserver
+
