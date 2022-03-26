@@ -75,6 +75,9 @@ set_prop(xiaomiparts, pq_prop);
 allow xiaomiparts usb_prop:property_service set;
 get_prop(xiaomiparts, usb_prop);
 set_prop(xiaomiparts, usb_prop);
+allow xiaomiparts governor_prop:property_service set;
+get_prop(xiaomiparts, governor_prop);
+set_prop(xiaomiparts, governor_prop);
 
 allow xiaomiparts sysfs:dir r_dir_perms;
 allow xiaomiparts sysfs:file r_file_perms;

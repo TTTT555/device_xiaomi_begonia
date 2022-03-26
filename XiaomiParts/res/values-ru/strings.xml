@@ -162,19 +162,24 @@
     <string name="pickup_sensor_title">Датчик срабатывания</string>
     <string name="proximity_sensor_title">Датчик приближения</string>
 
-    <!-- Spectrum Profiles -->
-    <string name="spectrum_profile_title">Производительность</string>
-    <string name="spectrum_title">Профиль</string>
-    <string name="spectrum_summary">Выберите коэффициент Schedutil</string>
-    <string name="spectrum_dialogTitle">Выберите коэффициент Schedutil</string>
+    <!-- Governor -->
+    <string name="governor_title">CPU Говернор</string>
+    <string name="governor_summary">Выберите EAS Говернор</string>
+    <string name="governor_dialogTitle">Выберите EAS Говернор</string>
 
-    <!-- Values for Spectrum Presets -->
-    <string name="spectrum_battery1">Батарея (1к)</string>
-    <string name="spectrum_battery2">Батарея (10к)</string>
-    <string name="spectrum_balance">Баланс (100к)</string>
-    <string name="spectrum_gaming">Игровой (200к)</string>
-    <string name="spectrum_performance">Мощный (300к)</string>
-    <string name="spectrum_crazy">Прощай заряд (1000к)</string>
+    <!-- Governor Ratio -->
+    <string name="spectrum_profile_title">Производительность</string>
+    <string name="spectrum_title">Коэффициент говернора</string>
+    <string name="spectrum_summary">Выберите значение</string>
+    <string name="spectrum_dialogTitle">Выберите значение</string>
+
+    <!-- Values of Governor Ratio -->
+    <string name="spectrum_battery">Экономный (1k)</string>
+    <string name="spectrum_balance">Баланс (3k)</string>
+    <string name="spectrum_smooth">Плавный (100k)</string>
+    <string name="spectrum_game">Игровой (200k)</string>
+    <string name="spectrum_powerful">Мощный (1m)</string>
+    <string name="spectrum_spowerful">Сверхмощный (10m)</string>
 
     <!-- Codecs -->
     <string name="codecs_title">Кодеки</string>

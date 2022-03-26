@@ -29,20 +29,34 @@
     <!-- Audio amplification -->
     <string name="headphone_gain">Headphone gain</string>
     <string name="microphone_gain">Microphone gain</string>
-    
-    <!-- Spectrum Profiles -->
-    <string name="spectrum_profile_title">Performance</string>
-    <string name="spectrum_title">Performance Profiles</string>
-    <string name="spectrum_summary">Choose downrate of Schedutil</string>
-    <string name="spectrum_dialogTitle">Choose downrate of Schedutil</string>
 
-    <!-- Values for Spectrum Presets -->
-    <string name="spectrum_battery1">Battery (1k)</string>
-    <string name="spectrum_battery2">Battery (10k)</string>
-    <string name="spectrum_balance">Balance (100k)</string>
-    <string name="spectrum_gaming">Gaming (200k)</string>
-    <string name="spectrum_performance">Performance (300k)</string>
-    <string name="spectrum_crazy">I am crazy (1000к)</string>
+    <!-- Governor -->
+    <string name="governor_title">CPU Governor</string>
+    <string name="governor_summary">Choose EAS Governor</string>
+    <string name="governor_dialogTitle">Choose EAS Governor</string>
+
+    <!-- Governor Variants -->
+    <string name="governor_pwrutilx">pwrutilx</string>
+    <string name="governor_blu">blu_schedutil</string>
+    <string name="governor_pixutil">pixutil</string>
+    <string name="governor_schedutil">schedutil</string>
+    <string name="governor_helix">helix_schedutil</string>
+    <string name="governor_darkutil">darkutil</string>
+    <string name="governor_smurfutil">smurfutil</string>
+
+    <!-- Governor Ratio -->
+    <string name="spectrum_profile_title">Performance</string>
+    <string name="spectrum_title">Governor Ratio</string>
+    <string name="spectrum_summary">Choose a Value</string>
+    <string name="spectrum_dialogTitle">Choose a Value</string>
+
+    <!-- Values of Governor Ratio -->
+    <string name="spectrum_battery">Battery (1k)</string>
+    <string name="spectrum_balance">Balance (3k)</string>
+    <string name="spectrum_smooth">Smooth (100k)</string>
+    <string name="spectrum_game">Game (200k)</string>
+    <string name="spectrum_powerful">Powerful (1m)</string>
+    <string name="spectrum_spowerful">Super Powerful (10m)</string>
 
     <!-- Custom seekbar -->
     <string name="custom_seekbar_value">Value: <xliff:g id="v">%s</xliff:g></string>
