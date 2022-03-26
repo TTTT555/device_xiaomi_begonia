@@ -701,17 +701,17 @@ on boot
     chown system system /sys/class/thermal/thermal_zone3/temp
 
     chown system system /sys/devices/system/cpu/cpufreq/hotplug/cpu_num_base
-    chmod 0660 /sys/devices/system/cpu/cpufreq/hotplug/cpu_num_base
+    chmod 0664 /sys/devices/system/cpu/cpufreq/hotplug/cpu_num_base
     chown system system /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-    chmod 0660 /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-    chown system system /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
-    chmod 0660 /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+    chown system system /sys/devices/system/cpu/cpufreq/policy6/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpufreq/policy6/scaling_governor
     chown root   system /sys/kernel/debug/binder/transaction_log_enable
     chown root   system /sys/kernel/debug/binder/perf_evalue
     chown system system /sys/devices/system/cpu/rq-stats/htasks_thresh
-    chmod 0660 /sys/devices/system/cpu/rq-stats/htasks_thresh
+    chmod 0664 /sys/devices/system/cpu/rq-stats/htasks_thresh
     chown system system /sys/devices/system/cpu/rq-stats/avg_htasks_thresh
-    chmod 0660 /sys/devices/system/cpu/rq-stats/avg_htasks_thresh
+    chmod 0664 /sys/devices/system/cpu/rq-stats/avg_htasks_thresh
 
     chown system /sys/module/mlog/parameters/do_mlog
     chown system /sys/module/mlog/parameters/timer_intval
@@ -807,13 +807,13 @@ on boot
 
     # CPU freq
     chown system system /proc/cpufreq/cpufreq_limited_by_hevc
-    chmod 0660 /proc/cpufreq/cpufreq_limited_by_hevc
+    chmod 0664 /proc/cpufreq/cpufreq_limited_by_hevc
     chown system system /proc/cpufreq/cpufreq_limited_max_freq_by_user
-    chmod 0660 /proc/cpufreq/cpufreq_limited_max_freq_by_user
+    chmod 0664 /proc/cpufreq/cpufreq_limited_max_freq_by_user
     chown system system /proc/cpufreq/cpufreq_power_mode
-    chmod 0660 /proc/cpufreq/cpufreq_power_mode
+    chmod 0664 /proc/cpufreq/cpufreq_power_mode
     chown system system /proc/cpufreq/enable_hw_gov
-    chmod 0660 /proc/cpufreq/enable_hw_gov
+    chmod 0664 /proc/cpufreq/enable_hw_gov
 
     # BW monitor
     chown system system /proc/fliperfs/cg_enable
@@ -927,10 +927,6 @@ on property:sys.boot_completed=1
     write /proc/sys/kernel/sched_stune_task_threshold -1
     write /proc/perfmgr/boost_ctrl/cpu_ctrl/boot_freq "-1 -1 -1 -1"
     write /sys/devices/platform/10012000.dvfsrc/helio-dvfsrc/dvfsrc_req_ddr_opp -1
-
-    # switch to sched-dvfs
-    write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor "schedplus"
-    write /sys/devices/system/cpu/cpufreq/policy4/scaling_governor "schedplus"
 
 # reset mdmode when modem crash happens in ATM
 on property:vendor.mtk.md1.status=reset

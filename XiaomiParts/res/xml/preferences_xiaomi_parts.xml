@@ -52,6 +52,16 @@
         android:title="@string/spectrum_profile_title">
 
         <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
+            android:defaultValue="3"
+            android:dialogTitle="@string/governor_dialogTitle"
+            android:entries="@array/governor_profiles"
+            android:entryValues="@array/governor_values"
+            android:key="governor"
+            android:summary="@string/governor_summary"
+            android:icon="@drawable/ic_governor" 
+            android:title="@string/governor_title" />
+
+        <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
             android:defaultValue="2"
             android:dialogTitle="@string/spectrum_dialogTitle"
             android:entries="@array/spectrum_profiles"
