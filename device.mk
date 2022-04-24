@@ -89,6 +89,10 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-service \
     android.hardware.drm@1.2-service.clearkey
 
+# Goog Photos Unlimited
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
+
 # DT2W
 PRODUCT_PACKAGES += \
     DT2W-Service-Begonia
