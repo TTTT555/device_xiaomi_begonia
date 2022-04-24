@@ -33,6 +33,9 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
     
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        // Vibrator
+        VibratorStrengthPreference.restore(context);
         
         // Dirac
         context.startService(new Intent(context, DiracService.class));
