@@ -42,7 +42,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String PREF_HEADSET = "dirac_headset_pref";
     private static final String PREF_PRESET = "dirac_preset_pref";
 
-    public static final String KEY_VIBSTRENGTH = "vib_strength";
+    public static final String KEY_VIBSTRENGTH = "vibration_strength";
     private static final String CATEGORY_DISPLAY = "display";
 
     public static final String PREF_GOVERNOR = "governor";

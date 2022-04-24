@@ -186,7 +186,7 @@
         android:key="vibration"
         android:title="@string/vibration_title">
         <com.redmi.xiaomiparts.preferences.VibratorStrengthPreference
-            android:defaultValue="50"
+            android:defaultValue="9"
             android:key="vibration_strength"
             android:icon="@drawable/ic_vibrate"
             android:title="@string/vibration_strength_title" />
