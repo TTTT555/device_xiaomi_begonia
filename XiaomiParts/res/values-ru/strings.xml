@@ -210,6 +210,11 @@
     <string name="usb_summary">Включить 900 мА зарядку от ПК</string>
     <string name="usb_dialogTitle">Включить 900 мА зарядку от ПК</string>
 
+    <!-- MI Thermal -->
+    <string name="thermal_title">Отключить MI терморегулятор</string>
+    <string name="thermal_summary">Это может повысить производительность, но сократить срок службы устройства.</string>
+    <string name="thermal_dialogTitle">Это может повысить производительность, но сократить срок службы устройства.</string>
+
     <!-- Values for WiFi Presets -->
     <string name="wifi80_default">По умолчанию (20-40 МГц)</string>
     <string name="wifi80_2">Форсировать 2G/80 МГц</string>
