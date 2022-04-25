@@ -183,6 +183,11 @@
     <string name="usb_summary">Enable 900 mA USB charging</string>
     <string name="usb_dialogTitle">Enable 900 mA USB charging</string>
 
+    <!-- MI Thermal -->
+    <string name="thermal_title">Disable MI Thermal</string>
+    <string name="thermal_summary">It can improve performance but reduce device life.</string>
+    <string name="thermal_dialogTitle">It can improve performance but reduce device life.</string>
+
     <!-- Values for WiFi Presets -->
     <string name="wifi80_default">Default (20-40 MHz)</string>
     <string name="wifi80_2">Only 2G -> 80 MHz</string>
