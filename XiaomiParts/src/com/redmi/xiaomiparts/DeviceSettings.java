@@ -65,6 +65,9 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_USB = "usb";
     public static final String USB_SYSTEM_PROPERTY = "persist.xp.usb";
 
+    public static final String PREF_THERMAL = "thermal";
+    public static final String THERMAL_SYSTEM_PROPERTY = "persist.xp.thermal";
+
     public static final String PREF_FORCE64 = "force64";
     public static final String FORCE64_SYSTEM_PROPERTY = "persist.xp.force64";
 	
@@ -97,6 +100,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mWiFi80;
 
     private SecureSettingSwitchPreference mUsb;
+
+    private SecureSettingSwitchPreference mThermal;
 
     private SecureSettingSwitchPreference mForce64;
 	
@@ -190,6 +195,11 @@ public class DeviceSettings extends PreferenceFragment implements
     mUsb = (SecureSettingSwitchPreference) findPreference(PREF_USB);
     mUsb.setChecked(FileUtils.getProp(USB_SYSTEM_PROPERTY, false));
     mUsb.setOnPreferenceChangeListener(this);
+
+    // MI Thermal
+    mThermal = (SecureSettingSwitchPreference) findPreference(PREF_THERMAL);
+    mThermal.setChecked(FileUtils.getProp(THERMAL_SYSTEM_PROPERTY, false));
+    mThermal.setOnPreferenceChangeListener(this);
 
     // Force 64
     mForce64 = (SecureSettingSwitchPreference) findPreference(PREF_FORCE64);
@@ -294,6 +304,10 @@ public class DeviceSettings extends PreferenceFragment implements
 
             case PREF_USB:
                 FileUtils.setProp(USB_SYSTEM_PROPERTY, (Boolean) value);
+                break;
+
+            case PREF_THERMAL:
+                FileUtils.setProp(THERMAL_SYSTEM_PROPERTY, (Boolean) value);
                 break;
 
             case PREF_FORCE64:
