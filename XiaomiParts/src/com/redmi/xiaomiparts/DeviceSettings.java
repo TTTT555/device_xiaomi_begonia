@@ -42,6 +42,9 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String PREF_HEADSET = "dirac_headset_pref";
     private static final String PREF_PRESET = "dirac_preset_pref";
 
+    public static final String PREF_VIPER = "viper";
+    public static final String VIPER_SYSTEM_PROPERTY = "persist.xp.viper";
+
     public static final String KEY_VIBSTRENGTH = "vibration_strength";
     private static final String CATEGORY_DISPLAY = "display";
 
@@ -88,6 +91,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingSwitchPreference mEnableDirac;
     private SecureSettingListPreference mHeadsetType;
     private SecureSettingListPreference mPreset;
+
+    private SecureSettingSwitchPreference mViper;
 
     private SecureSettingListPreference mGovernor;
 
@@ -195,6 +200,11 @@ public class DeviceSettings extends PreferenceFragment implements
     mUsb = (SecureSettingSwitchPreference) findPreference(PREF_USB);
     mUsb.setChecked(FileUtils.getProp(USB_SYSTEM_PROPERTY, false));
     mUsb.setOnPreferenceChangeListener(this);
+
+    // Viper
+    mViper = (SecureSettingSwitchPreference) findPreference(PREF_VIPER);
+    mViper.setChecked(FileUtils.getProp(VIPER_SYSTEM_PROPERTY, false));
+    mViper.setOnPreferenceChangeListener(this);
 
     // MI Thermal
     mThermal = (SecureSettingSwitchPreference) findPreference(PREF_THERMAL);
@@ -304,6 +314,10 @@ public class DeviceSettings extends PreferenceFragment implements
 
             case PREF_USB:
                 FileUtils.setProp(USB_SYSTEM_PROPERTY, (Boolean) value);
+                break;
+
+            case PREF_VIPER:
+                FileUtils.setProp(VIPER_SYSTEM_PROPERTY, (Boolean) value);
                 break;
 
             case PREF_THERMAL:

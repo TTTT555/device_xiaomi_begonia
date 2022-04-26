@@ -65,6 +65,11 @@
     <string name="dirac_preset_dance">Клубная</string>
     <string name="dirac_preset_metal">Метал</string>
 
+    <!-- Viper FX -->
+    <string name="viper_title">ViPER4Android FX</string>
+    <string name="viper_summary">Включить Viper энхансер. Не забудьте активировать устаревший режим в настройках приложения.</string>
+    <string name="viper_dialogTitle">Включить Viper энхансер. Не забудьте активировать устаревший режим в настройках приложения.</string>
+
     <!-- Audio amplification -->
     <string name="audio_title">Аудио</string>
     <string name="headphone_gain">Усиление звука в наушниках</string>
