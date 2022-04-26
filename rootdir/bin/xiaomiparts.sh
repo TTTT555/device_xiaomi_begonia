@@ -52,6 +52,11 @@ usb_old=10
 governor_old=10
 thermal_old=10
 
+viper_old="$(getprop persist.xp.viper)"
+if [[ "$viper_old" != 0 && "$viper_old" != 1 ]]; then
+  pm disable com.pittvandewitt.viperfx
+fi
+
 # loop, run every 3 seconds
 while true
 do
@@ -262,6 +267,23 @@ if [ "$usb_old" != "$usb" ]; then
   ;;
   esac
 	usb_old=$usb
+fi
+
+## Viper
+viper="$(getprop persist.xp.viper)"
+if [ "$viper_old" != "$viper" ]; then
+  case $viper in
+  0)# Off
+  pm disable com.pittvandewitt.viperfx
+  ;;
+  1)# On
+  pm enable com.pittvandewitt.viperfx
+  ;;
+  *)# Other (disable)
+  pm disable com.pittvandewitt.viperfx
+  ;;
+  esac
+	viper_old=$viper
 fi
 
 ## MI Thermal disabler
