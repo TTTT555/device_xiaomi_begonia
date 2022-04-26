@@ -30,4 +30,5 @@ type pq_prop, property_type;
 type usb_prop, property_type;
 type governor_prop, property_type;
 type mithermald_prop, property_type;
+type viper_prop, property_type;
 

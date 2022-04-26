@@ -81,6 +81,9 @@ set_prop(xiaomiparts, governor_prop);
 allow xiaomiparts mithermald_prop:property_service set;
 get_prop(xiaomiparts, mithermald_prop);
 set_prop(xiaomiparts, mithermald_prop);
+allow xiaomiparts viper_prop:property_service set;
+get_prop(xiaomiparts, viper_prop);
+set_prop(xiaomiparts, viper_prop);
 
 allow xiaomiparts sysfs:dir r_dir_perms;
 allow xiaomiparts sysfs:file r_file_perms;
