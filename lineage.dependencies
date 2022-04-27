@@ -30,6 +30,12 @@
    "branch": "github"
  },
  {
+   "repository": "TTTT555/vendor_JamesDSPManager",
+   "target_path": "vendor/JamesDSPManager",
+   "branch": "main",   
+   "remote": "github"
+ },
+ {
    "repository": "TTTT555/viper4androidFX",
    "target_path": "vendor/viper4androidFX",
    "branch": "master",   
