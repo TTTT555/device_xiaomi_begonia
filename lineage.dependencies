@@ -52,5 +52,11 @@
    "target_path": "vendor/burial8",
    "branch": "master",   
    "remote": "github"
+ },
+ {
+   "repository": "TTTT555/vendor_JamesDSPManager",
+   "target_path": "vendor/JamesDSPManager",
+   "branch": "main",   
+   "remote": "github"
  }
 ]
