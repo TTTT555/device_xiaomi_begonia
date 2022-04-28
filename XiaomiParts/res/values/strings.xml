@@ -111,6 +111,12 @@
     <string name="viper_title">ViPER4Android FX</string>
     <string name="viper_summary">Enable Viper Sound Enhancer. Also do not forget enable legacy mode in app settings.</string>
     <string name="viper_dialogTitle">Enable Viper Sound Enhancer. Also do not forget enable legacy mode in app settings.</string>
+
+
+    <!-- James DSP -->
+    <string name="james_title">James DSP</string>
+    <string name="james_summary">Enable James DSP Audio Manager. Reenable Dirac when you off this.</string>
+    <string name="james_dialogTitle">Enable James DSP Audio Manager. Reenable Dirac when you off this.</string>
     
     <!-- Ambient gesture haptic feedback -->
     <string name="ambient_gesture_haptic_feedback">Haptic feedback</string>
