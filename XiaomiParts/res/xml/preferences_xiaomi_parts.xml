@@ -53,6 +53,14 @@
             android:title="@string/viper_title"
 			android:summary="@string/viper_summary"
 			android:dialogTitle="@string/viper_dialogTitle" />
+
+        <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
+            android:defaultValue="0"
+            android:key="james"
+            android:icon="@drawable/ic_james"
+            android:title="@string/james_title"
+			android:summary="@string/james_summary"
+			android:dialogTitle="@string/james_dialogTitle" />
     </PreferenceCategory>
     
     <PreferenceCategory

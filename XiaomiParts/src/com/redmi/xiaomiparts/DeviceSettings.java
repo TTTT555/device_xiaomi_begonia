@@ -45,6 +45,9 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_VIPER = "viper";
     public static final String VIPER_SYSTEM_PROPERTY = "persist.xp.viper";
 
+    public static final String PREF_JAMES = "james";
+    public static final String JAMES_SYSTEM_PROPERTY = "persist.xp.james";
+
     public static final String KEY_VIBSTRENGTH = "vibration_strength";
     private static final String CATEGORY_DISPLAY = "display";
 
@@ -93,6 +96,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mPreset;
 
     private SecureSettingSwitchPreference mViper;
+
+    private SecureSettingSwitchPreference mJames;
 
     private SecureSettingListPreference mGovernor;
 
@@ -206,6 +211,11 @@ public class DeviceSettings extends PreferenceFragment implements
     mViper.setChecked(FileUtils.getProp(VIPER_SYSTEM_PROPERTY, false));
     mViper.setOnPreferenceChangeListener(this);
 
+    // James
+    mJames = (SecureSettingSwitchPreference) findPreference(PREF_JAMES);
+    mJames.setChecked(FileUtils.getProp(JAMES_SYSTEM_PROPERTY, false));
+    mJames.setOnPreferenceChangeListener(this);
+
     // MI Thermal
     mThermal = (SecureSettingSwitchPreference) findPreference(PREF_THERMAL);
     mThermal.setChecked(FileUtils.getProp(THERMAL_SYSTEM_PROPERTY, false));
@@ -318,6 +328,10 @@ public class DeviceSettings extends PreferenceFragment implements
 
             case PREF_VIPER:
                 FileUtils.setProp(VIPER_SYSTEM_PROPERTY, (Boolean) value);
+                break;
+
+            case PREF_JAMES:
+                FileUtils.setProp(JAMES_SYSTEM_PROPERTY, (Boolean) value);
                 break;
 
             case PREF_THERMAL:

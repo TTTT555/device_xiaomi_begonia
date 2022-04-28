@@ -57,6 +57,11 @@ if [[ "$viper_old" != 0 && "$viper_old" != 1 ]]; then
   pm disable com.pittvandewitt.viperfx
 fi
 
+james_old="$(getprop persist.xp.james)"
+if [[ "$james_old" != 0 && "$james_old" != 1 ]]; then
+  pm disable james.dsp && am force-stop james.dsp
+fi
+
 # loop, run every 3 seconds
 while true
 do
@@ -284,6 +289,28 @@ if [ "$viper_old" != "$viper" ]; then
   ;;
   esac
 	viper_old=$viper
+fi
+
+## James
+james="$(getprop persist.xp.james)"
+if [ "$james_old" != "$james" ]; then
+  case $james in
+  0)# Off
+  stop audioserver
+  pm disable james.dsp && am force-stop james.dsp
+  sleep 2
+  ;;
+  1)# On
+  settings put global hidden_api_policy 1
+  pm enable james.dsp
+  ;;
+  *)# Other (disable)
+  stop audioserver
+  pm disable james.dsp && am force-stop james.dsp
+  sleep 2
+  ;;
+  esac
+	james_old=$james
 fi
 
 ## MI Thermal disabler

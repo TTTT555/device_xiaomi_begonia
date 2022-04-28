@@ -70,6 +70,11 @@
     <string name="viper_summary">Включить Viper энхансер. Не забудьте активировать устаревший режим в настройках приложения.</string>
     <string name="viper_dialogTitle">Включить Viper энхансер. Не забудьте активировать устаревший режим в настройках приложения.</string>
 
+    <!-- James DSP -->
+    <string name="james_title">James DSP</string>
+    <string name="james_summary">Включить James DSP аудио менеджер. Перезапустите Dirac, если отключаете это.</string>
+    <string name="james_dialogTitle">Включить James DSP аудио менеджер. Перезапустите Dirac, если отключаете это.</string>
+
     <!-- Audio amplification -->
     <string name="audio_title">Аудио</string>
     <string name="headphone_gain">Усиление звука в наушниках</string>
