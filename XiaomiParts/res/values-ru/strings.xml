@@ -75,6 +75,11 @@
     <string name="james_summary">Включить James DSP аудио менеджер. Перезапустите Dirac, если отключаете это.</string>
     <string name="james_dialogTitle">Включить James DSP аудио менеджер. Перезапустите Dirac, если отключаете это.</string>
 
+    <!-- Dlb -->
+    <string name="dlb_title">DB FX</string>
+    <string name="dlb_summary">Включить DB FX менеджер</string>
+    <string name="dlb_dialogTitle">Включить DB FX менеджер</string>
+
     <!-- Audio amplification -->
     <string name="audio_title">Аудио</string>
     <string name="headphone_gain">Усиление звука в наушниках</string>

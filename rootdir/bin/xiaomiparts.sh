@@ -25,6 +25,11 @@ if [[ "$james_old" != 0 && "$james_old" != 1 ]]; then
   pm disable james.dsp && am force-stop james.dsp
 fi
 
+dlb_old="$(getprop persist.xp.dlb)"
+if [[ "$dlb_old" != 0 && "$dlb_old" != 1 ]]; then
+  pm disable com.dolby && pm disable com.dolby.ds1appUI
+fi
+
 # loop, run every 3 seconds
 while true
 do
@@ -272,6 +277,23 @@ if [ "$james_old" != "$james" ]; then
   ;;
   esac
 	james_old=$james
+fi
+
+## Dlb
+dlb="$(getprop persist.xp.dlb)"
+if [ "$dlb_old" != "$dlb" ]; then
+  case $dlb in
+  0)# Off
+  pm disable com.dolby && pm disable com.dolby.ds1appUI
+  ;;
+  1)# On
+  pm enable com.dolby && pm enable com.dolby.ds1appUI
+  ;;
+  *)# Other (disable)
+  pm disable com.dolby && pm disable com.dolby.ds1appUI
+  ;;
+  esac
+	dlb_old=$dlb
 fi
 
 ## MI Thermal disabler

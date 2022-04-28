@@ -98,6 +98,7 @@ persist.xp.governor            	    u:object_r:governor_prop:s0
 persist.xp.thermal            	    u:object_r:mithermald_prop:s0
 persist.xp.viper            	    u:object_r:viper_prop:s0
 persist.xp.james            	    u:object_r:jamesdsp_prop:s0
+persist.xp.dlb               	    u:object_r:dlbfx_prop:s0
 ## Dirac
 audio.dirac.                        u:object_r:dirac_prop:s0
 audio.dirac.logging                 u:object_r:dirac_prop:s0
