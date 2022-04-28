@@ -117,6 +117,11 @@
     <string name="james_title">James DSP</string>
     <string name="james_summary">Enable James DSP Audio Manager. Reenable Dirac when you off this.</string>
     <string name="james_dialogTitle">Enable James DSP Audio Manager. Reenable Dirac when you off this.</string>
+
+    <!-- Dlb -->
+    <string name="dlb_title">DB FX</string>
+    <string name="dlb_summary">Enable DB FX Manager</string>
+    <string name="dlb_dialogTitle">Enable DB FX Manager</string>
     
     <!-- Ambient gesture haptic feedback -->
     <string name="ambient_gesture_haptic_feedback">Haptic feedback</string>

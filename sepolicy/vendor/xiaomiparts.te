@@ -88,6 +88,9 @@ set_prop(xiaomiparts, viper_prop);
 allow xiaomiparts jamesdsp_prop:property_service set;
 get_prop(xiaomiparts, jamesdsp_prop);
 set_prop(xiaomiparts, jamesdsp_prop);
+allow xiaomiparts dlbfx_prop:property_service set;
+get_prop(xiaomiparts, dlbfx_prop);
+set_prop(xiaomiparts, dlbfx_prop);
 
 allow xiaomiparts sysfs:dir r_dir_perms;
 allow xiaomiparts sysfs:file r_file_perms;
