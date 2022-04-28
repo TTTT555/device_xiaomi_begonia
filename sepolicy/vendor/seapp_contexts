@@ -1,1 +1,4 @@
 user=system seinfo=platform name=com.redmi.xiaomiparts domain=xiaomiparts type=system_app_data_file
+user=_app seinfo=platform name=com.dolby.ds1appUI domain=dolby_app type=app_data_file
+user=_app seinfo=platform name=com.dolby domain=dolby_app type=app_data_file
+
