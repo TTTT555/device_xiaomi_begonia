@@ -36,6 +36,12 @@
    "remote": "github"
  },
  {
+   "repository": "TTTT555/vendor_dlb",
+   "target_path": "vendor/dlb",
+   "branch": "main",   
+   "remote": "github"
+ },
+ {
    "repository": "TTTT555/viper4androidFX",
    "target_path": "vendor/viper4androidFX",
    "branch": "master",   

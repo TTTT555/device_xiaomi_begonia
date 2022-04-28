@@ -32,6 +32,7 @@ persist.dirac.acs.storeSettings=1
 persist.dirac.acs.ignore_error=1
 ro.audio.soundfx.dirac=true
 ro.vendor.audio.soundfx.dirac=true
+sys.keep_app_1=com.dolby.ds1appUI
 
 # Background
 persist.vendor.heavy.loading.support=1

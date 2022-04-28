@@ -108,5 +108,23 @@ persist.dirac.acs.ignore_error      u:object_r:vendor_audio_prop:s0
 ro.audio.soundfx.dirac              u:object_r:vendor_audio_prop:s0
 persist.audio.dirac.speaker         u:object_r:vendor_audio_prop:s0
 
+## Dolby
+dolby.ds.state                      u:object_r:dolby_prop:s0
+dolby.ds.profile.name               u:object_r:dolby_prop:s0
+dolby.ds.dialogenhancer.state       u:object_r:dolby_prop:s0
+dolby.ds.hpvirtualizer.state        u:object_r:dolby_prop:s0
+dolby.ds.spkvirtualizer.state       u:object_r:dolby_prop:s0
+dolby.ds.volumeleveler.state        u:object_r:dolby_prop:s0
+dolby.ds.graphiceq.state            u:object_r:dolby_prop:s0
+dolby.ds.intelligenteq.state        u:object_r:dolby_prop:s0
+dolby.ds.intelligenteq.preset       u:object_r:dolby_prop:s0
+dolby.ds.virt.bluetooth             u:object_r:dolby_prop:s0
+dolby.ds.virt.hdmi                  u:object_r:dolby_prop:s0
+dolby.ds.virt.headphone_port        u:object_r:dolby_prop:s0
+dolby.ds.virt.internal_speaker      u:object_r:dolby_prop:s0
+dolby.ds.virt.miracast              u:object_r:dolby_prop:s0
+dolby.ds.virt.usb                   u:object_r:dolby_prop:s0
+
 # WFD
 persist.vendor.setWFDInfo.R2             u:object_r:wfd_sys_debug_prop:s0
+

@@ -32,4 +32,6 @@ type governor_prop, property_type;
 type mithermald_prop, property_type;
 type viper_prop, property_type;
 type jamesdsp_prop, property_type;
+#Dolby
+type dolby_prop, property_type;
 
