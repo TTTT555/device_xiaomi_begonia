@@ -1,0 +1,28 @@
+# Dolby
+type dolby_app, domain;
+app_domain(dolby_app)
+
+# Allow dolby apps to find system services
+allow dolby_app {
+ activity_task_service
+ app_api_service
+ appwidget_service
+ audioserver_service
+ autofill_service
+ cameraserver_service
+ drmserver_service
+ gpu_service
+ mediaextractor_service
+ mediametrics_service
+ mediaserver_service
+ surfaceflinger_service
+ activity_service
+ thermal_service
+}:service_manager find;
+
+allow dolby_app dolby_prop:property_service set;
+get_prop(dolby_app, dolby_prop);
+set_prop(dolby_app, dolby_prop);
+
+allow dolby_app gpuservice:binder call;
+

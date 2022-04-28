@@ -25,6 +25,7 @@ PRODUCT_PROPERTY_OVERRIDES +=  \
     af.fast_track_multiplier=1 \
     audio.adm.buffering.ms=3 \
     audio_hal.period_multiplier=2 \
+    sys.keep_app_1=com.dolby.ds1appUI \
     dalvik.vm.dex2oat64.enabled=true \
     dalvik.vm.mtk-stack-trace-file=/data/anr/mtk_traces.txt \
     debug.mediatek.disp_decompress=1 \

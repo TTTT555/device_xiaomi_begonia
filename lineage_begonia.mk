@@ -28,6 +28,7 @@ $(call inherit-product, vendor/dirac/config.mk)
 $(call inherit-product, vendor/ANXCamera/config.mk)
 $(call inherit-product, vendor/burial8/config.mk)
 $(call inherit-product, vendor/JamesDSPManager/config.mk)
+$(call inherit-product, vendor/dlb/config.mk)
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
