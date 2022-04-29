@@ -42,6 +42,12 @@
    "remote": "github"
  },
  {
+   "repository": "TTTT555/vendor_gcam64begonia",
+   "target_path": "vendor/gcam64begonia",
+   "branch": "main",   
+   "remote": "github"
+ },
+ {
    "repository": "TTTT555/viper4androidFX",
    "target_path": "vendor/viper4androidFX",
    "branch": "master",   

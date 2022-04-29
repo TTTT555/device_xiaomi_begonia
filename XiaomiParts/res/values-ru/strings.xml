@@ -203,10 +203,16 @@
     <string name="codecs_mtk">МТК HW</string>
     <string name="codecs_omx">Google OMX</string>
 
-    <!-- Force 64 Mp -->
-    <string name="force64_title">Форсировать 64 Мп</string>
-    <string name="force64_summary">Поддерживается только адаптированными камерами</string>
-    <string name="force64_dialogTitle">Поддерживается только адаптированными камерами</string>
+    <!-- Cams -->
+    <string name="cam_title">Вариант камеры</string>
+    <string name="cam_summary">Перезагрузись после выбора</string>
+    <string name="cam_dialogTitle">Перезагрузись после выбора</string>
+
+    <!-- Values for Cams -->
+    <string name="cam_1">ANX</string>
+    <string name="cam_2">ANX + G-cam Burial 8</string>
+    <string name="cam_3">Только G-cam Burial 8</string>
+    <string name="cam_4">Только G-cam true 64 Mp</string>
 
     <!-- TCP Profiles -->
     <string name="tcpcongestion_title">TCP Алгоритм</string>

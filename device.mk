@@ -61,6 +61,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/configs/gcam/Burial8_perfect_2_fix2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/Gcam/configs7/Burial/Burial8_perfect_2_fix2.xml \
+   $(LOCAL_PATH)/configs/gcam/MK_RN8P_7.3_for_64mp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/Gcam/configs7/MK_RN8P_7.3_for_64mp.xml
+
 # MM modules
 PRODUCT_PACKAGES += \
     com.android.media.swcodec \

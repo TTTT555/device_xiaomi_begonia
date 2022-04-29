@@ -6,6 +6,6 @@ sleep 10
 
 if A=$(find /sdcard/Gcam/configs7/Burial -type f -name '*.xml' | wc -l); [ "$A" = "0" ]
 then
-mkdir -p /sdcard/Gcam/configs7/Burial
-cp -r /vendor/etc/Gcam/configs7/Burial/. /sdcard/Gcam/configs7/Burial/
+mkdir -p /sdcard/Gcam
+cp -r /vendor/etc/Gcam/. /sdcard/Gcam/
 fi
