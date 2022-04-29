@@ -77,8 +77,8 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_THERMAL = "thermal";
     public static final String THERMAL_SYSTEM_PROPERTY = "persist.xp.thermal";
 
-    public static final String PREF_FORCE64 = "force64";
-    public static final String FORCE64_SYSTEM_PROPERTY = "persist.xp.force64";
+    public static final String PREF_CAM = "cam";
+    public static final String CAM_SYSTEM_PROPERTY = "persist.xp.cam";
 	
     public static final String PREF_DISABLE_VSYNC = "vsync";
     public static final String VSYNC_SYSTEM_PROPERTY = "persist.xp.vsync.disabled";
@@ -118,7 +118,7 @@ public class DeviceSettings extends PreferenceFragment implements
 
     private SecureSettingSwitchPreference mThermal;
 
-    private SecureSettingSwitchPreference mForce64;
+    private SecureSettingListPreference mCam;
 	
     private SecureSettingListPreference mDisableVSYNC;
 
@@ -231,10 +231,11 @@ public class DeviceSettings extends PreferenceFragment implements
     mThermal.setChecked(FileUtils.getProp(THERMAL_SYSTEM_PROPERTY, false));
     mThermal.setOnPreferenceChangeListener(this);
 
-    // Force 64
-    mForce64 = (SecureSettingSwitchPreference) findPreference(PREF_FORCE64);
-    mForce64.setChecked(FileUtils.getProp(FORCE64_SYSTEM_PROPERTY, false));
-    mForce64.setOnPreferenceChangeListener(this);
+	// Cams
+	mCam = (SecureSettingListPreference) findPreference(PREF_CAM);
+	mCam.setValue(FileUtils.getStringProp(CAM_SYSTEM_PROPERTY, "0"));
+	mCam.setSummary(mCam.getEntry());
+	mCam.setOnPreferenceChangeListener(this);
 
     // VSYNC Disabler
     mDisableVSYNC = (SecureSettingListPreference) findPreference(PREF_DISABLE_VSYNC);
@@ -352,8 +353,10 @@ public class DeviceSettings extends PreferenceFragment implements
                 FileUtils.setProp(THERMAL_SYSTEM_PROPERTY, (Boolean) value);
                 break;
 
-            case PREF_FORCE64:
-                FileUtils.setProp(FORCE64_SYSTEM_PROPERTY, (Boolean) value);
+            case PREF_CAM:
+                mCam.setValue((String) value);
+                mCam.setSummary(mCam.getEntry());
+                FileUtils.setStringProp(CAM_SYSTEM_PROPERTY, (String) value);
                 break;
 
             case PREF_DISABLE_VSYNC:

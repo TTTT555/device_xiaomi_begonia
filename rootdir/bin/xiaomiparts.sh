@@ -25,7 +25,6 @@ fi
 
 codecs_old=10
 hw_overlays_old=10
-force64_old=10
 
 wifi80_old="$(getprop persist.xp.wifi80)"
 if [[ "$wifi80_old" == 1 || "$wifi80_old" == 2 || "$wifi80_old" == 3 ]]; then
@@ -66,6 +65,8 @@ dlb_old="$(getprop persist.xp.dlb)"
 if [[ "$dlb_old" != 0 && "$dlb_old" != 1 ]]; then
   pm disable com.dolby && pm disable com.dolby.ds1appUI
 fi
+
+cam_old=10
 
 # loop, run every 3 seconds
 while true
@@ -388,20 +389,44 @@ if [ "$hw_overlays_old" != "$hw_overlays" ]; then
 	hw_overlays_old=$hw_overlays
 fi
 
-## Force 64 Mp
-force64="$(getprop persist.xp.force64)"
-if [ "$force64_old" != "$force64" ]; then
-  case $force64 in
-  0)# Off
-  stop camerahalserver
+## Cams
+cam="$(getprop persist.xp.cam)"
+if [ "$cam_old" != "$cam" ]; then
+  case $cam in
+  0)# Only ANX
+  pm enable com.android.camera
+  pm disable org.codeaurora.snapcam
+  pm disable com.google.android.GoogleCamera.Urnyx
   umount /vendor/lib64/libcam.hal3a.v3.lscMgr.so
   umount /vendor/lib64/libcam.halsensor.so
   umount /vendor/lib64/libmtkcam.logicalmodule.so
   umount /vendor/lib64/libmtkcam_metastore.so
   umount /vendor/lib64/libmtkcam_pipelinepolicy.so
-  start camerahalserver
   ;;
-  1)# On
+  1)# ANX + G-cam Burial 8
+  pm enable com.android.camera
+  pm enable org.codeaurora.snapcam
+  pm disable com.google.android.GoogleCamera.Urnyx
+  umount /vendor/lib64/libcam.hal3a.v3.lscMgr.so
+  umount /vendor/lib64/libcam.halsensor.so
+  umount /vendor/lib64/libmtkcam.logicalmodule.so
+  umount /vendor/lib64/libmtkcam_metastore.so
+  umount /vendor/lib64/libmtkcam_pipelinepolicy.so
+  ;;
+  2)# Only G-cam Burial 8
+  pm disable com.android.camera
+  pm enable org.codeaurora.snapcam
+  pm disable com.google.android.GoogleCamera.Urnyx
+  umount /vendor/lib64/libcam.hal3a.v3.lscMgr.so
+  umount /vendor/lib64/libcam.halsensor.so
+  umount /vendor/lib64/libmtkcam.logicalmodule.so
+  umount /vendor/lib64/libmtkcam_metastore.so
+  umount /vendor/lib64/libmtkcam_pipelinepolicy.so
+  ;;
+  3)# Only G-cam 64
+  pm disable com.android.camera
+  pm disable org.codeaurora.snapcam
+  pm enable com.google.android.GoogleCamera.Urnyx
   stop camerahalserver
   mount --bind /vendor/lib64/2libcam.hal3a.v3.lscMgr.so /vendor/lib64/libcam.hal3a.v3.lscMgr.so
   mount --bind /vendor/lib64/2libcam.halsensor.so /vendor/lib64/libcam.halsensor.so
@@ -410,17 +435,12 @@ if [ "$force64_old" != "$force64" ]; then
   mount --bind /vendor/lib64/2libmtkcam_pipelinepolicy.so /vendor/lib64/libmtkcam_pipelinepolicy.so
   start camerahalserver
   ;;
-  *)# First boot params
-  stop camerahalserver
-  umount /vendor/lib64/libcam.hal3a.v3.lscMgr.so
-  umount /vendor/lib64/libcam.halsensor.so
-  umount /vendor/lib64/libmtkcam.logicalmodule.so
-  umount /vendor/lib64/libmtkcam_metastore.so
-  umount /vendor/lib64/libmtkcam_pipelinepolicy.so
-  start camerahalserver
+  *)# First boot params (ANX)
+  pm disable org.codeaurora.snapcam
+  pm disable com.google.android.GoogleCamera.Urnyx
   ;;
   esac
-	force64_old=$force64
+	cam_old=$cam
 fi
 
 ## Force WiFi 80 Mhz

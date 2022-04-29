@@ -71,7 +71,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.6.vendor
 
 PRODUCT_COPY_FILES += \
-   $(LOCAL_PATH)/configs/gcam/Burial8_perfect_2_fix2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/Gcam/configs7/Burial/Burial8_perfect_2_fix2.xml
+   $(LOCAL_PATH)/configs/gcam/Burial8_perfect_2_fix2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/Gcam/configs7/Burial/Burial8_perfect_2_fix2.xml \
+   $(LOCAL_PATH)/configs/gcam/MK_RN8P_7.3_for_64mp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/Gcam/configs7/MK_RN8P_7.3_for_64mp.xml
 
 # Dex
 PRODUCT_DEXPREOPT_SPEED_APPS += \
