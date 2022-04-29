@@ -40,7 +40,7 @@ persist.xp.vsync.disabled		    u:object_r:vsync_prop:s0
 persist.xp.latch_unsignaled		    u:object_r:latch_unsignaled_prop:s0
 persist.xp.hw_codecs        	    u:object_r:codecs_prop:s0
 persist.xp.hw_overlays        	    u:object_r:hw_overlays_prop:s0
-persist.xp.force64          	    u:object_r:force64_prop:s0
+persist.xp.cam          	        u:object_r:xp_cams_prop:s0
 persist.xp.wifi80           	    u:object_r:wifi80_prop:s0
 persist.xp.pq               	    u:object_r:pq_prop:s0
 persist.xp.usb               	    u:object_r:usb_prop:s0

@@ -147,13 +147,15 @@
 			android:summary="@string/thermal_summary"
 			android:dialogTitle="@string/thermal_dialogTitle" />
 
-        <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
+        <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
             android:defaultValue="0"
-            android:key="force64"
-            android:icon="@drawable/ic_64mp"
-            android:title="@string/force64_title"
-			android:summary="@string/force64_summary"
-			android:dialogTitle="@string/force64_dialogTitle" />
+            android:dialogTitle="@string/cam_dialogTitle"
+            android:entries="@array/cam_profiles"
+            android:entryValues="@array/cam_values"
+            android:key="cam"
+            android:summary="@string/cam_summary"
+            android:icon="@drawable/ic_cam" 
+            android:title="@string/cam_title" />
             
     </PreferenceCategory>
 

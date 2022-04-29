@@ -182,6 +182,21 @@
         <item>3</item>
     </string-array>
 
+    <!-- Cam Profiles -->
+    <string-array name="cam_profiles">
+        <item>@string/cam_1</item>
+        <item>@string/cam_2</item>        
+        <item>@string/cam_3</item>
+        <item>@string/cam_4</item>
+    </string-array>
+    
+    <string-array name="cam_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     <!-- V-Sync -->
     <string-array name="vsync_profiles">
         <item>@string/vsync_enabled</item>

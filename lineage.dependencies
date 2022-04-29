@@ -64,5 +64,11 @@
    "target_path": "vendor/dlb",
    "branch": "main",   
    "remote": "github"
+ },
+ {
+   "repository": "TTTT555/vendor_gcam64begonia",
+   "target_path": "vendor/gcam64begonia",
+   "branch": "main",   
+   "remote": "github"
  }
 ]
