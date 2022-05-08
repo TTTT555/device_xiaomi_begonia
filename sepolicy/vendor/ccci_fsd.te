@@ -1,0 +1,2 @@
+allow ccci_fsd proc_version:file r_file_perms;
+allow ccci_fsd sysfs_devices_block:dir r_dir_perms;
