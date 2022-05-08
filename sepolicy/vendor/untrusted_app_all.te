@@ -1,1 +1,2 @@
 allow untrusted_app_all zygote:unix_stream_socket { getopt getattr };
+get_prop(untrusted_app_all, vendor_debug_prop)

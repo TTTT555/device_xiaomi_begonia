@@ -1,1 +1,3 @@
-set_prop(rild, deviceid_prop)
+set_prop(rild, deviceid_prop);
+allow rild rild:capability2 wake_alarm;
+
