@@ -122,6 +122,11 @@
     <string name="dlb_title">DB FX</string>
     <string name="dlb_summary">Enable DB FX Manager</string>
     <string name="dlb_dialogTitle">Enable DB FX Manager</string>
+
+    <!-- Stereo -->
+    <string name="stereo_title">Stereo</string>
+    <string name="stereo_summary">Enable stereo with small speaker</string>
+    <string name="stereo_dialogTitle">Enable stereo with small speaker</string>
     
     <!-- Ambient gesture haptic feedback -->
     <string name="ambient_gesture_haptic_feedback">Haptic feedback</string>

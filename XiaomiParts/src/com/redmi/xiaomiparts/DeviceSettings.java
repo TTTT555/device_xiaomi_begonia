@@ -51,6 +51,9 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_DLB = "dlb";
     public static final String DLB_SYSTEM_PROPERTY = "persist.xp.dlb";
 
+    public static final String PREF_STEREO = "stereo";
+    public static final String STEREO_SYSTEM_PROPERTY = "persist.xp.stereo";
+
     public static final String KEY_VIBSTRENGTH = "vibration_strength";
     private static final String CATEGORY_DISPLAY = "display";
 
@@ -103,6 +106,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingSwitchPreference mJames;
 
     private SecureSettingSwitchPreference mDlb;
+
+    private SecureSettingSwitchPreference mStereo;
 
     private SecureSettingListPreference mGovernor;
 
@@ -226,6 +231,11 @@ public class DeviceSettings extends PreferenceFragment implements
     mDlb.setChecked(FileUtils.getProp(DLB_SYSTEM_PROPERTY, false));
     mDlb.setOnPreferenceChangeListener(this);
 
+    // Stereo
+    mStereo = (SecureSettingSwitchPreference) findPreference(PREF_STEREO);
+    mStereo.setChecked(FileUtils.getProp(STEREO_SYSTEM_PROPERTY, false));
+    mStereo.setOnPreferenceChangeListener(this);
+
     // MI Thermal
     mThermal = (SecureSettingSwitchPreference) findPreference(PREF_THERMAL);
     mThermal.setChecked(FileUtils.getProp(THERMAL_SYSTEM_PROPERTY, false));
@@ -347,6 +357,10 @@ public class DeviceSettings extends PreferenceFragment implements
 
             case PREF_DLB:
                 FileUtils.setProp(DLB_SYSTEM_PROPERTY, (Boolean) value);
+                break;
+
+            case PREF_STEREO:
+                FileUtils.setProp(STEREO_SYSTEM_PROPERTY, (Boolean) value);
                 break;
 
             case PREF_THERMAL:

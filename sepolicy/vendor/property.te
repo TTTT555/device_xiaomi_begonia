@@ -26,4 +26,5 @@ type mithermald_prop, property_type;
 type viper_prop, property_type;
 type jamesdsp_prop, property_type;
 type dlbfx_prop, property_type;
+type xp_stereo_prop, property_type;
 

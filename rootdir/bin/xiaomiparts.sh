@@ -68,6 +68,13 @@ fi
 
 cam_old=10
 
+stereo_old="$(getprop persist.xp.stereo)"
+if [ "$stereo_old" == 1 ]; then
+  # On
+  umount /vendor/etc/audio_device.xml
+  mount --bind /vendor/etc/audio_device_st.xml /vendor/etc/audio_device.xml
+fi
+
 # loop, run every 3 seconds
 while true
 do
@@ -334,6 +341,30 @@ if [ "$dlb_old" != "$dlb" ]; then
   ;;
   esac
 	dlb_old=$dlb
+fi
+
+## Stereo
+stereo="$(getprop persist.xp.stereo)"
+if [ "$stereo_old" != "$stereo" ]; then
+  case $stereo in
+  0)# Off
+  stop audioserver
+  umount /vendor/etc/audio_device.xml
+  sleep 3
+  ;;
+  1)# On
+  stop audioserver
+  umount /vendor/etc/audio_device.xml
+  mount --bind /vendor/etc/audio_device_st.xml /vendor/etc/audio_device.xml
+  sleep 3
+  ;;
+  *)# Other (Disable)
+  stop audioserver
+  umount /vendor/etc/audio_device.xml
+  sleep 3
+  ;;
+  esac
+	stereo_old=$stereo
 fi
 
 ## MI Thermal disabler
