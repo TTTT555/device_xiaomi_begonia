@@ -80,6 +80,11 @@
     <string name="dlb_summary">Включить DB FX менеджер</string>
     <string name="dlb_dialogTitle">Включить DB FX менеджер</string>
 
+    <!-- Stereo -->
+    <string name="stereo_title">Стерео</string>
+    <string name="stereo_summary">Включить малый динамик в стерео звук</string>
+    <string name="stereo_dialogTitle">Включить малый динамик в стерео звук</string>
+
     <!-- Audio amplification -->
     <string name="audio_title">Аудио</string>
     <string name="headphone_gain">Усиление звука в наушниках</string>
