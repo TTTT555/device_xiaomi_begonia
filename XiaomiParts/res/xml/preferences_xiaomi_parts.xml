@@ -69,14 +69,6 @@
             android:title="@string/dlb_title"
 			android:summary="@string/dlb_summary"
 			android:dialogTitle="@string/dlb_dialogTitle" />
-
-        <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
-            android:defaultValue="0"
-            android:key="stereo"
-            android:icon="@drawable/ic_stereo"
-            android:title="@string/stereo_title"
-			android:summary="@string/stereo_summary"
-			android:dialogTitle="@string/stereo_dialogTitle" />
     </PreferenceCategory>
     
     <PreferenceCategory
