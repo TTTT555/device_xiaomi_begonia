@@ -1,4 +1,5 @@
-Device configuration for Redmi Note 8 Pro (begonia)
+REBASING UP TO 2 DAYS
+crDroid A11 device configuration for Redmi Note 8 Pro (begonia)
 ===================================================
 
 The Redmi Note 8 Pro (codenamed _"begonia"_) is a high-end, mid-range smartphone from Xiaomi.
@@ -18,4 +19,3 @@ It was released in September 2019.
 | Camera (Front)          | 20 MP, f/2.0, 0.9µm                                                                                                            |
 
 
-**Copyright (C) 2021 The LineageOS Project**
