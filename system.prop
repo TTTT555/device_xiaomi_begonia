@@ -34,6 +34,21 @@ pm.dexopt.boot=verify
 pm.dexopt.first-boot=quicken
 dalvik.vm.dex2oat-cpu-set=0,1,2,3,4,5
 dalvik.vm.dex2oat-threads=6
+dalvik.vm.dex2oat64.enabled=true
+dalvik.vm.mtk-stack-trace-file=/data/anr/mtk_traces.txt
+dalvik.vm.boot-dex2oat-cpu-set=0,1,2,3,4,5
+dalvik.vm.image-dex2oat-cpu-set=0,1,2,3,4,5
+dalvik.vm.dex2oat-threads=8
+dalvik.vm.boot-dex2oat-threads=8
+dalvik.vm.image-dex2oat-threads=8
+ro.sys.fw.dex2oat_thread_count=8
+dalvik.vm.image-dex2oat-filter=speed-profile
+dalvik.vm.dex2oat-filter=speed-profile
+dalvik.vm.heapmaxfree=8m
+dalvik.vm.heapminfree=512k
+dalvik.vm.heapsize=512m
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heaptargetutilization=0.75
 
 # Display
 ro.vendor.all_modes.colorpick_adjust=true

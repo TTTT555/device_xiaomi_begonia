@@ -70,8 +70,11 @@ PRODUCT_COPY_FILES += \
 # Dex
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI \
-    com.android.launcher3 \
-    Launcher3QuickStep
+    Launcher3QuickStep \
+    SettingsInlelligence \
+    Settings
+
+PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
 
 # Display
 PRODUCT_PACKAGES += \
