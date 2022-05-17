@@ -1,3 +1,5 @@
+REBASING
+
 Device configuration for Redmi Note 8 Pro (begonia)
 ===================================================
 
