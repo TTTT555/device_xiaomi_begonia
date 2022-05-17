@@ -14,7 +14,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 	TrebuchetQuickStep \
     NexusLauncherRelease \
     Launcher3QuickStep \
+    SettingsInlelligence \
     Settings
+
+PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
 
 # Audio
 PRODUCT_PACKAGES += \

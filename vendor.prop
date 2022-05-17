@@ -97,10 +97,6 @@ ro.surface_flinger.use_color_management=1
 vendor.gralloc.enable_fb_ubwc=1
 vendor.gralloc.disable_ubwc=0
 
-# Dalvik
-dalvik.vm.dex2oat64.enabled=true
-dalvik.vm.mtk-stack-trace-file=/data/anr/mtk_traces.txt
-
 # EGL
 ro.hardware.egl=mali
 
