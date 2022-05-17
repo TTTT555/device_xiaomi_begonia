@@ -70,5 +70,11 @@
    "target_path": "vendor/gcam64begonia",
    "branch": "main",   
    "remote": "github"
+ },
+ {
+   "repository": "Mediatek-OSS/android_packages_apps_MtkFMRadio",
+   "target_path": "packages/apps/MtkFMRadio",
+   "branch": "lineage-18.1",   
+   "remote": "github"
  }
 ]
