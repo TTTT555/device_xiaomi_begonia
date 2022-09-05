@@ -236,6 +236,11 @@
     <string name="thermal_summary">Это может повысить производительность, но сократить срок службы устройства.</string>
     <string name="thermal_dialogTitle">Это может повысить производительность, но сократить срок службы устройства.</string>
 
+    <!-- GMS IOS -->
+    <string name="gms_title">Отключить Gms Intent Operation Service</string>
+    <string name="gms_summary">Активируйте, если имеется перерасход заряда от сервисов Google. Может сломать авторизацию Google.</string>
+    <string name="gms_dialogTitle">Активируйте, если имеется перерасход заряда от сервисов Google. Может сломать авторизацию Google.</string>
+
     <!-- Values for WiFi Presets -->
     <string name="wifi80_default">По умолчанию (20-40 МГц)</string>
     <string name="wifi80_2">Только 2G -> 80 МГц</string>

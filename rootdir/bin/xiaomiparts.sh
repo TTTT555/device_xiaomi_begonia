@@ -31,6 +31,8 @@ fi
 
 cam_old=10
 
+gms_old=10
+
 # loop, run every 3 seconds
 while true
 do
@@ -312,6 +314,23 @@ if [ "$thermal_old" != "$thermal" ]; then
   ;;
   esac
 	thermal_old=$thermal
+fi
+
+## GMS IOS disabler
+gms="$(getprop persist.xp.gms)"
+if [ "$gms_old" != "$gms" ]; then
+  case $gms in
+  0)# Off
+  pm enable com.google.android.gms/.chimera.GmsIntentOperationService
+  ;;
+  1)# On
+  pm disable com.google.android.gms/.chimera.GmsIntentOperationService
+  ;;
+  *)# First boot params (Enabled)
+  pm enable com.google.android.gms/.chimera.GmsIntentOperationService
+  ;;
+  esac
+	gms_old=$gms
 fi
 
 ## Codecs priority

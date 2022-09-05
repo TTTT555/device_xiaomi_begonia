@@ -77,6 +77,9 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String PREF_THERMAL = "thermal";
     public static final String THERMAL_SYSTEM_PROPERTY = "persist.xp.thermal";
 
+    public static final String PREF_GMS = "gms";
+    public static final String GMS_SYSTEM_PROPERTY = "persist.xp.gms";
+
     public static final String PREF_CAM = "cam";
     public static final String CAM_SYSTEM_PROPERTY = "persist.xp.cam";
 	
@@ -117,6 +120,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingSwitchPreference mUsb;
 
     private SecureSettingSwitchPreference mThermal;
+
+    private SecureSettingSwitchPreference mGms;
 
     private SecureSettingListPreference mCam;
 	
@@ -230,6 +235,11 @@ public class DeviceSettings extends PreferenceFragment implements
     mThermal = (SecureSettingSwitchPreference) findPreference(PREF_THERMAL);
     mThermal.setChecked(FileUtils.getProp(THERMAL_SYSTEM_PROPERTY, false));
     mThermal.setOnPreferenceChangeListener(this);
+
+    // Google IOS
+    mGms = (SecureSettingSwitchPreference) findPreference(PREF_GMS);
+    mGms.setChecked(FileUtils.getProp(GMS_SYSTEM_PROPERTY, false));
+    mGms.setOnPreferenceChangeListener(this);
 
 	// Cams
 	mCam = (SecureSettingListPreference) findPreference(PREF_CAM);
@@ -351,6 +361,10 @@ public class DeviceSettings extends PreferenceFragment implements
 
             case PREF_THERMAL:
                 FileUtils.setProp(THERMAL_SYSTEM_PROPERTY, (Boolean) value);
+                break;
+
+            case PREF_GMS:
+                FileUtils.setProp(GMS_SYSTEM_PROPERTY, (Boolean) value);
                 break;
 
             case PREF_CAM:
