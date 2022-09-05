@@ -147,6 +147,14 @@
 			android:summary="@string/thermal_summary"
 			android:dialogTitle="@string/thermal_dialogTitle" />
 
+        <com.redmi.xiaomiparts.preferences.SecureSettingSwitchPreference
+            android:defaultValue="0"
+            android:key="gms"
+            android:icon="@drawable/ic_gms"
+            android:title="@string/gms_title"
+			android:summary="@string/gms_summary"
+			android:dialogTitle="@string/gms_dialogTitle" />
+
         <com.redmi.xiaomiparts.preferences.SecureSettingListPreference
             android:defaultValue="0"
             android:dialogTitle="@string/cam_dialogTitle"
