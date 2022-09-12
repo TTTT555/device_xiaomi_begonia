@@ -46,7 +46,7 @@ ro.netflix.bsp_rev=MTK6785-18758-1
 ro.mtk_perf_simple_start_win=1
 ro.mtk_perf_fast_start_win=1
 ro.mtk_perf_response_time=1
-sys.use_fifo_ui=1
+#sys.use_fifo_ui=1
 
 # Power
 sys.ipo.pwrdncap=2
