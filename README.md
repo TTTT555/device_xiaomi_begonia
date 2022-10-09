@@ -1,4 +1,4 @@
-crDroid 6.25 FINAL
+crDroid 6.27 FINAL
 ===================================================
 Device configuration for Redmi Note 8 Pro (begonia)
 ---------------------------------------------------
