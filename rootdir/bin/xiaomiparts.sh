@@ -42,15 +42,15 @@ do
 sprofile="$(getprop persist.spectrum.profile)"
 if [ "$sprofileold" != "$sprofile" ]; then
   case $sprofile in
-  0)# Battery1
+  0)# Battery
   /system/bin/echo -n 1000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
   /system/bin/echo -n 1000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
-  1)# Battery2
+  1)# Balance
   /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
   /system/bin/echo -n 10000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
-  2)# Balance
+  2)# Smooth
   /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
   /system/bin/echo -n 100000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
@@ -62,11 +62,11 @@ if [ "$sprofileold" != "$sprofile" ]; then
   /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
   /system/bin/echo -n 300000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
-  5)# Crazy
+  5)# Superformance
   /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
   /system/bin/echo -n 1000000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
-  *)# First boot params (Balance)
+  *)# First boot params (Smooth)
   /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
   /system/bin/echo -n 100000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
@@ -82,9 +82,9 @@ if [ "$governor_old" != "$governor" ]; then
   /system/bin/echo -n pwrutilx > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
   /system/bin/echo -n pwrutilx > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
   ;;
-  1)# blu_schedutil
-  /system/bin/echo -n blu_schedutil > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-  /system/bin/echo -n blu_schedutil > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
+  1)# energy-dcfc
+  /system/bin/echo -n energy-dcfc > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+  /system/bin/echo -n energy-dcfc > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
   ;;
   2)# pixutil
   /system/bin/echo -n pixutil > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -98,13 +98,13 @@ if [ "$governor_old" != "$governor" ]; then
   /system/bin/echo -n helix_schedutil > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
   /system/bin/echo -n helix_schedutil > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
   ;;
-  5)# darkutil
-  /system/bin/echo -n darkutil > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-  /system/bin/echo -n darkutil > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
+  5)# alucardsched
+  /system/bin/echo -n alucardsched > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+  /system/bin/echo -n alucardsched > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
   ;;
-  6)# smurfutil
-  /system/bin/echo -n smurfutil > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-  /system/bin/echo -n smurfutil > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
+  6)# darknesssched
+  /system/bin/echo -n darknesssched > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+  /system/bin/echo -n darknesssched > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
   ;;
   *)# First boot params (pwrutilx)
   /system/bin/echo -n pwrutilx > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -118,23 +118,23 @@ if [ "$governor_old" != "$governor" ]; then
   ;;
   1)# Balance
   /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
-  /system/bin/echo -n 3000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
+  /system/bin/echo -n 10000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
   2)# Smooth
   /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
   /system/bin/echo -n 100000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
-  3)# Game
+  3)# Gaming
   /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
   /system/bin/echo -n 200000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
-  4)# Powerful
+  4)# Performance
+  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
+  /system/bin/echo -n 300000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
+  ;;
+  5)# Superformance
   /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
   /system/bin/echo -n 1000000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
-  ;;
-  5)# Super Powerful
-  /system/bin/echo -n 500 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/up_rate_limit_us
-  /system/bin/echo -n 10000000 > /sys/devices/system/cpu/cpufreq/$(ls /sys/devices/system/cpu/cpufreq/ | grep -v policy)/down_rate_limit_us
   ;;
   esac
 	governor_old=$governor

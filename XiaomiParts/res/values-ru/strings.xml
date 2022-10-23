@@ -190,11 +190,11 @@
 
     <!-- Values of Governor Ratio -->
     <string name="spectrum_battery">Экономный (1k)</string>
-    <string name="spectrum_balance">Баланс (3k)</string>
+    <string name="spectrum_balance">Баланс (10k)</string>
     <string name="spectrum_smooth">Плавный (100k)</string>
     <string name="spectrum_game">Игровой (200k)</string>
-    <string name="spectrum_powerful">Мощный (1m)</string>
-    <string name="spectrum_spowerful">Сверхмощный (10m)</string>
+    <string name="spectrum_powerful">Мощный (300k)</string>
+    <string name="spectrum_spowerful">Сверхмощный (1m)</string>
 
     <!-- Codecs -->
     <string name="codecs_title">Кодеки</string>

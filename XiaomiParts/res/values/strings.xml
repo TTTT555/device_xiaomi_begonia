@@ -37,12 +37,12 @@
 
     <!-- Governor Variants -->
     <string name="governor_pwrutilx">pwrutilx</string>
-    <string name="governor_blu">blu_schedutil</string>
+    <string name="governor_energy">energy-dcfc</string>
     <string name="governor_pixutil">pixutil</string>
     <string name="governor_schedutil">schedutil</string>
     <string name="governor_helix">helix_schedutil</string>
-    <string name="governor_darkutil">darkutil</string>
-    <string name="governor_smurfutil">smurfutil</string>
+    <string name="governor_alucardsched">alucardsched</string>
+    <string name="governor_darknesssched">darknesssched</string>
 
     <!-- Governor Ratio -->
     <string name="spectrum_profile_title">Performance</string>
@@ -52,11 +52,11 @@
 
     <!-- Values of Governor Ratio -->
     <string name="spectrum_battery">Battery (1k)</string>
-    <string name="spectrum_balance">Balance (3k)</string>
+    <string name="spectrum_balance">Balance (10k)</string>
     <string name="spectrum_smooth">Smooth (100k)</string>
     <string name="spectrum_game">Game (200k)</string>
-    <string name="spectrum_powerful">Powerful (1m)</string>
-    <string name="spectrum_spowerful">Super Powerful (10m)</string>
+    <string name="spectrum_powerful">Powerful (300k)</string>
+    <string name="spectrum_spowerful">Super Powerful (1m)</string>
 
     <!-- Custom seekbar -->
     <string name="custom_seekbar_value">Value: <xliff:g id="v">%s</xliff:g></string>

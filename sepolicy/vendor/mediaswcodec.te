@@ -1,0 +1,6 @@
+allow mediaswcodec proc_ged:file rw_file_perms;
+get_prop(mediaswcodec, omx_core_prop)
+get_prop(mediaswcodec, mtk_crossmount_support_prop)
+get_prop(mediaswcodec, mtk_deinterlace_support_prop)
+get_prop(mediaswcodec, persist_displayfeature_prop)
+get_prop(mediaswcodec, render_prop)
